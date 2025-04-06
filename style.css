@@ -311,3 +311,61 @@ p[style*="color: red;"] { /* Target inline style - not ideal but works for now *
     border: 1px solid var(--accent-red);
     border-radius: 4px;
 }
+
+/* --- Add this to style.css --- */
+
+.ship-stats {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.5); /* Use RGB for opacity */
+    border: 1px solid var(--accent-blue);
+    border-radius: 4px;
+}
+
+.ship-stats h4 {
+    font-family: var(--font-headings);
+    color: var(--accent-cyan);
+    margin-bottom: 10px;
+    text-align: left; /* Align heading left */
+    border-bottom: none; /* Remove bottom border from h4 here */
+    font-size: 1.1em;
+}
+
+.ship-stats ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 10px; /* Space before Role/Bonuses */
+}
+
+.ship-stats li {
+    margin-bottom: 5px;
+    color: var(--text-light-secondary);
+     padding-left: 0; /* Remove padding inherited from synergy lists */
+     position: static; /* Override inherited position */
+}
+.ship-stats li::before {
+    content: none; /* Remove inherited list bullet */
+}
+
+.ship-stats li strong {
+    color: var(--text-light-primary);
+    margin-left: 5px; /* Space between label and value */
+}
+
+.ship-stats p { /* For Role/Bonuses */
+    font-size: 0.95em;
+    color: var(--text-light-secondary);
+    margin-bottom: 5px;
+}
+.ship-stats p em { /* Style the italicized role/bonuses */
+    color: var(--text-light-primary);
+    font-style: normal; /* Make it not italic if desired, or keep italic */
+}
+
+/* Add RGB version of color variable if not already defined */
+/* Add near the top of your CSS in the :root block */
+:root {
+    /* ... other variables ... */
+    --bg-dark-secondary-rgb: 28, 31, 43; /* RGB for opacity usage */
+}
+
