@@ -418,3 +418,146 @@ p[style*="color: red;"] { /* Target inline style - not ideal but works for now *
 .pros li:contains("🌍 Full Faction Affinity") {
      /* font-style: italic; */
 }
+
+/* --- Add these styles to style.css --- */
+
+/* Style the button group container */
+.button-group {
+    margin-top: 1.5rem; /* Add some space above buttons */
+    display: flex; /* Align buttons side-by-side */
+    gap: 15px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
+
+/* Style the new toggle button (similar to analyze button but distinct) */
+button#toggle-library-button {
+    display: inline-block;
+    background: linear-gradient(to bottom, #607D8B, #455A64); /* Grey gradient */
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-headings);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-bottom: 2px solid #37474F; /* Darker grey bottom edge */
+}
+
+button#toggle-library-button:hover {
+    background: linear-gradient(to bottom, #78909C, #546E7A);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border-bottom-color: #37474F;
+    transform: translateY(-1px);
+}
+button#toggle-library-button:active {
+     transform: translateY(1px);
+     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Data Library Section */
+.data-library {
+    margin-top: 30px; /* Space above the library */
+    padding: 20px;
+    background-color: var(--bg-accent-dark);
+    border: 1px solid var(--accent-cyan); /* Use cyan border */
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.2); /* Cyan glow */
+}
+
+.data-library h2 {
+    font-family: var(--font-headings);
+    margin-bottom: 1.5rem;
+    color: var(--accent-cyan);
+    border-bottom: 1px solid var(--accent-blue);
+    padding-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 400;
+}
+
+.data-library h3 { /* For Ship/Commander table titles */
+    font-family: var(--font-headings);
+    color: var(--accent-orange);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    border-bottom: 1px dashed var(--accent-blue);
+    padding-bottom: 5px;
+}
+.data-library h3:first-of-type {
+    margin-top: 0; /* No top margin for the first table heading */
+}
+
+
+/* Table Styling */
+.data-library .table-container {
+    overflow-x: auto; /* Enable horizontal scrolling on small screens */
+    max-width: 100%;
+}
+
+.data-library table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem; /* Space between tables */
+    font-size: 0.9em; /* Slightly smaller font for tables */
+    white-space: nowrap; /* Prevent text wrapping in cells */
+}
+
+.data-library th, .data-library td {
+    border: 1px solid var(--accent-blue);
+    padding: 8px 12px; /* Adjust padding */
+    text-align: left;
+    vertical-align: top; /* Align text to top for long content */
+}
+
+.data-library thead th {
+    background-color: var(--bg-dark-secondary); /* Dark header */
+    color: var(--accent-cyan);
+    font-weight: 600;
+    font-family: var(--font-primary); /* Use primary font for headers */
+    white-space: nowrap; /* Prevent header text wrapping */
+}
+
+.data-library tbody tr:nth-child(even) {
+    background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.3); /* Subtle striping */
+}
+.data-library tbody tr:hover {
+    background-color: rgba(var(--accent-cyan-rgb, 0, 188, 212), 0.15); /* Cyan highlight on hover */
+    color: var(--text-light-primary);
+}
+
+.data-library td {
+    color: var(--text-light-secondary);
+}
+.data-library td:first-child { /* First column (Name) slightly bolder */
+    font-weight: 600;
+    color: var(--text-light-primary);
+}
+
+/* Add RGB version of accent-cyan if not already defined */
+:root {
+    /* ... other variables ... */
+    --accent-cyan-rgb: 0, 188, 212; /* RGB for opacity usage */
+}
+
+/* Style specific columns if needed */
+.data-library .col-number {
+    text-align: right;
+    white-space: nowrap;
+}
+.data-library .col-bonuses, .data-library .col-skills {
+    white-space: normal; /* Allow wrapping for long bonuses/skills */
+    min-width: 200px; /* Give more space */
+}
+.data-library .col-skills ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+}
+.data-library .col-skills li {
+    margin-bottom: 3px;
+}

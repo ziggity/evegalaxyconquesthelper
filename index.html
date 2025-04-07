@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Commander Synergy Finder</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <div class="container">
         <header id="top-banner">
@@ -18,21 +19,23 @@
                     <label for="ship-select">Ship:</label>
                     <select id="ship-select" name="ship-select">
                         <option value="">-- Select Ship --</option>
-                        </select>
+                    </select>
                 </div>
                 <div class="input-group">
                     <label for="commander1-select">Commander 1:</label>
                     <select id="commander1-select" name="commander1-select">
                         <option value="">-- Select Commander 1 --</option>
-                        </select>
+                    </select>
                 </div>
-                <div class="input-group">
+                 <div class="input-group">
                     <label for="commander2-select">Commander 2:</label>
                     <select id="commander2-select" name="commander2-select">
                         <option value="">-- Select Commander 2 --</option>
-                        </select>
+                    </select>
                 </div>
-                <button id="analyze-button">Analyze Synergy</button>
+                <div class="button-group">
+                    <button id="analyze-button">Analyze Synergy</button>
+                    <button id="toggle-library-button">Show Data Library</button> </div>
             </section>
 
             <section id="results-output">
@@ -43,13 +46,16 @@
             </section>
 
             <section class="tier-list-reference">
-                 <h2>Reference Commander Tier List PVE</h2>
+                 <h2>Reference Commander Tier List</h2>
                  <img src="Eve-Galaxy-Conquest-Tier-List-PVE-dec24.webp" alt="EVE Commander Tier List">
-             </section>
-             <section class="tier-list-reference">
-                <h2>Reference Ship Tier List PVE</h2>
-                <img src="Eve-Galaxy-Conquest-Tier-List-PVE-ships-dec24.webp" alt="EVE Ship Tier List">
             </section>
+
+            <section id="data-library-output" class="data-library" style="display: none;">
+                <h2>Data Library</h2>
+                <div id="library-content">
+                    </div>
+            </section>
+
         </main>
 
         <footer id="bottom-banner">
@@ -57,5 +63,6 @@
             </footer>
     </div>
 
-    <script src="script.js"></script> </body>
+    <script src="script.js"></script>
+</body>
 </html>

@@ -430,4 +430,121 @@ function calculateSynergyLevel(score, isKnown) {
     return "Potential Conflicts / Low";
 }
 
+// --- Add near the top with other DOM Elements ---
+const toggleLibraryButton = document.getElementById('toggle-library-button');
+const libraryOutputDiv = document.getElementById('data-library-output');
+const libraryContentDiv = document.getElementById('library-content');
 
+// --- Add near the other Event Listeners ---
+toggleLibraryButton.addEventListener('click', toggleDataLibrary);
+
+// --- New Function to Display Data ---
+function displayDataLibrary() {
+    // Clear previous content
+    libraryContentDiv.innerHTML = '';
+
+    let libraryHTML = '';
+
+    // --- Generate Ship Table ---
+    libraryHTML += '<h3>Ships</h3>';
+    libraryHTML += '<div class="table-container">';
+    libraryHTML += '<table><thead><tr>';
+    libraryHTML += '<th>Name</th>';
+    libraryHTML += '<th>Type</th>';
+    libraryHTML += '<th>Faction</th>';
+    libraryHTML += '<th>Role</th>';
+    libraryHTML += '<th class="col-number">HP</th>';
+    libraryHTML += '<th class="col-number">Firepower</th>';
+    libraryHTML += '<th class="col-number">Energy</th>';
+    libraryHTML += '<th class="col-number">Data Rate</th>';
+    libraryHTML += '<th class="col-number">Armor</th>';
+    libraryHTML += '<th class="col-bonuses">Bonuses</th>';
+    libraryHTML += '</tr></thead><tbody>';
+
+    // Sort ships alphabetically by name for consistency
+    const sortedShips = [...shipData].sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedShips.forEach(ship => {
+        libraryHTML += '<tr>';
+        libraryHTML += `<td>${ship.name || 'N/A'}</td>`;
+        libraryHTML += `<td>${ship.type || 'N/A'}</td>`;
+        libraryHTML += `<td>${ship.faction || 'N/A'}</td>`;
+        libraryHTML += `<td>${ship.role || 'N/A'}</td>`;
+        libraryHTML += `<td class="col-number">${ship.hp !== undefined ? ship.hp.toLocaleString() : 'N/A'}</td>`;
+        libraryHTML += `<td class="col-number">${ship.firepower !== undefined ? ship.firepower.toLocaleString() : 'N/A'}</td>`;
+        libraryHTML += `<td class="col-number">${ship.energy !== undefined ? ship.energy.toLocaleString() : 'N/A'}</td>`;
+        libraryHTML += `<td class="col-number">${ship.dataRate !== undefined ? ship.dataRate : 'N/A'}</td>`;
+        libraryHTML += `<td class="col-number">${ship.armor !== undefined ? ship.armor : 'N/A'}</td>`;
+        libraryHTML += `<td class="col-bonuses">${ship.bonuses && ship.bonuses.length > 0 ? ship.bonuses.join(', ') : 'N/A'}</td>`;
+        libraryHTML += '</tr>';
+    });
+
+    libraryHTML += '</tbody></table>';
+    libraryHTML += '</div>'; // end table-container
+
+    // --- Generate Commander Table ---
+    libraryHTML += '<h3>Commanders</h3>';
+    libraryHTML += '<div class="table-container">';
+    libraryHTML += '<table><thead><tr>';
+    libraryHTML += '<th>Name</th>';
+    libraryHTML += '<th>Tier</th>';
+    libraryHTML += '<th>Faction</th>';
+    libraryHTML += '<th>Type</th>';
+    libraryHTML += '<th class="col-skills">Skills (Names)</th>'; // Display skill names for now
+    libraryHTML += '</tr></thead><tbody>';
+
+     // Sort commanders alphabetically by name
+    const sortedCommanders = [...commanderData].sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedCommanders.forEach(cmdr => {
+        libraryHTML += '<tr>';
+        libraryHTML += `<td>${cmdr.name || 'N/A'}</td>`;
+        libraryHTML += `<td>${cmdr.tier || 'N/A'}</td>`;
+        libraryHTML += `<td>${cmdr.faction || 'N/A'}</td>`;
+        libraryHTML += `<td>${cmdr.type || 'N/A'}</td>`;
+        // Display skill names if available
+        let skillsHTML = 'N/A';
+        if (cmdr.skills && cmdr.skills.length > 0) {
+             skillsHTML = '<ul>';
+             cmdr.skills.forEach(skill => {
+                skillsHTML += `<li>${skill.name || skill.id || 'Unnamed Skill'}</li>`; // Show name or ID
+             });
+             skillsHTML += '</ul>';
+        }
+        libraryHTML += `<td class="col-skills">${skillsHTML}</td>`;
+        libraryHTML += '</tr>';
+    });
+
+    libraryHTML += '</tbody></table>';
+    libraryHTML += '</div>'; // end table-container
+
+    // Set the generated HTML to the content div
+    libraryContentDiv.innerHTML = libraryHTML;
+}
+
+// --- New Function to Toggle Library Visibility ---
+function toggleDataLibrary() {
+    const isVisible = libraryOutputDiv.style.display !== 'none';
+    if (isVisible) {
+        // Hide it
+        libraryOutputDiv.style.display = 'none';
+        toggleLibraryButton.textContent = 'Show Data Library'; // Change button text
+    } else {
+        // Generate content and show it
+        displayDataLibrary(); // Generate tables
+        libraryOutputDiv.style.display = 'block'; // Make section visible
+        toggleLibraryButton.textContent = 'Hide Data Library'; // Change button text
+        // Optional: Scroll to the library
+        libraryOutputDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// --- Ensure you have the rest of your JS code, including: ---
+// const shipData = [...];
+// const commanderData = [...];
+// const knownCombinations = [...];
+// DOM element references for shipSelect, commander1Select, etc.
+// populateDropdown function
+// analyzeSynergy function
+// calculateSynergyLevel function
+// Initial DOMContentLoaded event listener to populate dropdowns
