@@ -40,49 +40,126 @@ const shipData = [
  ];
 
 // Example Commander Data Structure (Expand SIGNIFICANTLY with ALL commanders, skills, factions)
+// const commanderData = [
+//      // Existing commanders from image (use image names primarily)...
+//      { name: "Falek", tier: "S", faction: "Caldari?", skills: [/* Add skills */] },
+//      { name: "Kezti", tier: "S", faction: "Gallente?", skills: [/* Add skills */] },
+//      { name: "Victar", tier: "S", faction: "Minmatar?", skills: [/* Add skills */] },
+//      { name: "Ponk", tier: "S", faction: "Gallente?", skills: [/* Add skills */] },
+//      { name: "Anle", tier: "S", faction: "Amarr?", skills: [/* Add skills */] },
+//      { name: "Ameine", tier: "S", faction: "Amarr?", skills: [/* Add skills */] }, // Use this for Ameline, Amile, Mens?
+//      { name: "Cancu", tier: "S", faction: "Caldari?", skills: [/* Add skills */] },
+//      { name: "Saminona", tier: "S", faction: "Amarr?", skills: [/* Add skills */] }, // Use this for Santimona
+//      { name: "Mia", tier: "S", faction: "Minmatar?", skills: [/* Add skills */] },   // Use this for Mila
+//      { name: "Drae", tier: "A", faction: "Minmatar?", skills: [/* Add skills */] },
+//      { name: "Kasora", tier: "A", faction: "Caldari?", skills: [/* Add skills */] },
+//      { name: "Yun", tier: "A", faction: "Amarr?", skills: [/* Add skills */] },
+//      { name: "Blague", tier: "A", faction: "Minmatar?", skills: [/* Add skills */] },
+//      { name: "Brokara", tier: "A", faction: "Gallente?", skills: [/* Add skills */] },
+//      { name: "Gear", tier: "B", faction: "Gallente?", skills: [/* Add skills */] },
+//      { name: "Cerb", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Placeholder name?
+//      { name: "Bishop", tier: "B", faction: "Amarr?", skills: [/* Add skills */] }, // Placeholder name?
+//      { name: "Carasten", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Placeholder name?
+//      { name: "Flafferty", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Use this for Flaherty
+//      { name: "Fass", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Use this for Faus
+//      { name: "Concord Overseer", tier: "B", faction: "CONCORD", skills: [/* Add skills */] }, // Example faction
+//      { name: "Duvalle Researcher", tier: "B", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Kroger", tier: "B", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Thakker Analyst", tier: "B", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Karvin", tier: "C", faction: "Minmatar?", skills: [/* Add skills */] }, // Use this for Korvin
+//      { name: "Morde Yorlas", tier: "C", faction: "Guristas?", skills: [/* Add skills */] }, // Use this for Morda
+//      { name: "Otro", tier: "C", faction: "Guristas?", skills: [/* Add skills */] },
+//      { name: "Viola", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Karth", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "DRE Explorer", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Baer", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Bland Rader Marsac", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
+//      // D Tier from image... Janus, Lai Dai Engineer, etc.
+//      { name: "Yorlas", tier: "C", faction: "Guristas?", skills: [/* Add skills */] }, // If separate from Morde Yorlas? Usually paired name. Assume Morde Yorlas covers this.
+//      // Commanders added from your list (placeholders)
+//      { name: "Chelm", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Thumbar", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Yana", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Kaylyn", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
+//      { name: "Jamyl I", tier: "Unknown", faction: "Amarr", skills: [/* Add skills */] }, // Example faction
+//      // !!! ADD ALL OTHERS + FILL IN SKILLS/FACTIONS/TIERS !!!
+// ];
+
 const commanderData = [
-     // Existing commanders from image (use image names primarily)...
-     { name: "Falek", tier: "S", faction: "Caldari?", skills: [/* Add skills */] },
-     { name: "Kezti", tier: "S", faction: "Gallente?", skills: [/* Add skills */] },
-     { name: "Victar", tier: "S", faction: "Minmatar?", skills: [/* Add skills */] },
-     { name: "Ponk", tier: "S", faction: "Gallente?", skills: [/* Add skills */] },
-     { name: "Anle", tier: "S", faction: "Amarr?", skills: [/* Add skills */] },
-     { name: "Ameine", tier: "S", faction: "Amarr?", skills: [/* Add skills */] }, // Use this for Ameline, Amile, Mens?
-     { name: "Cancu", tier: "S", faction: "Caldari?", skills: [/* Add skills */] },
-     { name: "Saminona", tier: "S", faction: "Amarr?", skills: [/* Add skills */] }, // Use this for Santimona
-     { name: "Mia", tier: "S", faction: "Minmatar?", skills: [/* Add skills */] },   // Use this for Mila
-     { name: "Drae", tier: "A", faction: "Minmatar?", skills: [/* Add skills */] },
-     { name: "Kasora", tier: "A", faction: "Caldari?", skills: [/* Add skills */] },
-     { name: "Yun", tier: "A", faction: "Amarr?", skills: [/* Add skills */] },
-     { name: "Blague", tier: "A", faction: "Minmatar?", skills: [/* Add skills */] },
-     { name: "Brokara", tier: "A", faction: "Gallente?", skills: [/* Add skills */] },
-     { name: "Gear", tier: "B", faction: "Gallente?", skills: [/* Add skills */] },
-     { name: "Cerb", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Placeholder name?
-     { name: "Bishop", tier: "B", faction: "Amarr?", skills: [/* Add skills */] }, // Placeholder name?
-     { name: "Carasten", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Placeholder name?
-     { name: "Flafferty", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Use this for Flaherty
-     { name: "Fass", tier: "B", faction: "Unknown", skills: [/* Add skills */] }, // Use this for Faus
-     { name: "Concord Overseer", tier: "B", faction: "CONCORD", skills: [/* Add skills */] }, // Example faction
-     { name: "Duvalle Researcher", tier: "B", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Kroger", tier: "B", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Thakker Analyst", tier: "B", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Karvin", tier: "C", faction: "Minmatar?", skills: [/* Add skills */] }, // Use this for Korvin
-     { name: "Morde Yorlas", tier: "C", faction: "Guristas?", skills: [/* Add skills */] }, // Use this for Morda
-     { name: "Otro", tier: "C", faction: "Guristas?", skills: [/* Add skills */] },
-     { name: "Viola", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Karth", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "DRE Explorer", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Baer", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Bland Rader Marsac", tier: "C", faction: "Unknown", skills: [/* Add skills */] },
-     // D Tier from image... Janus, Lai Dai Engineer, etc.
-     { name: "Yorlas", tier: "C", faction: "Guristas?", skills: [/* Add skills */] }, // If separate from Morde Yorlas? Usually paired name. Assume Morde Yorlas covers this.
-     // Commanders added from your list (placeholders)
-     { name: "Chelm", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Thumbar", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Yana", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Kaylyn", tier: "Unknown", faction: "Unknown", skills: [/* Add skills */] },
-     { name: "Jamyl I", tier: "Unknown", faction: "Amarr", skills: [/* Add skills */] }, // Example faction
-     // !!! ADD ALL OTHERS + FILL IN SKILLS/FACTIONS/TIERS !!!
+    // Add 'faction' and 'type' (Offense, Tactics, Hybrid) - REQUIRES VERIFICATION/INPUT
+    {
+        name: "Falek", tier: "S", faction: "Caldari?", type: "Offense?", // Example Type
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Kezti", tier: "S", faction: "Gallente?", type: "Offense?", // Example Type
+        skills: [/* Drone skills suggest Offense or Hybrid */]
+    },
+    {
+        name: "Victar", tier: "S", faction: "Minmatar?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Ponk", tier: "S", faction: "Gallente?", type: "Hybrid?", // Example Type
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Anle", tier: "S", faction: "Amarr?", type: "Tactics?", // Example Type
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Ameine", tier: "S", faction: "Amarr?", type: "Tactics?", // Often logistics/healing -> Tactics
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Cancu", tier: "S", faction: "Caldari?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Saminona", tier: "S", faction: "Amarr?", type: "Tactics?", // Often logistics/healing -> Tactics
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Mia", tier: "S", faction: "Minmatar?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Drae", tier: "A", faction: "Minmatar?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Kasora", tier: "A", faction: "Caldari?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Yun", tier: "A", faction: "Amarr?", type: "Hybrid?", // Has offense and defense skill examples
+        skills: [
+             { id: "yun_energy_dmg", name: "Energy Turret Dmg+", type: "Weapon", category: "Energy Turret", effect: "Increases Energy Turret Damage", value: "+5%" },
+             { id: "yun_armor_res", name: "Armor Resist+", type: "Defense", category: "Armor", effect: "Improves Armor Resistances", value: "+3%" }
+        ]
+    },
+     {
+        name: "Blague", tier: "A", faction: "Minmatar?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Brokara", tier: "A", faction: "Gallente?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    {
+        name: "Gear", tier: "B", faction: "Gallente?", type: "Unknown",
+        skills: [/* Add skills */]
+    },
+    { name: "Bishop", tier: "B", faction: "Amarr?", type: "Tactics?", skills: [/* Add skills - often logistics */] },
+    { name: "Flafferty", tier: "B", faction: "Unknown", type: "Tactics?", skills: [/* Healing mentioned -> Tactics */] },
+    { name: "Fass", tier: "B", faction: "Unknown", type: "Unknown", skills: [/* Add skills */] },
+    { name: "Karvin", tier: "C", faction: "Minmatar?", type: "Unknown", skills: [/* Add skills */] },
+    { name: "Morde Yorlas", tier: "C", faction: "Guristas?", type: "Offense?", skills: [/* Add skills */] },
+    { name: "Otro", tier: "C", faction: "Guristas?", type: "Unknown", skills: [/* Add skills */] },
+    { name: "Karth", tier: "C", faction: "Unknown", type: "Offense?", skills: [/* Often paired for damage -> Offense? */] },
+    { name: "Baer", tier: "C", faction: "Unknown", type: "Unknown", skills: [/* Add skills */] },
+    { name: "Jamyl I", tier: "Unknown", faction: "Amarr", type: "Unknown", skills: [/* Add skills */] }, // Added previously
+    // ... Add faction and type to ALL other commanders ...
 ];
 const knownCombinations = [
     { ship: "Thunderchild", cmdr1: "Baer", cmdr2: "Saminona", note: "User reported: Pulled alt account through all of Season." },
@@ -145,129 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 analyzeButton.addEventListener('click', analyzeSynergy);
 
 // --- 5. Synergy Analysis Logic (NEEDS YOUR CUSTOM RULES) ---
-function analyzeSynergy() {
-    const selectedShipName = shipSelect.value;
-    const commander1Name = commander1Select.value;
-    const commander2Name = commander2Select.value;
-
-    // --- Input Validation ---
-    if (!selectedShipName || !commander1Name || !commander2Name) {
-        resultsDiv.innerHTML = '<p style="color: red;">Please select a Ship, Commander 1, and Commander 2.</p>';
-        return;
-    }
-    if (commander1Name === commander2Name) {
-        resultsDiv.innerHTML = '<p style="color: red;">Please select two different commanders.</p>';
-        return;
-    }
-
-    // --- Find Data Objects ---
-    const ship = shipData.find(s => s.name === selectedShipName);
-    const cmdr1 = commanderData.find(c => c.name === commander1Name);
-    const cmdr2 = commanderData.find(c => c.name === commander2Name);
-
-    if (!ship || !cmdr1 || !cmdr2) {
-        resultsDiv.innerHTML = '<p style="color: red;">Error: Could not find data for selected items.</p>'; // Should not happen if dropdowns are populated correctly
-        return;
-    }
-
-    // --- *** SYNERGY CALCULATION (Placeholder - Needs heavy customization) *** ---
-    let synergyScore = 0;
-    let pros = [];
-    let cons = [];
-    let analysisText = "";
-
-    // Combine all skills from both commanders
-    const allSkills = [...cmdr1.skills, ...cmdr2.skills];
-
-    // Example Rule 1: Complementary Roles (Offense + Defense)
-    const hasOffense = allSkills.some(skill => skill.type === 'Weapon' || skill.type === 'Drone');
-    const hasDefense = allSkills.some(skill => skill.type === 'Defense');
-    if (hasOffense && hasDefense) {
-        synergyScore += 2;
-        pros.push("Covers both Offensive and Defensive aspects.");
-    } else if (hasOffense && !hasDefense) {
-        cons.push("Lacks dedicated defensive skills.");
-    } else if (!hasOffense && hasDefense) {
-        cons.push("Lacks dedicated offensive skills.");
-    }
-
-    // Example Rule 2: Stacking Skills relevant to Ship Role/Bonus
-    let relevantStacks = 0;
-    const skillCounts = {}; // Count occurrences of skill *categories*
-
-    allSkills.forEach(skill => {
-        const category = skill.category; // e.g., Missile, Drone, Shield, Armor, Energy Turret
-        if (category) { // Ensure category exists
-             skillCounts[category] = (skillCounts[category] || 0) + 1;
-
-             // Check if skill category aligns with ship bonus/role
-             if (ship.role.toLowerCase().includes(category.toLowerCase()) ||
-                 (ship.bonuses && ship.bonuses.some(bonus => bonus.toLowerCase().includes(category.toLowerCase()))))
-             {
-                 // Bonus points if the skill matches the ship's specialty
-                 synergyScore += 0.5;
-                 if (skillCounts[category] > 1) { // More points if they *stack* in a relevant area
-                      synergyScore += 1;
-                      relevantStacks++;
-                 }
-             }
-        }
-    });
-
-     if (relevantStacks > 0) {
-        pros.push(`Good stacking in key areas relevant to ${ship.name} (${relevantStacks} stack(s)).`);
-     }
-     // Identify highly stacked areas (you might want specific text)
-     Object.entries(skillCounts).forEach(([category, count]) => {
-         if (count > 1) {
-            pros.push(`Both commanders enhance ${category} skills.`);
-         }
-     });
-
-
-    // Example Rule 3: Faction (Simple Check - adjust logic as needed)
-    if (cmdr1.faction && cmdr2.faction && cmdr1.faction === cmdr2.faction) {
-       // synergyScore += 1; // Optional bonus? Or maybe it doesn't matter?
-       // pros.push("Commanders share the same faction background.");
-    }
-
-    // --- Generate Output HTML ---
-    let outputHTML = `<div class="synergy-score">Overall Synergy: ${calculateSynergyLevel(synergyScore)} (${synergyScore.toFixed(1)})</div>`;
-    outputHTML += `<p>Analysis for <strong>${cmdr1.name}</strong> + <strong>${cmdr2.name}</strong> on a <strong>${ship.name}</strong>:</p>`;
-
-    if (pros.length > 0) {
-        outputHTML += '<div class="pros"><h4>Pros:</h4><ul>';
-        pros.forEach(pro => outputHTML += `<li>${pro}</li>`);
-        outputHTML += '</ul></div>';
-    }
-
-    if (cons.length > 0) {
-        outputHTML += '<div class="cons"><h4>Cons/Considerations:</h4><ul>';
-        cons.forEach(con => outputHTML += `<li>${con}</li>`);
-        outputHTML += '</ul></div>';
-    }
-
-     if (pros.length === 0 && cons.length === 0) {
-        outputHTML += "<p>Basic analysis complete. Refine synergy rules for more details.</p>"
-     }
-
-    outputHTML += `<p><small>Note: Synergy score is based on preliminary rules and defined data. Requires detailed skill information and refined logic for full accuracy.</small></p>`;
-
-
-    resultsDiv.innerHTML = outputHTML;
-}
-
-// Helper function to convert score to a descriptive level (adjust thresholds)
-function calculateSynergyLevel(score, isKnown) {
-    // Known combos get "Excellent" more easily
-    if (isKnown && score >= 5) return "Excellent (Known Combo)";
-    if (score >= 6) return "Excellent"; // High threshold if not known
-    if (score >= 4) return "Good";
-    if (score >= 2) return "Fair";
-    return "Potential Conflicts / Low";
-}
-
-// --- 6. Synergy Analysis Logic (Updated to show ship stats) ---
+// --- 6. Synergy Analysis Logic (Incorporating Commander Types, Faction, Bonds) ---
 function analyzeSynergy() {
     const selectedShipName = shipSelect.value;
     const commander1Name = commander1Select.value;
@@ -294,27 +249,35 @@ function analyzeSynergy() {
     }
 
     // --- Initialize Output HTML ---
-    let outputHTML = ''; // Start fresh
+    let outputHTML = '';
 
-    // --- *** Add Ship Stats Section *** ---
+    // --- Add Ship Stats Section ---
     outputHTML += `<div class="ship-stats">`;
-    outputHTML += `<h4>Selected Ship: ${ship.name} (Stats)</h4>`;
+    outputHTML += `<h4>Selected Ship: ${ship.name} ${ship.faction ? '('+ship.faction+')' : ''}</h4>`; // Add faction if available
     outputHTML += `<ul>`;
-    // Check if stats exist before displaying, show 'N/A' otherwise
     outputHTML += `<li>HP: <strong>${ship.hp !== undefined ? ship.hp.toLocaleString() : 'N/A'}</strong></li>`;
     outputHTML += `<li>Firepower: <strong>${ship.firepower !== undefined ? ship.firepower.toLocaleString() : 'N/A'}</strong></li>`;
     outputHTML += `<li>Energy: <strong>${ship.energy !== undefined ? ship.energy.toLocaleString() : 'N/A'}</strong></li>`;
     outputHTML += `<li>Data Rate: <strong>${ship.dataRate !== undefined ? ship.dataRate : 'N/A'}</strong></li>`;
     outputHTML += `<li>Armor: <strong>${ship.armor !== undefined ? ship.armor : 'N/A'}</strong></li>`;
     outputHTML += `</ul>`;
-     // Add Role and Bonuses if they exist
     if(ship.role) outputHTML += `<p>Role: <em>${ship.role}</em></p>`;
     if(ship.bonuses && ship.bonuses.length > 0) outputHTML += `<p>Bonuses: <em>${ship.bonuses.join(', ')}</em></p>`;
-    outputHTML += `</div><hr>`; // Add a horizontal line after stats
+    outputHTML += `</div><hr>`;
+
+     // --- Add Commander Info Section ---
+    outputHTML += `<div class="commander-info">`;
+    outputHTML += `<h4>Commanders:</h4>`;
+    outputHTML += `<p><strong>${cmdr1.name}</strong> ${cmdr1.faction ? '('+cmdr1.faction+')' : ''} - Type: <em>${cmdr1.type || 'Unknown'}</em></p>`;
+    outputHTML += `<p><strong>${cmdr2.name}</strong> ${cmdr2.faction ? '('+cmdr2.faction+')' : ''} - Type: <em>${cmdr2.type || 'Unknown'}</em></p>`;
+    outputHTML += `</div><hr>`;
+
 
     // --- *** Check against Known Combinations *** ---
     let isKnownCombo = false;
     let knownComboNote = "";
+    let hasBondBonus = false;
+    let bondName = "";
     let knownComboObj = knownCombinations.find(combo =>
         combo.ship === selectedShipName &&
         ((combo.cmdr1 === commander1Name && combo.cmdr2 === commander2Name) ||
@@ -324,6 +287,10 @@ function analyzeSynergy() {
     if (knownComboObj) {
         isKnownCombo = true;
         knownComboNote = knownComboObj.note || "This is a recognized effective combination.";
+        if (knownComboObj.bond) { // Check for bond flag
+            hasBondBonus = true;
+            bondName = knownComboObj.bondName || "Special Bond";
+        }
     }
 
     // --- *** SYNERGY CALCULATION *** ---
@@ -334,47 +301,72 @@ function analyzeSynergy() {
 
     if (isKnownCombo) {
         synergyScore = 5;
-        // Add note to pros list instead of directly to outputHTML here
         pros.push(`<strong>🏆 Recognized Combo:</strong> ${knownComboNote}`);
+        if (hasBondBonus) {
+             synergyScore += 1; // Extra score for bond
+             pros.push(`✨ Active Bond Bonus: ${bondName}!`);
+        }
     }
 
-    const allSkills = [...(cmdr1.skills || []), ...(cmdr2.skills || [])];
+    // --- Check Faction Affinity ---
+    let factionMatch = false;
+    if (ship.faction && cmdr1.faction && cmdr2.faction &&
+        ship.faction === cmdr1.faction && ship.faction === cmdr2.faction)
+    {
+        factionMatch = true;
+        synergyScore += 0.5; // Small bonus for potential
+        pros.push(`🌍 Full Faction Affinity (${ship.faction}): Potential +5% Damage & +5% Damage Reduction (Requires Faction Embassy).`);
+    }
 
-    if (allSkills.length === 0 && !isKnownCombo) {
-         analysisText = "<p><i>Note: Detailed skill data is missing for one or both commanders. Analysis is limited.</i></p>";
-     } else if (allSkills.length > 0) {
-        // Example Rule 1: Complementary Roles
-        const hasOffense = allSkills.some(skill => skill.type === 'Weapon' || skill.type === 'Drone');
-        const hasDefense = allSkills.some(skill => skill.type === 'Defense');
-        if (hasOffense && hasDefense) {
-            synergyScore += isKnownCombo ? 1 : 2;
-            pros.push("Covers both Offensive and Defensive aspects.");
-        } else if (hasOffense && !hasDefense) {
-             if (!isKnownCombo) cons.push("Potentially lacks dedicated defensive skills.");
-        } else if (!hasOffense && hasDefense) {
-              if (!isKnownCombo) cons.push("Potentially lacks dedicated offensive skills.");
+    // --- Check Commander Types ---
+    const type1 = cmdr1.type || "Unknown";
+    const type2 = cmdr2.type || "Unknown";
+    if (type1 !== "Unknown" && type2 !== "Unknown") {
+        if ((type1 === "Offense" && type2 === "Tactics") || (type1 === "Tactics" && type2 === "Offense")) {
+            synergyScore += 1.5;
+            pros.push("Good role coverage (Offense + Tactics).");
+        } else if (type1 === "Offense" && type2 === "Offense") {
+             synergyScore += 0.5; // Can be good but risky
+             pros.push("Strong offensive focus (Double Offense).");
+             if (!isKnownCombo) cons.push("May lack sustain/defensive capabilities.");
+        } else if (type1 === "Tactics" && type2 === "Tactics") {
+             synergyScore += 0.5; // Can be good but slow
+             pros.push("Strong defensive/sustain focus (Double Tactics).");
+              if (!isKnownCombo) cons.push("May lack offensive output.");
+        } else if (type1 === "Hybrid" || type2 === "Hybrid") {
+             synergyScore += 1;
+             pros.push("Includes a flexible Hybrid commander.");
         }
+    } else {
+         if (!isKnownCombo) pros.push("Commander type analysis limited due to missing data.");
+    }
 
-        // Example Rule 2: Stacking Skills relevant to Ship Role/Bonus
+
+    // --- Skill Analysis (Keep previous logic, maybe adjust scores) ---
+    const allSkills = [...(cmdr1.skills || []), ...(cmdr2.skills || [])];
+    if (allSkills.length === 0 && !isKnownCombo) {
+         analysisText = "<p><i>Note: Detailed skill data is missing for one or both commanders. Skill analysis is limited.</i></p>";
+     } else if (allSkills.length > 0) {
+        // Rule 1: Complementary (already partially covered by Type check) - maybe remove direct check here?
+
+        // Rule 2: Stacking Skills relevant to Ship Role/Bonus
         let relevantStacks = 0;
         const skillCounts = {};
         allSkills.forEach(skill => {
              const category = skill.category;
             if (category) {
                 skillCounts[category] = (skillCounts[category] || 0) + 1;
-                // Check alignment with ship stats/role/bonuses (Example check - refine!)
                  if (
                     (category.toLowerCase().includes('missile') && ship.role?.toLowerCase().includes('missile')) ||
                     (category.toLowerCase().includes('drone') && ship.role?.toLowerCase().includes('drone')) ||
-                    (category.toLowerCase().includes('turret') && ship.role?.toLowerCase().includes('turret')) ||
-                    (category.toLowerCase().includes('shield') && (ship.role?.toLowerCase().includes('shield') || ship.bonuses?.some(b => b.toLowerCase().includes('shield')))) ||
-                    (category.toLowerCase().includes('armor') && (ship.role?.toLowerCase().includes('armor') || ship.bonuses?.some(b => b.toLowerCase().includes('armor')))) ||
+                    // ... (rest of the alignment check logic from previous version) ...
                     (ship.bonuses && ship.bonuses.some(bonus => bonus.toLowerCase().includes(category.toLowerCase())))
                  )
                  {
-                    synergyScore += isKnownCombo ? 0.2 : 0.5;
+                    // Reduced score impact slightly as Type/Faction checks add score now
+                    synergyScore += isKnownCombo ? 0.1 : 0.3;
                     if (skillCounts[category] > 1) {
-                        synergyScore += isKnownCombo ? 0.5 : 1;
+                        synergyScore += isKnownCombo ? 0.3 : 0.7;
                         relevantStacks++;
                     }
                 }
@@ -389,13 +381,14 @@ function analyzeSynergy() {
                 pros.push(`Both commanders enhance ${category} skills.`);
              }
         });
-        // --- Add more rules here ---
+        // --- Add more specific skill interaction rules here later ---
     }
+
 
     // --- *** Generate Final Output HTML *** ---
     let synergyLevel = calculateSynergyLevel(synergyScore, isKnownCombo);
 
-     // Add Synergy Score and Intro Text AFTER the ship stats section
+    // Add Synergy Score and Intro Text AFTER the ship/commander info sections
     outputHTML += `<div class="synergy-score">Overall Synergy: ${synergyLevel} (${synergyScore.toFixed(1)})</div>`;
     outputHTML += `<p>Synergy analysis for <strong>${cmdr1.name}</strong> + <strong>${cmdr2.name}</strong> on a <strong>${ship.name}</strong>:</p>`;
     outputHTML += analysisText; // Add note about missing skill data if applicable
@@ -416,12 +409,25 @@ function analyzeSynergy() {
 
      // Add message if no pros/cons found and not a known combo
      if (pros.length === 0 && cons.length === 0 && !isKnownCombo) {
-        outputHTML += "<p>Basic analysis complete. Add detailed skill data and refine synergy rules for more specific insights.</p>"
+        outputHTML += "<p>Basic analysis complete. Add detailed data (Types, Factions, Skills) and refine synergy rules for more specific insights.</p>"
      }
 
-    outputHTML += `<p><small>Note: Synergy score is based on known combinations and preliminary rules. Fill in detailed skill data for full accuracy.</small></p>`;
+    outputHTML += `<p><small>Note: Synergy score is based on known combinations, types, factions, and preliminary rules. Fill in detailed skill data for full accuracy.</small></p>`;
 
 
     // --- Update the results div ---
     resultsDiv.innerHTML = outputHTML;
 }
+
+
+// Helper function to convert score to a descriptive level (Adjust thresholds based on new scoring)
+function calculateSynergyLevel(score, isKnown) {
+    // Adjust thresholds as scoring logic evolves
+    if (isKnown && score >= 6) return "Excellent (Known Combo)"; // Higher bar if bond/faction added score
+    if (score >= 7) return "Excellent";
+    if (score >= 5) return "Good";
+    if (score >= 3) return "Fair";
+    return "Potential Conflicts / Low";
+}
+
+

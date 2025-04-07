@@ -369,3 +369,52 @@ p[style*="color: red;"] { /* Target inline style - not ideal but works for now *
     --bg-dark-secondary-rgb: 28, 31, 43; /* RGB for opacity usage */
 }
 
+/* --- Add this to style.css --- */
+
+.commander-info {
+    padding: 10px 15px; /* Slightly less padding than ship stats */
+    margin-bottom: 20px;
+    background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.3); /* Even more subtle bg */
+    border-left: 2px solid var(--accent-cyan); /* Different border style */
+    border-right: 2px solid var(--accent-cyan);
+    border-radius: 4px;
+}
+
+.commander-info h4 {
+    font-family: var(--font-headings);
+    color: var(--accent-cyan);
+    margin-bottom: 10px;
+    text-align: left;
+    border-bottom: none;
+    font-size: 1.1em;
+}
+
+.commander-info p {
+    margin-bottom: 5px;
+    color: var(--text-light-secondary);
+    font-size: 0.95em;
+}
+
+.commander-info p strong { /* Commander Name */
+    color: var(--text-light-primary);
+    font-weight: 600;
+}
+.commander-info p em { /* Commander Type */
+     color: var(--accent-orange); /* Highlight type */
+     font-style: normal;
+     margin-left: 5px;
+}
+
+/* Style the bond bonus text in the Pros list */
+.pros li strong:first-child { /* Target first strong tag in the list item */
+     /* Example: Add specific styling for Known Combo or Bond Bonus */
+     /* color: var(--accent-orange); */
+}
+.pros li:contains("✨ Active Bond Bonus:") { /* Slightly less reliable way */
+    /* font-weight: bold; */
+}
+
+/* Style the Faction Affinity text in the Pros list */
+.pros li:contains("🌍 Full Faction Affinity") {
+     /* font-style: italic; */
+}
