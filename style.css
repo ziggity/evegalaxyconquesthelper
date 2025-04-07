@@ -561,3 +561,42 @@ button#toggle-library-button:active {
 .data-library .col-skills li {
     margin-bottom: 3px;
 }
+
+* --- Add these styles to style.css --- */
+
+/* Make sortable headers look clickable */
+.data-library th.sortable-header {
+    cursor: pointer;
+    position: relative; /* Needed for pseudo-element */
+    padding-right: 25px; /* Make space for sort indicator */
+}
+.data-library th.sortable-header:hover {
+    background-color: #2a2d3a; /* Slightly lighter background on hover */
+    color: #fff; /* Brighter text on hover */
+}
+
+/* Add sort indicator (up arrow for ascending) */
+.data-library th.sortable-header::after {
+    content: '';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    margin-top: -6px; /* Adjust vertical position */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid var(--text-light-secondary); /* Default arrow color */
+    opacity: 0.3; /* Dim by default */
+    transition: opacity 0.2s ease;
+}
+.data-library th.sortable-header:hover::after {
+    opacity: 0.7; /* Less dim on hover */
+}
+
+/* Style for the currently sorted column header */
+.data-library th.sorted-asc {
+    color: #fff; /* Make sorted header text bright */
+}
+.data-library th.sorted-asc::after {
+    opacity: 1; /* Fully visible arrow */
+    border-bottom-color: var(--accent-cyan); /* Active arrow color */
+}
