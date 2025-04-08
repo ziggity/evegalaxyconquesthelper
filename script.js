@@ -4,7 +4,9 @@ const shipData = [
   {
     name: "Catalyst",
     type: "Destroyer",
+    rank: "B",
     role: "Hybrid Turret DPS",
+    tier: "B",
     bonuses: ["Hybrid Turret Damage", "Hybrid Turret Tracking"],
     hp: 4800,
     firepower: 2552,
@@ -15,6 +17,7 @@ const shipData = [
   {
     name: "Rifter",
     type: "Frigate",
+    rank: "A",
     role: "Speed/Tackle/Turret",
     bonuses: ["Turret Damage", "Speed", "Armor HP"],
     hp: 4900,
@@ -26,6 +29,7 @@ const shipData = [
   {
     name: "Omen",
     type: "Cruiser",
+    rank: "A",
     role: "Energy Turret DPS",
     bonuses: ["Energy Turret Damage", "Energy Turret Cap Use"],
     hp: 5700,
@@ -37,6 +41,7 @@ const shipData = [
   {
     name: "Caracal",
     type: "Cruiser",
+    rank: "C",
     role: "Missile DPS",
     bonuses: ["Missile Damage", "Missile Velocity"],
     hp: 4899,
@@ -48,6 +53,7 @@ const shipData = [
   {
     name: "Vexor",
     type: "Cruiser",
+    rank: "S",
     role: "Drone DPS",
     bonuses: ["Drone Damage", "Drone HP"],
     hp: 4800,
@@ -59,6 +65,7 @@ const shipData = [
   {
     name: "Stormbringer",
     type: "Cruiser",
+    rank: "A",
     role: "Triglavian DPS",
     bonuses: ["Entropic Disintegrator Damage", "Energy Neut Range"],
     hp: 5100,
@@ -70,6 +77,7 @@ const shipData = [
   {
     name: "Scythe",
     type: "Cruiser",
+    rank: "A",
     role: "Logistics (Shield)",
     bonuses: ["Shield Transfer Amount", "Shield Transfer Range"],
     hp: 3399,
@@ -81,6 +89,7 @@ const shipData = [
   {
     name: "Dragoon",
     type: "Destroyer",
+    rank: "S",
     role: "Energy Turret/Drone",
     bonuses: ["Energy Turret Dmg", "Drone Tracking"],
     hp: 4200,
@@ -92,6 +101,7 @@ const shipData = [
   {
     name: "Griffin",
     type: "Frigate",
+    rank: "S",
     role: "EWAR (ECM)",
     bonuses: ["ECM Strength", "ECM Range"],
     hp: 5400,
@@ -103,6 +113,7 @@ const shipData = [
   {
     name: "Dramiel",
     type: "Frigate",
+    rank: "S",
     role: "Speed/Turret DPS",
     bonuses: ["Turret Damage", "Speed"],
     hp: 4800,
@@ -114,6 +125,7 @@ const shipData = [
   {
     name: "Gila",
     type: "Cruiser",
+    rank: "C",
     role: "Drone/Missile DPS",
     bonuses: ["Drone Damage/HP", "Missile Damage"],
     hp: 4200,
@@ -125,6 +137,7 @@ const shipData = [
   {
     name: "Oracle",
     type: "Battlecruiser",
+    rank: "S",
     role: "Energy Turret DPS",
     bonuses: ["Energy Turret Dmg", "Energy Turret Range"],
     hp: 4600,
@@ -136,6 +149,7 @@ const shipData = [
   {
     name: "Drake",
     type: "Battlecruiser",
+    rank: "A",
     role: "Missile Tank",
     bonuses: ["Shield Resist", "Missile Damage"],
     hp: 7200,
@@ -147,6 +161,7 @@ const shipData = [
   {
     name: "Tristan",
     type: "Frigate",
+    rank: "S",
     role: "Drone DPS",
     bonuses: ["Drone Damage", "Drone Tracking"],
     hp: 3300,
@@ -158,6 +173,7 @@ const shipData = [
   {
     name: "Orthrus",
     type: "Cruiser",
+    rank: "A",
     role: "Missile DPS/EWAR",
     bonuses: ["Missile Damage", "Warp Scramble Range"],
     hp: 4800,
@@ -169,6 +185,7 @@ const shipData = [
   {
     name: "Apocalypse",
     type: "Battleship",
+    rank: "S",
     role: "Energy Turret DPS",
     bonuses: ["Energy Turret Dmg", "Energy Turret Range"],
     hp: 5800,
@@ -180,6 +197,7 @@ const shipData = [
   {
     name: "Maelstrom",
     type: "Battleship",
+    rank: "C",
     role: "Turret DPS/Tank",
     bonuses: ["Turret Damage", "Shield Boost"],
     hp: 5400,
@@ -191,6 +209,7 @@ const shipData = [
   {
     name: "Thunderchild",
     type: "Battleship",
+    rank: "A",
     role: "Triglavian DPS/Tank",
     bonuses: ["Entropic Disintegrator Damage", "Armor HP"],
     hp: 7200,
@@ -202,6 +221,7 @@ const shipData = [
   {
     name: "Magnate",
     type: "Frigate",
+    rank: "C",
     role: "Exploration/Combat",
     bonuses: ["Scan Probe Strength", "Relic/Data Bonus"],
     hp: 4600,
@@ -213,6 +233,7 @@ const shipData = [
   {
     name: "Heron",
     type: "Frigate",
+    rank: "B",
     role: "Exploration",
     bonuses: ["Scan Probe Strength", "Relic/Data Bonus"],
     hp: 5100,
@@ -224,6 +245,7 @@ const shipData = [
   {
     name: "Corax",
     type: "Destroyer",
+    rank: "A",
     role: "Missile DPS",
     bonuses: ["Missile Damage", "Missile Velocity"],
     hp: 4400,
@@ -235,6 +257,7 @@ const shipData = [
   {
     name: "Incursus",
     type: "Frigate",
+    rank: "C",
     role: "Combat/Armor Tank",
     bonuses: ["Hybrid Turret Damage", "Armor Repair Bonus"],
     hp: 5100,
@@ -246,6 +269,7 @@ const shipData = [
   {
     name: "Algos",
     type: "Destroyer",
+    rank: "B",
     role: "Drone DPS",
     bonuses: ["Drone Damage", "Drone Optimal Range"],
     hp: 4600,
@@ -253,10 +277,11 @@ const shipData = [
     energy: 1572,
     dataRate: 84,
     armor: 9,
-  }, // Added Algos
+  }, 
   {
     name: "Breacher",
     type: "Frigate",
+    rank: "A",
     role: "Missile DPS/Tank",
     bonuses: ["Missile Damage", "Shield Boost"],
     hp: 5200,
@@ -268,6 +293,7 @@ const shipData = [
   {
     name: "Bellicose",
     type: "Cruiser",
+    rank: "C",
     role: "EWAR/Missile",
     bonuses: ["Target Painter Effect", "Missile Velocity"],
     hp: 5898,
@@ -279,6 +305,7 @@ const shipData = [
   {
     name: "Worm",
     type: "Frigate",
+    rank: "C",
     role: "Drone/Missile DPS",
     bonuses: ["Drone Damage/HP", "Missile Damage"],
     hp: 4600,
@@ -290,6 +317,7 @@ const shipData = [
   {
     name: "Inquisitor",
     type: "Frigate",
+    rank: "S",
     role: "Logistics (Armor)/Combat",
     bonuses: ["Remote Armor Repair", "Nosferatu Drain"],
     hp: 4700,
@@ -301,6 +329,7 @@ const shipData = [
   {
     name: "Stratios",
     type: "Cruiser",
+    rank: "C",
     role: "Exploration/Combat/Drone",
     bonuses: ["Scan Probe Strength", "Drone Damage/HP"],
     hp: 3000,
@@ -312,6 +341,7 @@ const shipData = [
   {
     name: "Navitas",
     type: "Frigate",
+    rank: "D",
     role: "Logistics (Armor)/Mining",
     bonuses: ["Remote Armor Repair", "Mining Laser Range"],
     hp: 5900,
@@ -323,6 +353,7 @@ const shipData = [
   {
     name: "Condor",
     type: "Frigate",
+    rank: "D",
     role: "Missile DPS/Tackle",
     bonuses: ["Missile Damage", "Missile Velocity"],
     hp: 3900,
@@ -334,6 +365,7 @@ const shipData = [
   {
     name: "Tormentor",
     type: "Frigate",
+    rank: "C",
     role: "Energy Turret/Combat",
     bonuses: ["Energy Turret Damage", "Energy Turret Cap Use"],
     hp: 4700,
@@ -345,6 +377,7 @@ const shipData = [
   {
     name: "Cruor",
     type: "Frigate",
+    rank: "C",
     role: "Energy Vampire/Web",
     bonuses: ["Nosferatu Drain", "Stasis Web Range"],
     hp: 4000,
@@ -356,6 +389,7 @@ const shipData = [
   {
     name: "Impairor",
     type: "Frigate",
+    rank: "C",
     role: "Rookie Ship",
     bonuses: [],
     hp: 3400,
@@ -367,6 +401,7 @@ const shipData = [
   {
     name: "Hyperion",
     type: "Battleship",
+    rank: "A",
     role: "Turret DPS/Tank",
     bonuses: ["Turret Damage", "Armor Repair"],
     hp: 4124,
@@ -505,7 +540,7 @@ const commanderData = [
   {
     name: "Blague",
     tier: "A",
-    faction: "Minmatar?",
+    faction: "Minmatar",
     type: "Unknown",
     skills: [
       /* Add skills */
@@ -514,7 +549,7 @@ const commanderData = [
   {
     name: "Brokara",
     tier: "A",
-    faction: "Gallente?",
+    faction: "Gallente",
     type: "Unknown",
     skills: [
       /* Add skills */
@@ -523,7 +558,7 @@ const commanderData = [
   {
     name: "Gear",
     tier: "B",
-    faction: "Gallente?",
+    faction: "Gallente",
     type: "Unknown",
     skills: [
       /* Add skills */
@@ -532,8 +567,8 @@ const commanderData = [
   {
     name: "Bishop",
     tier: "B",
-    faction: "Amarr?",
-    type: "Tactics?",
+    faction: "Amarr",
+    type: "Tactics",
     skills: [
       /* Add skills - often logistics */
     ],
@@ -559,7 +594,7 @@ const commanderData = [
   {
     name: "Karvin",
     tier: "C",
-    faction: "Minmatar?",
+    faction: "Minmatar",
     type: "Unknown",
     skills: [
       /* Add skills */
@@ -568,8 +603,8 @@ const commanderData = [
   {
     name: "Morde Yorlas",
     tier: "B",
-    faction: "Guristas?",
-    type: "Offense?",
+    faction: "Guristas",
+    type: "Offense",
     skills: [
       /* Add skills */
     ],
@@ -577,7 +612,7 @@ const commanderData = [
   {
     name: "Otro",
     tier: "C",
-    faction: "Guristas?",
+    faction: "Guristas",
     type: "Unknown",
     skills: [
       /* Add skills */
@@ -589,7 +624,7 @@ const commanderData = [
     faction: "Minmatar",
     type: "Offense",
     skills: [
-      /* Often paired for damage -> Offense? */
+      /* Often paired for damage -> Offense */
     ],
   },
   {
@@ -835,8 +870,11 @@ function analyzeSynergy() {
   outputHTML += `<li>Armor: <strong>${
     ship.armor !== undefined ? ship.armor : "N/A"
   }</strong></li>`;
+  outputHTML += `<h4>${ship.name} PVE Rank: ${ship.rank} tier ${
+    ship.faction ? "(" + ship.faction + ")" : ""
+  }</h4>`;
   outputHTML += `</ul>`;
-  if (ship.role) outputHTML += `<p>Role: <em>${ship.role}</em></p>`;
+  if (ship.role) outputHTML += `<p>Role: <em>${ship.role} </em></p>`;
   if (ship.bonuses && ship.bonuses.length > 0)
     outputHTML += `<p>Bonuses: <em>${ship.bonuses.join(", ")}</em></p>`;
   outputHTML += `</div><hr>`;
@@ -1055,6 +1093,7 @@ function generateTableRows(dataArray, type) {
             rowsHTML += `<td class="col-number">${ship.dataRate !== undefined ? ship.dataRate : 'N/A'}</td>`;
             rowsHTML += `<td class="col-number">${ship.armor !== undefined ? ship.armor : 'N/A'}</td>`;
             rowsHTML += `<td class="col-bonuses">${ship.bonuses && ship.bonuses.length > 0 ? ship.bonuses.join(', ') : 'N/A'}</td>`;
+            rowsHTML += `<td>${ship.rank || 'N/A'}</td>`;
         } else if (type === 'commander') {
             const cmdr = item;
             rowsHTML += `<td>${cmdr.name || 'N/A'}</td>`;
@@ -1097,6 +1136,7 @@ function displayDataLibrary() {
     libraryHTML += '<th class="col-number sortable-header" data-key="dataRate" data-type="number">Data Rate</th>';
     libraryHTML += '<th class="col-number sortable-header" data-key="armor" data-type="number">Armor</th>';
     libraryHTML += '<th class="col-bonuses">Bonuses</th>'; // Not sortable
+    libraryHTML += '<th class="col-rank sortable-header">Tier</th>'; 
     libraryHTML += '</tr></thead><tbody>';
 
     // Initial sort by name
