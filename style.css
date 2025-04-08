@@ -600,3 +600,78 @@ button#toggle-library-button:active {
     opacity: 1; /* Fully visible arrow */
     border-bottom-color: var(--accent-cyan); /* Active arrow color */
 }
+/* Known Combinations Panel Styling */
+.known-combos {
+    /* background-color: rgba(var(--accent-cyan-rgb), 0.05); /* Optional subtle background */
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--accent-blue); */ /* No extra border needed if parent has one */
+    max-height: 40vh; /* Limit height and make scrollable */
+    overflow-y: auto; /* Add scrollbar if content exceeds max-height */
+    /* Custom scrollbar (optional, webkit browsers) */
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--bg-dark-secondary);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--accent-blue);
+        border-radius: 4px;
+        border: 2px solid var(--bg-dark-secondary);
+    }
+}
+
+.known-combos h3 {
+    font-family: var(--font-headings);
+    color: var(--accent-orange); /* Use orange to stand out */
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 400;
+    border-bottom: 1px dashed var(--accent-blue);
+    padding-bottom: 5px;
+}
+
+.known-combos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.known-combos li {
+    background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.4);
+    border: 1px solid var(--accent-blue);
+    border-left: 3px solid var(--accent-orange); /* Accent border */
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.known-combos li strong { /* Ship name */
+    color: var(--text-light-primary);
+    font-weight: 600;
+    display: block; /* Put ship name on its own line */
+    margin-bottom: 3px;
+}
+.known-combos li span { /* Commanders */
+    color: var(--accent-cyan);
+    font-weight: 600;
+}
+.known-combos li p { /* Note */
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: var(--text-light-secondary);
+    font-style: italic;
+    line-height: 1.4;
+}
+.known-combos li p::before { /* Add quote symbol to note */
+    content: '"';
+    margin-right: 2px;
+}
+.known-combos li p::after {
+    content: '"';
+    margin-left: 2px;
+}

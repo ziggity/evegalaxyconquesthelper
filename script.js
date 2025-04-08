@@ -1,4 +1,4 @@
-// Example Ship Data (Expand significantly!)
+// Example Ship Data 
 const shipData = [
   // Ships updated/added with stats from your list:
   {
@@ -647,6 +647,40 @@ const commanderData = [
   }, // Added previously
   // ... Add faction and type to ALL other commanders ...
 ];
+
+// --- Add near the top with other DOM Elements ---
+const knownCombosList = document.getElementById('known-combos-list'); // Reference to the new UL
+
+// --- New Function to display Known Combos ---
+function displayKnownCombinationsPanel() {
+    if (!knownCombosList) return; // Exit if the element doesn't exist
+
+    // Sort combinations, e.g., alphabetically by ship name
+    const sortedCombos = [...knownCombinations].sort((a, b) => (a.ship || '').localeCompare(b.ship || ''));
+
+    let combosHTML = '';
+    if (sortedCombos.length === 0) {
+        combosHTML = '<li>No known combinations loaded.</li>';
+    } else {
+        sortedCombos.forEach(combo => {
+            combosHTML += `<li>`;
+            combosHTML += `<strong>${combo.ship || 'Unknown Ship'}</strong>`;
+            combosHTML += `<span>${combo.cmdr1 || '?'}</span> + <span>${combo.cmdr2 || '?'}</span>`;
+            // Display note if it exists
+            if (combo.note) {
+                combosHTML += `<p>${combo.note}</p>`;
+            }
+             // Display bond bonus if it exists
+            if (combo.bond) {
+                combosHTML += `<p style="color: var(--accent-orange); font-style: normal;">✨ Bond Bonus: ${combo.bondName || 'Active'}</p>`;
+            }
+            combosHTML += `</li>`;
+        });
+    }
+
+    knownCombosList.innerHTML = combosHTML;
+}
+
 const knownCombinations = [
   {
     ship: "Thunderchild",
@@ -657,7 +691,7 @@ const knownCombinations = [
   {
     ship: "Vexor",
     cmdr1: "Victar",
-    cmdr2: "Ponk",
+    cmdr2: "Pomik",
     note: "Popular Vexor pairing.",
   }, // Assumed Victor=Victar, Pomik=Ponk
   {
@@ -668,20 +702,20 @@ const knownCombinations = [
   },
   {
     ship: "Hyperion",
-    cmdr1: "Flafferty",
+    cmdr1: "Flaherty",
     cmdr2: "Blague",
     note: "User reported: Combo of early turn healing (Flaherty) and late-turn recovery (Hyperion ship ability?).",
   }, // Assumed Flaherty
   {
     ship: "Inquisitor",
-    cmdr1: "Fass",
+    cmdr1: "Fauss",
     cmdr2: "Kezti",
     note: "Common Inquisitor setup.",
   }, // Assumed Faus=Fass
   {
     ship: "Dramiel",
     cmdr1: "Karth",
-    cmdr2: "Ameine",
+    cmdr2: "Ameline",
     note: "Effective Dramiel DPS combo.",
   }, // Assumed Mens=Ameine
   {
@@ -723,7 +757,7 @@ const knownCombinations = [
   {
     ship: "Dragoon",
     cmdr1: "Kezti",
-    cmdr2: "Ponk",
+    cmdr2: "Pomik",
     note: "Strong Dragoon pair.",
   }, // Assumed Pomik=Ponk
   {
@@ -736,7 +770,7 @@ const knownCombinations = [
     ship: "Vexor",
     cmdr1: "Saminona",
     cmdr2: "Gear",
-    note: "User suggested Vexor combo.",
+    note: "User suggested Vexor combo. Infinite Exp",
   }, // Assumed Santimona
   {
     ship: "Tristan",
@@ -757,9 +791,21 @@ const knownCombinations = [
     note: "User suggested Drake combo.",
   }, // Assumed Santimona
   {
+    ship: "Drake",
+    cmdr1: "Otro",
+    cmdr2: "Mila",
+    note: "User suggested Drake combo.",
+  },
+  {
     ship: "Griffin",
     cmdr1: "Otro",
     cmdr2: "Mia",
+    note: "User suggested Griffin EWAR combo.",
+  },
+  {
+    ship: "Griffin",
+    cmdr1: "Ketzi",
+    cmdr2: "Brokara",
     note: "User suggested Griffin EWAR combo.",
   }, // Assumed Mila=Mia
   {
@@ -772,13 +818,25 @@ const knownCombinations = [
     ship: "Corax",
     cmdr1: "Kaylyn",
     cmdr2: "Ameine",
-    note: "User suggested Corax combo.",
+    note: "User suggested Corax combo. Deals with Vexors easyly",
   }, // Assumed Amile=Ameine
   {
     ship: "Apocalypse",
     cmdr1: "Jamyl I",
     cmdr2: "Falek",
     note: "User suggested Apocalypse combo.",
+  },
+  {
+    ship: "Tristan",
+    cmdr1: "Korvin",
+    cmdr2: "Yana",
+    note: "User suggested Tristan combo.",
+  },
+  {
+    ship: "Dragoon",
+    cmdr1: "Yorlas",
+    cmdr2: "Santimona",
+    note: "User suggested Dragoon combo.",
   },
   // Add more known combinations as needed
 ];
@@ -810,6 +868,9 @@ document.addEventListener("DOMContentLoaded", () => {
   populateDropdown(shipSelect, shipData, "name", "name");
   populateDropdown(commander1Select, commanderData, "name", "name");
   populateDropdown(commander2Select, commanderData, "name", "name");
+
+  displayKnownCombinationsPanel(); // <<< CALL THE NEW FUNCTION HERE
+
   resultsDiv.innerHTML = "<p>Select a ship and two commanders to analyze.</p>"; // Initial message
 });
 
