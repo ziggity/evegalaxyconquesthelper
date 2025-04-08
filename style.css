@@ -675,3 +675,76 @@ button#toggle-library-button:active {
     content: '"';
     margin-left: 2px;
 }
+
+.tier-list-image {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* Subtle hover effect */
+}
+.tier-list-image:hover {
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 0 15px rgba(var(--accent-cyan-rgb), 0.5); /* Add glow on hover */
+}
+
+
+/* The Modal (background overlay) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    padding-top: 50px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+    backdrop-filter: blur(5px); /* Optional: Blur background */
+}
+
+/* Modal Content (The Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 85vh; /* Limit height */
+    /* Animation */
+    animation-name: zoomIn;
+    animation-duration: 0.4s;
+}
+
+/* Modal Caption (if used) */
+#modal-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 50px; /* Reserve space */
+}
+
+/* Animation */
+@keyframes zoomIn {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* The Close Button */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    text-shadow: 0 0 5px black; /* Make it more visible */
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: var(--accent-cyan); /* Highlight on hover */
+    text-decoration: none;
+}

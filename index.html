@@ -47,12 +47,13 @@
 
             <section class="tier-list-reference">
                  <h2>Reference Commander Tier List</h2>
-                 <img src="Eve-Galaxy-Conquest-Tier-List-PVE-dec24.webp" alt="EVE Commander Tier List">
-                 <div class="tier-list-reference">
-                    <h2>Reference Ship Tier List</h2>
-                    <img src="Eve-Galaxy-Conquest-Tier-List-PVE-ships-dec24.webp" alt="EVE Ship Tier List">
-               </div>
+                 <img id="commander-tier-list-img" class="tier-list-image" src="Eve-Galaxy-Conquest-Tier-List-PVE-dec24.webp" alt="EVE Commander Tier List">
+                 <h2>Reference Ship Tier List</h2>
+                 <img id="ship-tier-list-img" class="tier-list-image" src="Eve-Galaxy-Conquest-Tier-List-PVE-ships-dec24.webp" alt="EVE Ship Tier List">
+                </div>
+            </div>
             </section>
+
 
             <section id="data-library-output" class="data-library" style="display: none;">
                 <h2>Data Library</h2>
@@ -77,6 +78,12 @@
         <footer id="bottom-banner">
             <p>Tool Footer | Commander data needs updates</p>
             </footer>
+
+        </div> <div id="image-modal" class="modal">
+            <span class="modal-close" id="modal-close-button">&times;</span>
+            <img class="modal-content" id="modal-img-content">
+            <div id="modal-caption"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>

@@ -647,6 +647,47 @@ const commanderData = [
   }, // Added previously
   // ... Add faction and type to ALL other commanders ...
 ];
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img-content");
+const modalCaption = document.getElementById("modal-caption");
+const closeModalButton = document.getElementById("modal-close-button");
+
+// --- Function to Open Modal ---
+function openImageModal(imgElement) {
+    if (!modal || !modalImg || !imgElement) return; // Exit if elements don't exist
+    modal.style.display = "block";
+    modalImg.src = imgElement.src;
+    // Use alt text as caption if available
+    modalCaption.innerHTML = imgElement.alt || '';
+}
+
+// --- Function to Close Modal ---
+function closeImageModal() {
+     if (!modal) return;
+     modal.style.display = "none";
+}
+
+// Listener for all images designated as clickable tier list images
+document.querySelectorAll('.tier-list-image').forEach(img => {
+    img.addEventListener('click', function() {
+        openImageModal(this); // 'this' refers to the clicked image
+    });
+});
+
+// Listener for the close button
+if (closeModalButton) {
+    closeModalButton.addEventListener('click', closeImageModal);
+}
+
+// Listener to close modal if user clicks on the background (outside the image)
+if (modal) {
+    modal.addEventListener('click', function(event) {
+        // Close if the target IS the modal background itself, not its children
+        if (event.target === modal) {
+            closeImageModal();
+        }
+    });
+}
 
 // --- Add near the top with other DOM Elements ---
 const knownCombosList = document.getElementById('known-combos-list'); // Reference to the new UL
