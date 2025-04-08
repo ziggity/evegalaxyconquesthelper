@@ -1136,7 +1136,7 @@ function displayDataLibrary() {
     libraryHTML += '<th class="col-number sortable-header" data-key="dataRate" data-type="number">Data Rate</th>';
     libraryHTML += '<th class="col-number sortable-header" data-key="armor" data-type="number">Armor</th>';
     libraryHTML += '<th class="col-bonuses">Bonuses</th>'; // Not sortable
-    libraryHTML += '<th class="col-rank sortable-header">Tier</th>'; 
+    libraryHTML += '<th class=" sortable-header" data-key="rank"  data-type="string">Tier</th>'; 
     libraryHTML += '</tr></thead><tbody>';
 
     // Initial sort by name
@@ -1204,7 +1204,7 @@ function handleSortClick(event) {
             return valA - valB; // Ascending numeric sort
         } else if (type === 'string') {
             // Special case for Tier sorting (S > A > B > C > D > Unknown/N/A)
-             if (key === 'tier') {
+             if (key === 'tier' || key === 'rank') {
                  const tierOrder = { 'S': 1, 'A': 2, 'B': 3, 'C': 4, 'D': 5 };
                  const tierA = tierOrder[valA] || 99; // Assign high number to unknowns
                  const tierB = tierOrder[valB] || 99;
