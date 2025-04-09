@@ -13,6 +13,13 @@ const shipData = [
     energy: 1648,
     dataRate: 88,
     armor: 9,
+    imageUrl: "img/catalyst.png",
+    // modules: [
+    //   Primary,"125MM Railgun II", "35%", "Deals kinetic damage to all enemy wings (DMG Rate: 117.5%) Inflicts Repair Disabled on target for 2 turns",
+    //   Secondary,"Light Ion Blaster II", "40%", "Deals Kinetic damage to all enemy wings (DMG Rate: 52.5%) Inflicts Corrosion on target to deal overtime damage each turn (DMG Rate: 15%)for 2 turns",
+    //   Tertiary, "Warp Scrambler II", "100%", "While active modules are activated, reduce a random enemy's Firepower by 5% and Data Rate by 5 for 2 turns, stackable",
+    //   Fourth, "Magnetic Field Stabilizer II", "100%", "Increases chance of initiating all active modules and talents by 2.5% and damage by 5%"
+    // ],
   },
   {
     name: "Rifter",
@@ -25,6 +32,7 @@ const shipData = [
     energy: 1665,
     dataRate: 90,
     armor: 10,
+    imageUrl: "img/rifter.png",
   },
   {
     name: "Omen",
@@ -37,6 +45,7 @@ const shipData = [
     energy: 1839,
     dataRate: 60,
     armor: 17,
+    imageUrl: "img/omen.png",
   }, // Added Omen
   {
     name: "Caracal",
@@ -49,6 +58,7 @@ const shipData = [
     energy: 1686,
     dataRate: 81,
     armor: 12,
+    imageUrl: "img/caracal.png",
   },
   {
     name: "Vexor",
@@ -61,6 +71,7 @@ const shipData = [
     energy: 2022,
     dataRate: 55,
     armor: 18,
+    imageUrl: "img/vexor.png",
   },
   {
     name: "Stormbringer",
@@ -73,6 +84,7 @@ const shipData = [
     energy: 1725,
     dataRate: 78,
     armor: 12,
+    imageUrl: "img/stormbringer.png",
   }, // Added Stormbringer
   {
     name: "Scythe",
@@ -85,6 +97,7 @@ const shipData = [
     energy: 2616,
     dataRate: 63,
     armor: 9,
+    imageUrl: "img/scythe.png",
   }, // Corrected role to Shield Logistics usually
   {
     name: "Dragoon",
@@ -97,6 +110,7 @@ const shipData = [
     energy: 1716,
     dataRate: 53,
     armor: 7,
+    imageUrl: "img/dragoon.png",
   },
   {
     name: "Griffin",
@@ -109,6 +123,7 @@ const shipData = [
     energy: 2090,
     dataRate: 100,
     armor: 11,
+    imageUrl: "img/griffin.png",
   },
   {
     name: "Dramiel",
@@ -121,6 +136,7 @@ const shipData = [
     energy: 1670,
     dataRate: 91,
     armor: 9,
+    imageUrl: "img/dramiel.png",
   },
   {
     name: "Gila",
@@ -133,6 +149,7 @@ const shipData = [
     energy: 1716,
     dataRate: 47,
     armor: 9,
+    imageUrl: "img/gila.png",
   }, // Added Gila
   {
     name: "Oracle",
@@ -145,6 +162,7 @@ const shipData = [
     energy: 1978,
     dataRate: 60,
     armor: 15,
+    imageUrl: "img/oracle.png",
   },
   {
     name: "Drake",
@@ -157,6 +175,7 @@ const shipData = [
     energy: 1826,
     dataRate: 48,
     armor: 15,
+    imageUrl: "img/drake.png",
   },
   {
     name: "Tristan",
@@ -169,6 +188,7 @@ const shipData = [
     energy: 1625,
     dataRate: 88,
     armor: 9,
+    imageUrl: "img/tristan.png",
   },
   {
     name: "Orthrus",
@@ -181,6 +201,7 @@ const shipData = [
     energy: 1686,
     dataRate: 81,
     armor: 12,
+    imageUrl: "img/orthrus.png",
   }, // Added Orthrus
   {
     name: "Apocalypse",
@@ -193,6 +214,7 @@ const shipData = [
     energy: 2244,
     dataRate: 47,
     armor: 17,
+    imageUrl: "img/apocalyspe.png",
   },
   {
     name: "Maelstrom",
@@ -205,6 +227,7 @@ const shipData = [
     energy: 2024,
     dataRate: 64,
     armor: 17,
+    imageUrl: "img/maelstrom.png",
   },
   {
     name: "Thunderchild",
@@ -217,6 +240,7 @@ const shipData = [
     energy: 2047,
     dataRate: 17,
     armor: 35,
+    imageUrl: "img/thunderchild.png",
   },
   {
     name: "Magnate",
@@ -229,6 +253,7 @@ const shipData = [
     energy: 1510,
     dataRate: 84,
     armor: 9,
+    imageUrl: "img/magnate.png",
   }, // Added Magnate
   {
     name: "Heron",
@@ -241,6 +266,7 @@ const shipData = [
     energy: 1930,
     dataRate: 94,
     armor: 10,
+    imageUrl: "img/heron.png",
   }, // Added Heron
   {
     name: "Corax",
@@ -253,6 +279,7 @@ const shipData = [
     energy: 1824,
     dataRate: 72,
     armor: 10,
+    imageUrl: "img/corax.png",
   },
   {
     name: "Incursus",
@@ -265,6 +292,7 @@ const shipData = [
     energy: 1865,
     dataRate: 94,
     armor: 10,
+    imageUrl: "img/incursus.png",
   }, // Added Incursus
   {
     name: "Algos",
@@ -277,6 +305,7 @@ const shipData = [
     energy: 1572,
     dataRate: 84,
     armor: 9,
+    imageUrl: "img/algos.png",
   }, 
   {
     name: "Breacher",
@@ -289,6 +318,7 @@ const shipData = [
     energy: 1675,
     dataRate: 61,
     armor: 13,
+    imageUrl: "img/breacher.png",
   },
   {
     name: "Bellicose",
@@ -301,6 +331,7 @@ const shipData = [
     energy: 1635,
     dataRate: 45,
     armor: 8,
+    imageUrl: "img/bellicose.png",
   }, // Added Bellicose
   {
     name: "Worm",
@@ -313,6 +344,7 @@ const shipData = [
     energy: 1910,
     dataRate: 57,
     armor: 14,
+    imageUrl: "img/worm.png",
   }, // Added Worm
   {
     name: "Inquisitor",
@@ -325,6 +357,7 @@ const shipData = [
     energy: 2520,
     dataRate: 72,
     armor: 7,
+    imageUrl: "img/inquisitor.png",
   },
   {
     name: "Stratios",
@@ -337,6 +370,7 @@ const shipData = [
     energy: 2793,
     dataRate: 65,
     armor: 12,
+    imageUrl: "img/stratios.png",
   }, // Added Stratios
   {
     name: "Navitas",
@@ -349,6 +383,7 @@ const shipData = [
     energy: 1530,
     dataRate: 49,
     armor: 9,
+    imageUrl: "img/navitas.png",
   }, // Added Navitas
   {
     name: "Condor",
@@ -361,6 +396,7 @@ const shipData = [
     energy: 1350,
     dataRate: 72,
     armor: 8,
+    imageUrl: "img/condor.png",
   }, // Added Condor
   {
     name: "Tormentor",
@@ -373,6 +409,7 @@ const shipData = [
     energy: 1800,
     dataRate: 62,
     armor: 9,
+    imageUrl: "img/tormentor.png",
   }, // Added Tormentor
   {
     name: "Cruor",
@@ -385,6 +422,7 @@ const shipData = [
     energy: 2160,
     dataRate: 62,
     armor: 6,
+    imageUrl: "img/cruor.png",
   }, // Added Cruor
   {
     name: "Impairor",
@@ -397,6 +435,7 @@ const shipData = [
     energy: 1330,
     dataRate: 62,
     armor: 7,
+    imageUrl: "img/impairor.png",
   }, // Added Impairor
   {
     name: "Hyperion",
@@ -409,6 +448,10 @@ const shipData = [
     energy: 2290,
     dataRate: 56,
     armor: 13,
+    imageUrl: "img/hyperion.png",
+    skills: [
+      /* Drone skills suggest Offense or Hybrid */
+    ],
   }, // Placeholder stats
 ];
 
@@ -1186,6 +1229,14 @@ function generateTableRows(dataArray, type) {
         if (type === 'ship') {
             const ship = item;
             rowsHTML += `<td>${ship.name || 'N/A'}</td>`;
+            rowsHTML += `<td class="col-image">`;
+            if (ship.imageUrl) { // Check if imageUrl exists and is not empty
+                 // Added loading="lazy" for performance if many images
+                 // Added simple onerror to hide broken image links visually
+                rowsHTML += `<img src="${ship.imageUrl}" alt="${ship.name || 'Ship'} thumbnail" class="ship-thumbnail" loading="lazy" onerror="this.style.visibility='hidden'">`;
+            } else {
+                rowsHTML += `<div class="no-image"></div>`; // Placeholder square if no image
+            }
             rowsHTML += `<td>${ship.type || 'N/A'}</td>`;
             rowsHTML += `<td>${ship.faction || 'N/A'}</td>`;
             rowsHTML += `<td>${ship.role || 'N/A'}</td>`;
@@ -1229,6 +1280,7 @@ function displayDataLibrary() {
     libraryHTML += '<table id="ship-table"><thead><tr>';
     // Added class="sortable-header", data-key, data-type
     libraryHTML += '<th class="sortable-header" data-key="name" data-type="string">Name</th>';
+    libraryHTML += '<th>Img</th>'; // Add header for Image column (not sortable)
     libraryHTML += '<th class="sortable-header" data-key="type" data-type="string">Type</th>';
     libraryHTML += '<th class="sortable-header" data-key="faction" data-type="string">Faction</th>';
     libraryHTML += '<th class="sortable-header" data-key="role" data-type="string">Role</th>';

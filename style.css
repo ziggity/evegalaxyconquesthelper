@@ -748,3 +748,58 @@ button#toggle-library-button:active {
     color: var(--accent-cyan); /* Highlight on hover */
     text-decoration: none;
 }
+
+/* Data Library Table Styles */
+.data-library .col-image {
+    width: 60px; /* Fixed width for the image column - adjust as needed */
+    min-width: 60px;
+    text-align: center;
+    padding: 2px 4px; /* Minimal padding */
+    vertical-align: middle; /* Center image vertically */
+}
+.data-library th:nth-child(2) { /* Target Img header specifically */
+     text-align: center;
+}
+
+
+.ship-thumbnail {
+    width: 200px; /* Adjust thumbnail size */
+    height: 200px;
+    object-fit: contain; /* Scales image while preserving aspect ratio */
+    display: block; /* Allows margin auto */
+    margin: auto; /* Center block element */
+    background-color: rgba(0, 0, 0, 0.2); /* Dark bg for transparent images */
+    border-radius: 4px;
+    border: 1px solid rgba(var(--accent-blue-rgb, 33, 150, 243), 0.3); /* Faint border */
+    vertical-align: middle; /* Ensure vertical alignment */
+}
+
+/* Placeholder for when no image URL is provided */
+.no-image {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.5);
+    border: 1px dashed rgba(var(--accent-blue-rgb, 33, 150, 243), 0.5);
+    border-radius: 4px;
+    display: inline-block; /* Or block with margin:auto */
+    vertical-align: middle;
+     /* Optional: Add a simple indicator */
+    position: relative;
+}
+.no-image::after {
+     content: '?';
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     color: var(--text-light-secondary);
+     font-size: 1.5em;
+     font-weight: bold;
+}
+
+
+/* Ensure you have RGB version of accent-blue for opacity */
+:root {
+    /* ... other variables ... */
+    --accent-blue-rgb: 33, 150, 243;
+}
