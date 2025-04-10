@@ -214,7 +214,7 @@ const shipData = [
     energy: 2244,
     dataRate: 47,
     armor: 17,
-    imageUrl: "img/apocalyspe.png",
+    imageUrl: "img/apocalypse.png",
   },
   {
     name: "Maelstrom",
@@ -462,6 +462,7 @@ const commanderData = [
     tier: "S",
     faction: "Amarr",
     type: "Offense?", // Example Type
+    imageUrl: "img/falek.png",
     skills: [
       /* Add skills */
     ],
@@ -471,15 +472,17 @@ const commanderData = [
     tier: "S",
     faction: "Amarr",
     type: "Offense", // Example Type
+    imageUrl: "img/kezti.png",
     skills: [
       /* Drone skills suggest Offense or Hybrid */
     ],
   },
   {
-    name: "Victar",
+    name: "Victor",
     tier: "S",
     faction: "Minmatar?",
     type: "Unknown",
+    imageUrl: "img/victor.png",
     skills: [
       /* Add skills */
     ],
@@ -489,6 +492,7 @@ const commanderData = [
     tier: "S",
     faction: "Gallente?",
     type: "Hybrid?", // Example Type
+    imageUrl: "img/pomik.png",
     skills: [
       /* Add skills */
     ],
@@ -498,6 +502,7 @@ const commanderData = [
     tier: "S",
     faction: "Caldari",
     type: "Tactics", // Example Type
+    imageUrl: "img/amile.png",
     skills: [
       /* Add skills */
     ],
@@ -507,33 +512,27 @@ const commanderData = [
     tier: "S",
     faction: "Minmatar",
     type: "Tactics", // Often logistics/healing -> Tactics
+    imageUrl: "img/ameline.png",
     skills: [
       /* Add skills */
     ],
   },
   {
-    name: "Cancu",
-    tier: "S",
-    faction: "Caldari?",
-    type: "Unknown",
-    skills: [
-      /* Add skills */
-    ],
-  },
-  {
-    name: "Saminona",
+    name: "Santimona",
     tier: "S",
     faction: "Amarr?",
     type: "Tactics?", // Often logistics/healing -> Tactics
+    imageUrl: "img/santimona.png",
     skills: [
       /* Add skills */
     ],
   },
   {
-    name: "Mia",
+    name: "Mila",
     tier: "S",
     faction: "Minmatar?",
     type: "Unknown",
+    imageUrl: "img/mila.png",
     skills: [
       /* Add skills */
     ],
@@ -543,6 +542,7 @@ const commanderData = [
     tier: "A",
     faction: "Minmatar?",
     type: "Unknown",
+    imageUrl: "img/drae.png",
     skills: [
       /* Add skills */
     ],
@@ -552,6 +552,7 @@ const commanderData = [
     tier: "A",
     faction: "Caldari?",
     type: "Unknown",
+    imageUrl: "img/kasora.png",
     skills: [
       /* Add skills */
     ],
@@ -561,6 +562,7 @@ const commanderData = [
     tier: "A",
     faction: "Amarr?",
     type: "Hybrid?", // Has offense and defense skill examples
+    imageUrl: "img/yun.png",
     skills: [
       {
         id: "yun_energy_dmg",
@@ -581,10 +583,11 @@ const commanderData = [
     ],
   },
   {
-    name: "Blague",
+    name: "Blaque",
     tier: "A",
     faction: "Minmatar",
     type: "Unknown",
+    imageUrl: "img/blaque.png",
     skills: [
       /* Add skills */
     ],
@@ -594,6 +597,7 @@ const commanderData = [
     tier: "A",
     faction: "Gallente",
     type: "Unknown",
+    imageUrl: "img/brokara.png",
     skills: [
       /* Add skills */
     ],
@@ -603,6 +607,7 @@ const commanderData = [
     tier: "B",
     faction: "Gallente",
     type: "Unknown",
+    imageUrl: "img/gear.png",
     skills: [
       /* Add skills */
     ],
@@ -612,6 +617,7 @@ const commanderData = [
     tier: "B",
     faction: "Amarr",
     type: "Tactics",
+    imageUrl: "img/bishop.png",
     skills: [
       /* Add skills - often logistics */
     ],
@@ -621,6 +627,7 @@ const commanderData = [
     tier: "B",
     faction: "Galente",
     type: "Tactics",
+    imageUrl: "img/flaherty.png",
     skills: [
       /* Healing mentioned -> Tactics */
     ],
@@ -630,24 +637,27 @@ const commanderData = [
     tier: "B",
     faction: "Unknown",
     type: "Unknown",
+    imageUrl: "img/faus.png",
     skills: [
       /* Add skills */
     ],
   },
   {
-    name: "Karvin",
+    name: "Korvin",
     tier: "C",
     faction: "Minmatar",
     type: "Unknown",
+    imageUrl: "img/korvin.png",
     skills: [
       /* Add skills */
     ],
   },
   {
-    name: "Morde Yorlas",
+    name: "Yorlas",
     tier: "B",
     faction: "Guristas",
     type: "Offense",
+    imageUrl: "img/yorlas.png",
     skills: [
       /* Add skills */
     ],
@@ -657,6 +667,7 @@ const commanderData = [
     tier: "C",
     faction: "Guristas",
     type: "Unknown",
+    imageUrl: "img/otro.png",
     skills: [
       /* Add skills */
     ],
@@ -666,6 +677,7 @@ const commanderData = [
     tier: "A",
     faction: "Minmatar",
     type: "Offense",
+    imageUrl: "img/karth.png",
     skills: [
       /* Often paired for damage -> Offense */
     ],
@@ -675,15 +687,18 @@ const commanderData = [
     tier: "C",
     faction: "Unknown",
     type: "Unknown",
+    imageUrl: "img/baer.png",
     skills: [
       /* Add skills */
     ],
   },
+  
   {
-    name: "Jamyl I",
+    name: "Cerb",
     tier: "A",
     faction: "Amarr",
     type: "Offense",
+    imageUrl: "img/cerb.png",
     skills: [
       /* Add skills */
     ],
@@ -737,46 +752,106 @@ const knownCombosList = document.getElementById('known-combos-list'); // Referen
 
 // --- New Function to display Known Combos ---
 function displayKnownCombinationsPanel() {
-    if (!knownCombosList) return; // Exit if the element doesn't exist
+  if (!knownCombosList) return; // Exit if the element doesn't exist
 
-    // Sort combinations, e.g., alphabetically by ship name
-    const sortedCombos = [...knownCombinations].sort((a, b) => (a.ship || '').localeCompare(b.ship || ''));
+  // Sort combinations (optional, e.g., alphabetically by ship name)
+  const sortedCombos = [...knownCombinations].sort((a, b) => (a.ship || '').localeCompare(b.ship || ''));
 
-    let combosHTML = '';
-    if (sortedCombos.length === 0) {
-        combosHTML = '<li>No known combinations loaded.</li>';
-    } else {
-        sortedCombos.forEach(combo => {
-            combosHTML += `<li>`;
-            combosHTML += `<strong>${combo.ship || 'Unknown Ship'}</strong>`;
-            combosHTML += `<span>${combo.cmdr1 || '?'}</span> + <span>${combo.cmdr2 || '?'}</span>`;
-            // Display note if it exists
-            if (combo.note) {
-                combosHTML += `<p>${combo.note}</p>`;
-            }
-             // Display bond bonus if it exists
-            if (combo.bond) {
-                combosHTML += `<p style="color: var(--accent-orange); font-style: normal;">✨ Bond Bonus: ${combo.bondName || 'Active'}</p>`;
-            }
-            combosHTML += `</li>`;
-        });
-    }
+  let combosHTML = '';
+  if (sortedCombos.length === 0) {
+      combosHTML = '<li>No known combinations loaded.</li>';
+  } else {
+      sortedCombos.forEach(combo => {
+          // Find the corresponding ship and commander objects to get image URLs
+          const shipInfo = shipData.find(s => s.name === combo.ship);
+          const cmdr1Info = commanderData.find(c => c.name === combo.cmdr1);
+          const cmdr2Info = commanderData.find(c => c.name === combo.cmdr2);
 
-    knownCombosList.innerHTML = combosHTML;
+          // Get image URLs (or use null if not found)
+          const shipImgUrl = shipInfo?.imageUrl; // Optional chaining ?.
+          const cmdr1ImgUrl = cmdr1Info?.imageUrl;
+          const cmdr2ImgUrl = cmdr2Info?.imageUrl;
+
+          combosHTML += `<li class="combo-item">`; // Add class for styling
+
+          // --- Ship Line ---
+          combosHTML += `<div class="combo-line ship-line">`;
+          // Ship Image
+          combosHTML += `<div class="combo-image-container">`;
+          if (shipImgUrl) {
+              combosHTML += `<img src="${shipImgUrl}" alt="${combo.ship || 'Ship'}" class="combo-thumbnail ship-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+          } else {
+              combosHTML += `<div class="combo-no-image ship-no-image">S</div>`; // Placeholder letter S
+          }
+          combosHTML += `</div>`;
+          // Ship Name
+          combosHTML += `<strong class="combo-ship-name">${combo.ship || 'Unknown Ship'}</strong>`;
+          combosHTML += `</div>`; // End ship-line
+
+          // --- Commanders Line ---
+          combosHTML += `<div class="combo-line commanders-line">`;
+          // Commander 1 Image & Name
+          combosHTML += `<div class="combo-commander">`;
+          combosHTML += `<div class="combo-image-container">`;
+          if (cmdr1ImgUrl) {
+              combosHTML += `<img src="${cmdr1ImgUrl}" alt="${combo.cmdr1 || 'Cmdr1'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+          } else {
+              combosHTML += `<div class="combo-no-image cmdr-no-image">C</div>`; // Placeholder C
+          }
+          combosHTML += `</div>`;
+          combosHTML += `<span class="combo-commander-name">${combo.cmdr1 || '?'}</span>`;
+          combosHTML += `</div>`; // End combo-commander
+
+          // Plus Sign Separator
+           combosHTML += `<span class="plus-separator">+</span>`;
+
+           // Commander 2 Image & Name
+          combosHTML += `<div class="combo-commander">`;
+          combosHTML += `<div class="combo-image-container">`;
+          if (cmdr2ImgUrl) {
+              combosHTML += `<img src="${cmdr2ImgUrl}" alt="${combo.cmdr2 || 'Cmdr2'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+          } else {
+              combosHTML += `<div class="combo-no-image cmdr-no-image">C</div>`; // Placeholder C
+          }
+           combosHTML += `</div>`;
+          combosHTML += `<span class="combo-commander-name">${combo.cmdr2 || '?'}</span>`;
+          combosHTML += `</div>`; // End combo-commander
+          combosHTML += `</div>`; // End commanders-line
+
+
+          // --- Note and Bond Line ---
+          if (combo.note || combo.bond) {
+               combosHTML += `<div class="combo-line note-line">`;
+               // Display note if it exists
+              if (combo.note) {
+                  combosHTML += `<p class="combo-note">${combo.note}</p>`;
+              }
+              // Display bond bonus if it exists
+              if (combo.bond) {
+                  combosHTML += `<p class="combo-bond">✨ Bond Bonus: ${combo.bondName || 'Active'}</p>`;
+              }
+               combosHTML += `</div>`; // End note-line
+          }
+
+          combosHTML += `</li>`;
+      });
+  }
+
+  knownCombosList.innerHTML = combosHTML;
 }
 
 const knownCombinations = [
   {
     ship: "Thunderchild",
     cmdr1: "Baer",
-    cmdr2: "Saminona",
+    cmdr2: "Santimona",
     note: "User reported: Pulled alt account through all of Season.",
   },
   {
     ship: "Vexor",
-    cmdr1: "Victar",
+    cmdr1: "Victor",
     cmdr2: "Pomik",
-    note: "Popular Vexor pairing.",
+    note: "Ship: Vexor (HP % rigs for PvP, Grid Damage % for PvE) Lead Commander: Victor (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)Deputy Commander: Pomik (Repair Amount % implants, Build: A-B-A)",
   }, // Assumed Victor=Victar, Pomik=Ponk
   {
     ship: "Rifter",
@@ -787,92 +862,98 @@ const knownCombinations = [
   {
     ship: "Hyperion",
     cmdr1: "Flaherty",
-    cmdr2: "Blague",
+    cmdr2: "Blaque",
     note: "User reported: Combo of early turn healing (Flaherty) and late-turn recovery (Hyperion ship ability?).",
   }, // Assumed Flaherty
   {
     ship: "Inquisitor",
-    cmdr1: "Fauss",
+    cmdr1: "Faus",
     cmdr2: "Kezti",
-    note: "Common Inquisitor setup.",
+    note: "Ship: InquisitorLead Commander: Faus (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)Deputy Commander: Ketzi (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
   }, // Assumed Faus=Fass
   {
     ship: "Dramiel",
     cmdr1: "Karth",
-    cmdr2: "Ameline",
-    note: "Effective Dramiel DPS combo.",
+    cmdr2: "Mens",
+    note: "Ship: Dramiel (Data Rigs) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3 – A-B-B)* Deputy Commander: Mens (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
   }, // Assumed Mens=Ameine
   {
     ship: "Scythe",
     cmdr1: "Bishop",
-    cmdr2: "Ameine",
-    note: "Strong Scythe logistics pair.",
+    cmdr2: "Ameline",
+    note: "Ship: Scythe (Energy % or Firepower % rigs, depending on commander skills) Lead Commander: Bishop (Energy Damage % implants, Build: A-B-A) Deputy Commander: Ameline (Data Rate implants, Build: A-B-A)",
   }, // Assumed Ameline=Ameine
   {
     ship: "Maelstrom",
     cmdr1: "Karth",
-    cmdr2: "Ameine",
-    note: "Solid Maelstrom setup.",
+    cmdr2: "Mens",
+    note: "Ship: Maelstrom (Firepower % rigs, or Data Rate if you found getting countered by another Karth-builds) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3* – A-B-B) Deputy Commander: Mens (Kinetic Damage % implants, Grid Damage % for PvE, Build: A-A-A).",
   }, // Assumed Mens=Ameine
   {
     ship: "Rifter",
     cmdr1: "Karth",
     cmdr2: "Morde Yorlas",
-    note: "Alternative Rifter DPS/Control.",
+    note: "Ship: Rifter (Data Rigs)Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3* – A-B-B)Deputy Commander: Yorlas (Kinetic Damage % implants, Build: A-B-B)",
   }, // Assumed Yorlas is part of Morde Yorlas
   {
     ship: "Oracle",
-    cmdr1: "Saminona",
-    cmdr2: "Flafferty",
-    note: "Known Oracle pairing.",
+    cmdr1: "Santimona",
+    cmdr2: "Flaherty",
+    note: "Ship: Oracle (Firepower Rigs) Lead Commander: Santimona (Repair Amount % implants, Build: A-A-A) Deputy Commander: Flaherty (Repair Amount % implants, Build: A-A-B)",
   }, // Assumed Santimona & Flaherty
   {
     ship: "Thunderchild",
-    cmdr1: "Saminona",
+    cmdr1: "Santimona",
     cmdr2: "Chelm",
-    note: "Alternative Thunderchild setup.",
+    note: "Ship: Thunderchild (HP or Energy Rigs) Lead Commander: Santimona (Repair Amount % implants, Build: A-A-A) Deputy Commander: Chelm (Tactics or Energy Damage implants, Build: A-A-A)",
   }, // Assumed Santimona
   {
     ship: "Breacher",
     cmdr1: "Bishop",
-    cmdr2: "Thumbar",
-    note: "Effective Breacher combo.",
+    cmdr2: "Thumgar",
+    note: "Ship: Breacher (HP Rigs)Lead Commander: Bishop (Energy Damage % implants, Build: A-B-A) Deputy Commander: Thumbar (Kinetic Damage %, Build: A-A-A)",
   },
   {
     ship: "Dragoon",
     cmdr1: "Kezti",
     cmdr2: "Pomik",
-    note: "Strong Dragoon pair.",
+    note: "Ship: Dragoon (Kinetic Damage % rigs)Lead Commander Kezti (Kinetic Damage % implants, build: A-A-A) Deputy Commander Pomik (Repair Amount % implants, build: A-B-A)",
   }, // Assumed Pomik=Ponk
   {
     ship: "Caracal",
     cmdr1: "Otro",
-    cmdr2: "Morde Yorlas",
-    note: "User suggested Caracal combo.",
-  }, // Assumed Morda=Morde Yorlas
+    cmdr2: "Yorlas",
+    note: "Ship: Caracal (Kinetic Damage % rigs) Lead Commander: Otro (Kinetic Damage % implants, build: A-A-A) Deputy Commander: Morda (Data Rate implants, build: A-A-A).",
+  }, 
   {
     ship: "Vexor",
-    cmdr1: "Saminona",
+    cmdr1: "Santimona",
+    cmdr2: "Paladin",
+    note: "Ship: Vexor (HP Rigs, Encirclement formation)Lead Commander: Pomik (Repair Amount % implants, Build: A-B-A)Deputy Commander: Paladin Crusader (Repair Amount % implants, Build: A-A-A)",
+  }, 
+  {
+    ship: "Vexor",
+    cmdr1: "Santimona",
     cmdr2: "Gear",
-    note: "User suggested Vexor combo. Infinite Exp",
-  }, // Assumed Santimona
+    note: "Ship: Vexor (Repair Amount % rigs) Lead Commander: Santimona (Repair Amount % implants, build: A-A-A) Deputy Commander: Gear (Data Rate implants, build: A-A-A)",
+  }, 
   {
     ship: "Tristan",
-    cmdr1: "Karvin",
+    cmdr1: "Korvin",
     cmdr2: "Yana",
-    note: "User suggested Tristan combo.",
-  }, // Assumed Korvin=Karvin
+    note: "Ship: Tristan (Firepower % rigs) Lead Commander: Korvin (Offense % or Domination set implants, build: A-A-A) Deputy Commander: Yana (Data Rate implants, build: A-A-A).",
+  }, 
   {
     ship: "Griffin",
     cmdr1: "Kezti",
-    cmdr2: "Ameine",
-    note: "User suggested Griffin EWAR/Drone combo.",
-  }, // Assumed Amile=Ameine
+    cmdr2: "Amile",
+    note: "Ship: Griffin (Kinetic Damage % rigs) Lead Commander: Ketzi (Kinetic Damage % implants, build: A-A-A) Deputy Commander: Amile (Offense % implants, build: A-A-A).",
+  }, 
   {
     ship: "Drake",
-    cmdr1: "Saminona",
+    cmdr1: "Santimona",
     cmdr2: "Falek",
-    note: "User suggested Drake combo.",
+    note: "Ship: Drake (HP %, Tenacity, or Evasion rigs) Lead Commander: Falek (Tactic % implants, build: A-A-A) Deputy Commander: Santimona (Repair Amount % or Shielded Repair set implants, build: A-A-A)",
   }, // Assumed Santimona
   {
     ship: "Drake",
@@ -882,31 +963,31 @@ const knownCombinations = [
   },
   {
     ship: "Griffin",
-    cmdr1: "Otro",
-    cmdr2: "Mia",
-    note: "User suggested Griffin EWAR combo.",
-  },
-  {
-    ship: "Griffin",
     cmdr1: "Ketzi",
     cmdr2: "Brokara",
     note: "User suggested Griffin EWAR combo.",
-  }, // Assumed Mila=Mia
+  }, 
+  {
+    ship: "Griffin",
+    cmdr1: "Otro",
+    cmdr2: "Mila",
+    note: "Ship: Griffin (Kinetic Damage % rigs)Lead Commander: Otro (Kinetic Damage % implants, build: A-A-A)Deputy Commander: Mila (Data Rate implants, build: A-A-A)",
+  }, 
   {
     ship: "Tristan",
     cmdr1: "Karth",
-    cmdr2: "Morde Yorlas",
+    cmdr2: "Yorlas",
     note: "User suggested Tristan combo.",
   }, // Assumed Yorlas = Morde Yorlas
   {
     ship: "Corax",
     cmdr1: "Kaylyn",
-    cmdr2: "Ameine",
+    cmdr2: "Ameline",
     note: "User suggested Corax combo. Deals with Vexors easyly",
   }, // Assumed Amile=Ameine
   {
     ship: "Apocalypse",
-    cmdr1: "Jamyl I",
+    cmdr1: "Jamyl",
     cmdr2: "Falek",
     note: "User suggested Apocalypse combo.",
   },
@@ -1247,9 +1328,16 @@ function generateTableRows(dataArray, type) {
             rowsHTML += `<td class="col-number">${ship.armor !== undefined ? ship.armor : 'N/A'}</td>`;
             rowsHTML += `<td class="col-bonuses">${ship.bonuses && ship.bonuses.length > 0 ? ship.bonuses.join(', ') : 'N/A'}</td>`;
             rowsHTML += `<td>${ship.rank || 'N/A'}</td>`;
-        } else if (type === 'commander') {
+          } else if (type === 'commander') {
             const cmdr = item;
-            rowsHTML += `<td>${cmdr.name || 'N/A'}</td>`;
+            // Modify the Name cell to include the image
+            rowsHTML += `<td class="col-name-with-image">`; // Add a class for specific styling
+            // Image part
+            if (cmdr.imageUrl) {
+                rowsHTML += `${cmdr.name || 'N/A'}<img src="${cmdr.imageUrl}" alt="${cmdr.name || 'Cmdr'} thumbnail" class="commander-thumbnail" loading="lazy" onerror="this.style.visibility='hidden'">`;
+            } else {
+                rowsHTML += `<div class="no-image commander-no-image"></div>`; // Placeholder square
+            }
             rowsHTML += `<td>${cmdr.tier || 'N/A'}</td>`;
             rowsHTML += `<td>${cmdr.faction || 'N/A'}</td>`;
             rowsHTML += `<td>${cmdr.type || 'N/A'}</td>`;
