@@ -693,6 +693,96 @@ const commanderData = [
     ],
   },
   {
+    name: "Morda",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/morda.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Kaylyn",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/kaylyn.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Thumgar",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/thumgar.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Yana",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/yana.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Mens",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/mens.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Viola",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/viola.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Chelm",
+    tier: "S",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/chelm.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Paladin",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/paladin.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
+    name: "Vlad",
+    tier: "A",
+    faction: "Minmatar",
+    type: "Offense",
+    imageUrl: "img/vlad.png",
+    skills: [
+      /* Often paired for damage -> Offense */
+    ],
+  },
+  {
     name: "Baer",
     tier: "C",
     faction: "Unknown",
@@ -877,17 +967,47 @@ function displayKnownCombinationsPanel() {
 
 const knownCombinations = [
   {
+    ship: "Corax",
+    cmdr1: "Kaylyn",
+    cmdr2: "Amile",
+    note: " Ship: Corax (Firepower % rigs) Lead Commander: Kaylyn (Offense % implants, build: A-A-A) Deputy Commander: Amile (Kinetic Damage % implants, build: A-A-A)",
+  }, // Assumed Amile=Ameine
+  {
+    ship: "Apocalypse",
+    cmdr1: "Jamyl",
+    cmdr2: "Falek",
+    note: "Ship: Apocalypse (Energy % rigs) Lead Commander: Falek (Tactic % implants, build: A-A-A) Deputy Commander: Jamyl I (Energy Damage % implants, build: A-A-A)",
+  },
+  {
+    ship: "Drake",
+    cmdr1: "Morda",
+    cmdr2: "Mens",
+    note: "User suggested Dragoon combo.",
+  },
+  {
+    ship: "Dramiel",
+    cmdr1: "Yorlas",
+    cmdr2: "Santimona",
+    note: "Self explanatory. Data rate combo.",
+  },
+  {
+    ship: "Hyperion",
+    cmdr1: "Viola",
+    cmdr2: "Mila",
+    note: "Mila and Viola work well together - Firepower rigs, tactics, data rate",
+  },
+  {
     ship: "Thunderchild",
     cmdr1: "Baer",
     cmdr2: "Santimona",
     note: "User reported: Pulled alt account through all of Season.",
   },
   {
-    ship: "Vexor",
-    cmdr1: "Victor",
-    cmdr2: "Pomik",
-    note: "Ship: Vexor (HP % rigs for PvP, Grid Damage % for PvE) Lead Commander: Victor (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)Deputy Commander: Pomik (Repair Amount % implants, Build: A-B-A)",
-  }, // Assumed Victor=Victar, Pomik=Ponk
+    ship: "Catalyst",
+    cmdr1: "Blaque",
+    cmdr2: "Flaherty",
+    note: "Cerb can be subbed in as well. Works well against Drake and Dramiel ships",
+  },
   {
     ship: "Rifter",
     cmdr1: "Karth",
@@ -922,32 +1042,32 @@ const knownCombinations = [
     ship: "Scythe",
     cmdr1: "Bishop",
     cmdr2: "Ameline",
-    note: "Ship: Scythe (Energy % or Firepower % rigs, depending on commander skills) Lead Commander: Bishop (Energy Damage % implants, Build: A-B-A) Deputy Commander: Ameline (Data Rate implants, Build: A-B-A)",
-  }, // Assumed Ameline=Ameine
+    note: "Ameline can be Karth. Ship: Scythe (Energy % or Firepower % rigs, depending on commander skills) Lead Commander: Bishop (Energy Damage % implants, Build: A-B-A) Deputy Commander: Ameline (Data Rate implants, Build: A-B-A)",
+  }, 
   {
     ship: "Maelstrom",
     cmdr1: "Karth",
     cmdr2: "Mens",
-    note: "Ship: Maelstrom (Firepower % rigs, or Data Rate if you found getting countered by another Karth-builds) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3* – A-B-B) Deputy Commander: Mens (Kinetic Damage % implants, Grid Damage % for PvE, Build: A-A-A).",
-  }, // Assumed Mens=Ameine
+    note: "Yorlas, Karth, Mens, Vlad, Yana, and several other barrage-oriented commanders, with very average performance. Ship: Maelstrom (Firepower % rigs, or Data Rate if you found getting countered by another Karth-builds) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3* – A-B-B) Deputy Commander: Mens (Kinetic Damage % implants, Grid Damage % for PvE, Build: A-A-A).",
+  }, 
   {
     ship: "Rifter",
     cmdr1: "Karth",
-    cmdr2: "Morde Yorlas",
+    cmdr2: "Yorlas",
     note: "Ship: Rifter (Data Rigs)Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3* – A-B-B)Deputy Commander: Yorlas (Kinetic Damage % implants, Build: A-B-B)",
-  }, // Assumed Yorlas is part of Morde Yorlas
+  },
   {
     ship: "Oracle",
     cmdr1: "Santimona",
     cmdr2: "Flaherty",
     note: "Ship: Oracle (Firepower Rigs) Lead Commander: Santimona (Repair Amount % implants, Build: A-A-A) Deputy Commander: Flaherty (Repair Amount % implants, Build: A-A-B)",
-  }, // Assumed Santimona & Flaherty
+  }, 
   {
     ship: "Thunderchild",
     cmdr1: "Santimona",
     cmdr2: "Chelm",
     note: "Ship: Thunderchild (HP or Energy Rigs) Lead Commander: Santimona (Repair Amount % implants, Build: A-A-A) Deputy Commander: Chelm (Tactics or Energy Damage implants, Build: A-A-A)",
-  }, // Assumed Santimona
+  }, 
   {
     ship: "Breacher",
     cmdr1: "Bishop",
@@ -958,7 +1078,7 @@ const knownCombinations = [
     ship: "Dragoon",
     cmdr1: "Kezti",
     cmdr2: "Pomik",
-    note: "Ship: Dragoon (Kinetic Damage % rigs)Lead Commander Kezti (Kinetic Damage % implants, build: A-A-A) Deputy Commander Pomik (Repair Amount % implants, build: A-B-A)",
+    note: "5 star dragoon or bust, it's strong but Kezti is better served in Inquisitor ship. Ship: Dragoon (Kinetic Damage % rigs)Lead Commander Kezti (Kinetic Damage % implants, build: A-A-A) Deputy Commander Pomik (Repair Amount % implants, build: A-B-A)",
   }, // Assumed Pomik=Ponk
   {
     ship: "Caracal",
@@ -966,18 +1086,7 @@ const knownCombinations = [
     cmdr2: "Yorlas",
     note: "Ship: Caracal (Kinetic Damage % rigs) Lead Commander: Otro (Kinetic Damage % implants, build: A-A-A) Deputy Commander: Morda (Data Rate implants, build: A-A-A).",
   }, 
-  {
-    ship: "Vexor",
-    cmdr1: "Santimona",
-    cmdr2: "Paladin",
-    note: "Ship: Vexor (HP Rigs, Encirclement formation)Lead Commander: Pomik (Repair Amount % implants, Build: A-B-A)Deputy Commander: Paladin Crusader (Repair Amount % implants, Build: A-A-A)",
-  }, 
-  {
-    ship: "Vexor",
-    cmdr1: "Santimona",
-    cmdr2: "Gear",
-    note: "Ship: Vexor (Repair Amount % rigs) Lead Commander: Santimona (Repair Amount % implants, build: A-A-A) Deputy Commander: Gear (Data Rate implants, build: A-A-A)",
-  }, 
+  
   {
     ship: "Tristan",
     cmdr1: "Korvin",
@@ -1004,7 +1113,7 @@ const knownCombinations = [
   },
   {
     ship: "Griffin",
-    cmdr1: "Ketzi",
+    cmdr1: "Kezti",
     cmdr2: "Brokara",
     note: "User suggested Griffin EWAR combo.",
   }, 
@@ -1018,45 +1127,32 @@ const knownCombinations = [
     ship: "Tristan",
     cmdr1: "Karth",
     cmdr2: "Yorlas",
-    note: "User suggested Tristan combo.",
+    note: "Ship: Tristan (Firepower % rigs) Lead Commander: Karth (Tactic and Offense implants, build: A-B-A) Deputy Commander: Yorlas (Kinetic Damage % or Changed Strike implants, build: A-A-A)",
   }, // Assumed Yorlas = Morde Yorlas
   {
-    ship: "Corax",
-    cmdr1: "Kaylyn",
-    cmdr2: "Ameline",
-    note: " Deals with Vexors easyly",
-  }, // Assumed Amile=Ameine
-  {
-    ship: "Apocalypse",
-    cmdr1: "Jamyl",
-    cmdr2: "Falek",
-    note: "User suggested Apocalypse combo.",
-  },
-  {
-    ship: "Tristan",
-    cmdr1: "Korvin",
-    cmdr2: "Yana",
-    note: "User suggested Tristan combo.",
-  },
-  {
-    ship: "Drake",
-    cmdr1: "Morda",
-    cmdr2: "Mens",
-    note: "User suggested Dragoon combo.",
-  },
-  {
-    ship: "Dramiel",
-    cmdr1: "Yorlas",
+    ship: "Orthrus",
+    cmdr1: "Brokara",
     cmdr2: "Santimona",
-    note: "Self explanatory. Data rate combo.",
-  },
+    note: "Orthrus shines at 3 stars, suggested to park it until it reaches that level. Santimona(Lead) and Jonas(Deputy) also work. AAA builds. Good early-mid game setup but lategame it lags behind other top tier setups",
+  }, 
   {
-    ship: "Hyperion",
-    cmdr1: "Viola",
-    cmdr2: "Mila",
-    note: "Mila and Viola work well together - Firepower rigs, tactics, data rate",
-  },
-  // Add more known combinations as needed
+    ship: "Vexor",
+    cmdr1: "Santimona",
+    cmdr2: "Paladin",
+    note: "Vexor modules max out healing drones and 3rd skill. Ship: Vexor (HP Rigs, Encirclement formation)Lead Commander: Pomik (Repair Amount % implants, Build: A-B-A)Deputy Commander: Paladin Crusader (Repair Amount % implants, Build: A-A-A)",
+  }, 
+  {
+    ship: "Vexor",
+    cmdr1: "Santimona",
+    cmdr2: "Gear",
+    note: "Ship: Vexor (Repair Amount % rigs) Lead Commander: Santimona (Repair Amount % implants, build: A-A-A) Deputy Commander: Gear (Data Rate implants, build: A-A-A)",
+  }, 
+  {
+    ship: "Vexor",
+    cmdr1: "Victor",
+    cmdr2: "Pomik",
+    note: "Ship: Vexor (HP % rigs for PvP, Grid Damage % for PvE) Lead Commander: Victor (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)Deputy Commander: Pomik (Repair Amount % implants, Build: A-B-A)",
+  }, 
 ];
 
 // --- 2. DOM Elements ---
