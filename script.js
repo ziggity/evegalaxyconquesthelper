@@ -468,6 +468,16 @@ const commanderData = [
     ],
   },
   {
+    name: "Jamyl",
+    tier: "S",
+    faction: "Amarr",
+    type: "Offense?", // Example Type
+    imageUrl: "img/jamyl.png",
+    skills: [
+      /* Add skills */
+    ],
+  },
+  {
     name: "Kezti",
     tier: "S",
     faction: "Amarr",
@@ -538,11 +548,11 @@ const commanderData = [
     ],
   },
   {
-    name: "Drae",
+    name: "Draea",
     tier: "A",
     faction: "Minmatar?",
     type: "Unknown",
-    imageUrl: "img/drae.png",
+    imageUrl: "img/draea.png",
     skills: [
       /* Add skills */
     ],
@@ -750,95 +760,120 @@ if (modal) {
 // --- Add near the top with other DOM Elements ---
 const knownCombosList = document.getElementById('known-combos-list'); // Reference to the new UL
 
-// --- New Function to display Known Combos ---
+// --- Replace the existing displayKnownCombinationsPanel function in script.js ---
 function displayKnownCombinationsPanel() {
-  if (!knownCombosList) return; // Exit if the element doesn't exist
+  const accordionContainer = document.getElementById('known-combos-accordion');
+  if (!accordionContainer) return; // Exit if the container element doesn't exist
 
-  // Sort combinations (optional, e.g., alphabetically by ship name)
-  const sortedCombos = [...knownCombinations].sort((a, b) => (a.ship || '').localeCompare(b.ship || ''));
+  // 1. Group combinations by ship
+  const combosByShip = {};
+  knownCombinations.forEach(combo => {
+      const shipName = combo.ship || 'Unknown Ship'; // Handle potential undefined ship names
+      if (!combosByShip[shipName]) {
+          combosByShip[shipName] = []; // Initialize array if ship not seen before
+      }
+      // Add commander pair and details
+      combosByShip[shipName].push({
+          cmdr1: combo.cmdr1,
+          cmdr2: combo.cmdr2,
+          note: combo.note,
+          bond: combo.bond,
+          bondName: combo.bondName
+      });
+  });
 
-  let combosHTML = '';
-  if (sortedCombos.length === 0) {
-      combosHTML = '<li>No known combinations loaded.</li>';
+  // 2. Sort ship names alphabetically
+  const sortedShipNames = Object.keys(combosByShip).sort((a, b) => a.localeCompare(b));
+
+  // 3. Generate HTML for each ship group
+  let accordionHTML = '';
+  if (sortedShipNames.length === 0) {
+      accordionHTML = '<p>No known combinations loaded.</p>';
   } else {
-      sortedCombos.forEach(combo => {
-          // Find the corresponding ship and commander objects to get image URLs
-          const shipInfo = shipData.find(s => s.name === combo.ship);
-          const cmdr1Info = commanderData.find(c => c.name === combo.cmdr1);
-          const cmdr2Info = commanderData.find(c => c.name === combo.cmdr2);
+      sortedShipNames.forEach(shipName => {
+          const combosForThisShip = combosByShip[shipName];
+          const shipInfo = shipData.find(s => s.name === shipName);
+          const shipImgUrl = shipInfo?.imageUrl; // Get ship image
 
-          // Get image URLs (or use null if not found)
-          const shipImgUrl = shipInfo?.imageUrl; // Optional chaining ?.
-          const cmdr1ImgUrl = cmdr1Info?.imageUrl;
-          const cmdr2ImgUrl = cmdr2Info?.imageUrl;
+          accordionHTML += `<details class="ship-combo-group">`;
 
-          combosHTML += `<li class="combo-item">`; // Add class for styling
-
-          // --- Ship Line ---
-          combosHTML += `<div class="combo-line ship-line">`;
+          // --- Summary (Clickable Header) ---
+          accordionHTML += `<summary class="ship-combo-summary">`;
           // Ship Image
-          combosHTML += `<div class="combo-image-container">`;
+          accordionHTML += `<div class="combo-image-container summary-image">`;
           if (shipImgUrl) {
-              combosHTML += `<img src="${shipImgUrl}" alt="${combo.ship || 'Ship'}" class="combo-thumbnail ship-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+              accordionHTML += `<img src="${shipImgUrl}" alt="${shipName}" class="combo-thumbnail ship-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
           } else {
-              combosHTML += `<div class="combo-no-image ship-no-image">S</div>`; // Placeholder letter S
+              accordionHTML += `<div class="combo-no-image ship-no-image">S</div>`;
           }
-          combosHTML += `</div>`;
-          // Ship Name
-          combosHTML += `<strong class="combo-ship-name">${combo.ship || 'Unknown Ship'}</strong>`;
-          combosHTML += `</div>`; // End ship-line
+          accordionHTML += `</div>`;
+          // Ship Name and Count
+          accordionHTML += `<span class="summary-ship-name">${shipName}</span>`;
+          accordionHTML += `<span class="summary-combo-count">(${combosForThisShip.length} Combo${combosForThisShip.length !== 1 ? 's' : ''})</span>`;
+          accordionHTML += `</summary>`; // End Summary
 
-          // --- Commanders Line ---
-          combosHTML += `<div class="combo-line commanders-line">`;
-          // Commander 1 Image & Name
-          combosHTML += `<div class="combo-commander">`;
-          combosHTML += `<div class="combo-image-container">`;
-          if (cmdr1ImgUrl) {
-              combosHTML += `<img src="${cmdr1ImgUrl}" alt="${combo.cmdr1 || 'Cmdr1'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
-          } else {
-              combosHTML += `<div class="combo-no-image cmdr-no-image">C</div>`; // Placeholder C
-          }
-          combosHTML += `</div>`;
-          combosHTML += `<span class="combo-commander-name">${combo.cmdr1 || '?'}</span>`;
-          combosHTML += `</div>`; // End combo-commander
+          // --- Content (List of Combos for this ship) ---
+          accordionHTML += `<div class="combo-list-for-ship">`;
+          combosForThisShip.forEach(pair => {
+              const cmdr1Info = commanderData.find(c => c.name === pair.cmdr1);
+              const cmdr2Info = commanderData.find(c => c.name === pair.cmdr2);
+              const cmdr1ImgUrl = cmdr1Info?.imageUrl;
+              const cmdr2ImgUrl = cmdr2Info?.imageUrl;
 
-          // Plus Sign Separator
-           combosHTML += `<span class="plus-separator">+</span>`;
+              // Use similar structure as before for individual combo display inside
+              accordionHTML += `<div class="combo-item-inner">`; // Inner container for padding/border
 
-           // Commander 2 Image & Name
-          combosHTML += `<div class="combo-commander">`;
-          combosHTML += `<div class="combo-image-container">`;
-          if (cmdr2ImgUrl) {
-              combosHTML += `<img src="${cmdr2ImgUrl}" alt="${combo.cmdr2 || 'Cmdr2'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
-          } else {
-              combosHTML += `<div class="combo-no-image cmdr-no-image">C</div>`; // Placeholder C
-          }
-           combosHTML += `</div>`;
-          combosHTML += `<span class="combo-commander-name">${combo.cmdr2 || '?'}</span>`;
-          combosHTML += `</div>`; // End combo-commander
-          combosHTML += `</div>`; // End commanders-line
-
-
-          // --- Note and Bond Line ---
-          if (combo.note || combo.bond) {
-               combosHTML += `<div class="combo-line note-line">`;
-               // Display note if it exists
-              if (combo.note) {
-                  combosHTML += `<p class="combo-note">${combo.note}</p>`;
+              // Commanders Line
+              accordionHTML += `<div class="combo-line commanders-line">`;
+              // Cmdr 1
+              accordionHTML += `<div class="combo-commander">`;
+              accordionHTML += `<div class="combo-image-container">`;
+              if (cmdr1ImgUrl) {
+                  accordionHTML += `<img src="${cmdr1ImgUrl}" alt="${pair.cmdr1 || 'Cmdr1'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+              } else {
+                  accordionHTML += `<div class="combo-no-image cmdr-no-image">C</div>`;
               }
-              // Display bond bonus if it exists
-              if (combo.bond) {
-                  combosHTML += `<p class="combo-bond">✨ Bond Bonus: ${combo.bondName || 'Active'}</p>`;
+              accordionHTML += `</div>`;
+              accordionHTML += `<span class="combo-commander-name">${pair.cmdr1 || '?'}</span>`;
+              accordionHTML += `</div>`;
+              // Plus
+              accordionHTML += `<span class="plus-separator">+</span>`;
+              // Cmdr 2
+              accordionHTML += `<div class="combo-commander">`;
+               accordionHTML += `<div class="combo-image-container">`;
+              if (cmdr2ImgUrl) {
+                  accordionHTML += `<img src="${cmdr2ImgUrl}" alt="${pair.cmdr2 || 'Cmdr2'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+              } else {
+                  accordionHTML += `<div class="combo-no-image cmdr-no-image">C</div>`;
               }
-               combosHTML += `</div>`; // End note-line
-          }
+              accordionHTML += `</div>`;
+              accordionHTML += `<span class="combo-commander-name">${pair.cmdr2 || '?'}</span>`;
+              accordionHTML += `</div>`;
+              accordionHTML += `</div>`; // End commanders-line
 
-          combosHTML += `</li>`;
+              // Note and Bond Line
+              if (pair.note || pair.bond) {
+                  accordionHTML += `<div class="combo-line note-line">`;
+                  if (pair.note) {
+                      accordionHTML += `<p class="combo-note">${pair.note}</p>`;
+                  }
+                  if (pair.bond) {
+                      accordionHTML += `<p class="combo-bond">✨ Bond Bonus: ${pair.bondName || 'Active'}</p>`;
+                  }
+                   accordionHTML += `</div>`;
+              }
+              accordionHTML += `</div>`; // End combo-item-inner
+          });
+          accordionHTML += `</div>`; // End combo-list-for-ship
+
+          accordionHTML += `</details>`; // End ship-combo-group
       });
   }
 
-  knownCombosList.innerHTML = combosHTML;
+  // 4. Set the generated HTML
+  accordionContainer.innerHTML = accordionHTML;
 }
+
 
 const knownCombinations = [
   {
@@ -877,6 +912,12 @@ const knownCombinations = [
     cmdr2: "Mens",
     note: "Ship: Dramiel (Data Rigs) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3 – A-B-B)* Deputy Commander: Mens (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
   }, // Assumed Mens=Ameine
+  {
+    ship: "Orthrus",
+    cmdr1: "Karth",
+    cmdr2: "Vlad",
+    note: "Ship: Dramiel (Data Rigs) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3 – A-B-B)* Deputy Commander: Vlad (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
+  }, // 
   {
     ship: "Scythe",
     cmdr1: "Bishop",
@@ -983,7 +1024,7 @@ const knownCombinations = [
     ship: "Corax",
     cmdr1: "Kaylyn",
     cmdr2: "Ameline",
-    note: "User suggested Corax combo. Deals with Vexors easyly",
+    note: " Deals with Vexors easyly",
   }, // Assumed Amile=Ameine
   {
     ship: "Apocalypse",
@@ -998,10 +1039,22 @@ const knownCombinations = [
     note: "User suggested Tristan combo.",
   },
   {
-    ship: "Dragoon",
+    ship: "Drake",
+    cmdr1: "Morda",
+    cmdr2: "Mens",
+    note: "User suggested Dragoon combo.",
+  },
+  {
+    ship: "Dramiel",
     cmdr1: "Yorlas",
     cmdr2: "Santimona",
-    note: "User suggested Dragoon combo.",
+    note: "Self explanatory. Data rate combo.",
+  },
+  {
+    ship: "Hyperion",
+    cmdr1: "Viola",
+    cmdr2: "Mila",
+    note: "Mila and Viola work well together - Firepower rigs, tactics, data rate",
   },
   // Add more known combinations as needed
 ];
@@ -1331,12 +1384,13 @@ function generateTableRows(dataArray, type) {
           } else if (type === 'commander') {
             const cmdr = item;
             // Modify the Name cell to include the image
+            rowsHTML += `<td>${cmdr.name || 'N/A'}</td>`;
             rowsHTML += `<td class="col-name-with-image">`; // Add a class for specific styling
             // Image part
             if (cmdr.imageUrl) {
-                rowsHTML += `${cmdr.name || 'N/A'}<img src="${cmdr.imageUrl}" alt="${cmdr.name || 'Cmdr'} thumbnail" class="commander-thumbnail" loading="lazy" onerror="this.style.visibility='hidden'">`;
+                rowsHTML += `<img src="${cmdr.imageUrl}" alt="${cmdr.name || 'Cmdr'} thumbnail" class="commander-thumbnail" loading="lazy" onerror="this.style.visibility='hidden'">`;
             } else {
-                rowsHTML += `<div class="no-image commander-no-image"></div>`; // Placeholder square
+              rowsHTML += `<div class="no-image"></div>`; // Placeholder square if no image
             }
             rowsHTML += `<td>${cmdr.tier || 'N/A'}</td>`;
             rowsHTML += `<td>${cmdr.faction || 'N/A'}</td>`;
@@ -1393,8 +1447,11 @@ function displayDataLibrary() {
     libraryHTML += '<div class="table-container">';
     // Added id="commander-table"
     libraryHTML += '<table id="commander-table"><thead><tr>';
+    
      // Added class="sortable-header", data-key, data-type
     libraryHTML += '<th class="sortable-header" data-key="name" data-type="string">Name</th>';
+    libraryHTML += '<th>Img</th>'; // Add header for Image column (not sortable)
+
     libraryHTML += '<th class="sortable-header" data-key="tier" data-type="string">Tier</th>'; // Sort tier as string (S > A > B...) might need custom logic for correct order
     libraryHTML += '<th class="sortable-header" data-key="faction" data-type="string">Faction</th>';
     libraryHTML += '<th class="sortable-header" data-key="type" data-type="string">Type</th>';

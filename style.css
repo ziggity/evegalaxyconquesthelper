@@ -886,3 +886,183 @@ button#toggle-library-button:active {
    font-weight: 600; /* Make name stand out */
    color: var(--text-light-primary);
 }
+
+
+/* --- Add to style.css --- */
+.data-library #commander-table thead th:nth-child(2) { /* Targets the second header (Img) */
+    width: 60px; /* Match the width set for .col-image TD */
+    min-width: 60px;
+    padding: 8px 4px; /* Reduce padding if needed */
+    text-align: center;
+}
+
+/* Known Combinations Panel Styling (Container) */
+.known-combos {
+    /* Keep existing padding, max-height, overflow-y etc */
+    padding: 15px;
+    border-radius: 4px;
+    max-height: 60vh;
+    overflow-y: auto;
+    /* ... scrollbar styles ... */
+}
+
+.known-combos h3 {
+    /* Keep existing h3 styles */
+    font-family: var(--font-headings);
+    color: var(--accent-orange);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 400;
+    border-bottom: 1px dashed var(--accent-blue);
+    padding-bottom: 5px;
+}
+
+/* REMOVE or comment out the #known-combos-list grid styles */
+/*
+#known-combos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+*/
+
+/* NEW: Accordion Styles */
+#known-combos-accordion {
+    /* Container for the details elements */
+}
+
+.ship-combo-group { /* The <details> element */
+    border: 1px solid var(--accent-blue);
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.4);
+    transition: background-color 0.2s ease;
+}
+.ship-combo-group[open] { /* Style when open */
+     background-color: rgba(var(--bg-dark-secondary-rgb, 28, 31, 43), 0.7);
+}
+
+
+.ship-combo-summary { /* The <summary> element */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-light-primary);
+    list-style: none; /* Hide default marker */
+    position: relative; /* For custom marker */
+}
+.ship-combo-summary::-webkit-details-marker { display: none; } /* Hide default marker */
+.ship-combo-summary::before { /* Custom marker (e.g., chevron) */
+    content: '▶';
+    font-size: 0.8em;
+    color: var(--accent-cyan);
+    margin-right: 5px;
+    transition: transform 0.2s ease-in-out;
+    display: inline-block;
+}
+.ship-combo-group[open] > .ship-combo-summary::before {
+    transform: rotate(90deg);
+}
+
+
+.summary-image .combo-thumbnail, /* Ensure image in summary fits */
+.summary-image .combo-no-image {
+    width: 127px;
+    height: 179px;
+}
+
+.summary-ship-name {
+    flex-grow: 1; /* Allow name to take available space */
+    color: var(--text-light-primary);
+}
+
+.summary-combo-count {
+    font-size: 0.9em;
+    color: var(--text-light-secondary);
+    font-weight: normal;
+    background-color: rgba(0,0,0,0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+/* Content area shown when details is open */
+.combo-list-for-ship {
+    padding: 10px 15px 15px 35px; /* Indent content */
+    border-top: 1px solid var(--accent-blue);
+    background-color: rgba(0,0,0, 0.1); /* Slightly different bg for content */
+}
+
+/* Styling for individual combo items *inside* the expanded list */
+.combo-item-inner {
+    border: 1px solid rgba(var(--accent-cyan-rgb), 0.3);
+    background-color: rgba(var(--bg-accent-dark-rgb, 42, 45, 58), 0.5); /* Check variable exists */
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 0.95em; /* Slightly larger than grid version */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.combo-item-inner:last-child {
+    margin-bottom: 0;
+}
+
+/* Adjust thumbnail/placeholder size for inner items if needed */
+.combo-item-inner .combo-thumbnail,
+.combo-item-inner .combo-no-image {
+    width: 127px;
+    height: 179px;
+}
+.combo-item-inner .combo-no-image::after {
+    font-size: 0.7em;
+}
+
+/* Keep other internal styles for .combo-line, .commanders-line, etc. */
+/* Ensure note/bond styles work */
+.combo-item-inner .note-line {
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px dashed rgba(var(--accent-blue-rgb), 0.3);
+}
+.combo-item-inner .combo-note { /* Reset styles from previous list structure if needed */
+     margin: 0;
+    font-size: 0.9em;
+    color: var(--text-light-secondary);
+    font-style: italic;
+    line-height: 1.4;
+}
+.combo-item-inner .combo-note::before, .combo-item-inner .combo-note::after { content: none; } /* Remove quotes */
+.combo-item-inner .combo-bond { /* Reset styles */
+    margin: 3px 0 0 0;
+    font-size: 0.9em;
+    color: var(--accent-orange);
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+/* Adjust responsiveness if needed - the accordion usually stacks well */
+@media (max-width: 767px) {
+    .known-combos {
+        /* Keep max-height: none; overflow-y: visible; */
+        max-height: none;
+        overflow-y: visible;
+    }
+     .combo-list-for-ship {
+         padding-left: 15px; /* Reduce indent on small screens */
+     }
+}
+
+/* Define RGB for bg-accent-dark if not already defined */
+:root {
+    /* ... other variables ... */
+    --bg-accent-dark-rgb: 42, 45, 58; /* Example RGB value */
+}
