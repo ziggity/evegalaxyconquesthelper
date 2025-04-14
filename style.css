@@ -1522,3 +1522,67 @@ button#suggest-high-star-combos-button:active {
     --text-light-secondary-rgb: 176, 176, 176; /* Example */
     --accent-red-rgb: 244, 67, 54; /* Example */
 }
+/* Profile Management Area */
+.profile-management {
+    background-color: rgba(var(--bg-dark-secondary-rgb), 0.5);
+    padding: 10px 15px;
+    margin-bottom: 20px; /* Space before ship grid */
+    border-radius: 4px;
+    border: 1px solid var(--accent-blue);
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: space-between; /* Space out text and buttons */
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-management .current-profile {
+    font-size: 0.9em;
+    color: var(--text-light-secondary);
+}
+.profile-management .current-profile strong {
+    color: var(--accent-cyan);
+    font-size: 1.1em;
+}
+
+.profile-management .profile-buttons {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+button.profile-button {
+    /* Style similarly to other utility buttons */
+    background: linear-gradient(to bottom, #607D8B, #455A64); /* Grey gradient */
+    color: #fff;
+    padding: 5px 12px; /* Smaller padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-primary); /* Use primary font */
+    font-size: 0.9em; /* Smaller font */
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    border-bottom: 1px solid #37474F;
+}
+button.profile-button:hover {
+    background: linear-gradient(to bottom, #78909C, #546E7A);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    transform: translateY(-1px);
+}
+button.profile-button:active {
+     transform: translateY(0px);
+     box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+/* Style for the currently active profile button (optional) */
+button.profile-button.active-profile {
+    background: linear-gradient(to bottom, var(--accent-cyan), #00ACC1);
+    border-bottom-color: #00838F;
+    color: #000; /* Darker text for contrast */
+    font-weight: bold;
+}
+
+
+/* Adjust spacing below H3 if needed */
+.star-rating-fleet h3 {
+    margin-top: 1rem; /* Reduce top margin slightly */
+}

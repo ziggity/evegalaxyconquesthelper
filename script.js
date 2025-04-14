@@ -1738,11 +1738,6 @@ const commanderSelectionGrid = document.getElementById('commander-selection-grid
 const suggestCombosButton = document.getElementById('suggest-high-star-combos-button');
 const suggestedCombosOutput = document.getElementById('suggested-combos-output');
 
-// --- Data structure for user's owned items and ratings ---
-let ownedItemRatings = {
-    ships: {}, // { "Rifter": 3, "Caracal": 5, ... }
-    commanders: {} // { "Karth": 4, "Yun": 5, ... }
-};
 const RATING_STORAGE_KEY = 'commanderToolOwnedRatings'; // Key for localStorage
 
 // --- Function to Save Ratings to localStorage ---
@@ -2022,3 +2017,196 @@ document.addEventListener('DOMContentLoaded', () => {
 if (suggestCombosButton) {
     suggestCombosButton.addEventListener('click', suggestHighStarCombos);
 }
+
+
+// --- Modify near the top ---
+const PROFILE_STORAGE_KEY = 'commanderToolProfilesV2'; // New key for structured data
+let allProfilesData = {}; // Holds data for ALL profiles { "Profile 1": {ships:{...}, cmdrs:{...}}, ... }
+let ownedItemRatings = { ships: {}, commanders: {} }; // Holds ratings for the CURRENTLY ACTIVE profile
+let currentProfileName = 'Profile 1'; // Default active profile
+
+// Add reference for profile name display
+const currentProfileNameSpan = document.getElementById('current-profile-name');
+
+// --- NEW Function to Load All Profiles ---
+function loadAllProfiles() {
+    try {
+        const storedData = localStorage.getItem(PROFILE_STORAGE_KEY);
+        if (storedData) {
+            allProfilesData = JSON.parse(storedData);
+            // Ensure base structure exists
+            allProfilesData = allProfilesData || {};
+             // Load the name of the last active profile, default to Profile 1
+            currentProfileName = allProfilesData.__currentProfile__ || 'Profile 1';
+        } else {
+             // Initialize if nothing is stored
+             allProfilesData = {
+                 'Profile 1': { ships: {}, commanders: {} },
+                 'Profile 2': { ships: {}, commanders: {} },
+                 'Profile 3': { ships: {}, commanders: {} },
+                 'Profile 4': { ships: {}, commanders: {} },
+                 '__currentProfile__': 'Profile 1'
+             };
+             currentProfileName = 'Profile 1';
+             // Save this initial structure immediately
+             saveAllProfiles();
+        }
+    } catch (e) {
+        console.error("Failed to load or parse profiles from localStorage:", e);
+        allProfilesData = { '__currentProfile__': 'Profile 1' }; // Reset safely
+        currentProfileName = 'Profile 1';
+    }
+
+    // Load the data for the current profile into the working variable
+    ownedItemRatings = allProfilesData[currentProfileName] || { ships: {}, commanders: {} };
+
+    // Update the UI display for the current profile name
+    updateCurrentProfileDisplay();
+}
+
+// --- NEW Function to Save All Profiles ---
+function saveAllProfiles() {
+    try {
+        // Ensure the current profile name is stored
+        allProfilesData.__currentProfile__ = currentProfileName;
+        localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(allProfilesData));
+    } catch (e) {
+        console.error("Failed to save profiles to localStorage:", e);
+    }
+}
+
+// --- NEW Function to Update Current Profile Display ---
+function updateCurrentProfileDisplay() {
+     if (currentProfileNameSpan) {
+        currentProfileNameSpan.textContent = currentProfileName;
+     }
+     // Optional: Highlight the active profile button
+     document.querySelectorAll('.profile-button').forEach(btn => {
+         if (btn.dataset.profile === currentProfileName) {
+             btn.classList.add('active-profile');
+         } else {
+             btn.classList.remove('active-profile');
+         }
+     });
+}
+
+// --- NEW Function to Switch Profile ---
+function switchProfile(targetProfileName) {
+    if (!targetProfileName || targetProfileName === currentProfileName) {
+        return; // Do nothing if clicking the current profile or invalid name
+    }
+
+    console.log(`Switching from ${currentProfileName} to ${targetProfileName}`);
+
+    // 1. Save current work (important!) - This now updates allProfilesData
+    // No explicit save needed here if saving on every star click
+
+    // 2. Update current profile name
+    currentProfileName = targetProfileName;
+
+    // 3. Load data for the new profile from the main structure
+    ownedItemRatings = allProfilesData[currentProfileName];
+     // If the profile doesn't exist yet (e.g., first time clicking P2/P3), initialize it
+    if (!ownedItemRatings) {
+        ownedItemRatings = { ships: {}, commanders: {} };
+        allProfilesData[currentProfileName] = ownedItemRatings; // Add it to the main object
+    }
+
+    // 4. Update UI Display (Profile name indicator and button highlighting)
+    updateCurrentProfileDisplay();
+
+    // 5. Re-render the selection grids with the new profile's data
+    console.log('Re-rendering grids for:', currentProfileName, ownedItemRatings);
+    displayStarSelectionGrid('ship');
+    displayStarSelectionGrid('commander');
+
+     // 6. Clear the suggested combos output as it's for the previous profile
+    if (suggestedCombosOutput) suggestedCombosOutput.innerHTML = '';
+
+    // 7. Save the fact that this is the new current profile
+    saveAllProfiles(); // Save the whole structure including the updated __currentProfile__
+}
+
+
+// --- Modify handleStarClick ---
+function handleStarClick(event) {
+    const target = event.target;
+    if (!target.classList.contains('star') && !target.classList.contains('zero-star')) {
+        return;
+    }
+
+    const starRatingElement = target.closest('.star-rating');
+    const gridItem = starRatingElement.closest('.selection-grid-item');
+    const itemName = gridItem.dataset.name;
+    const itemType = gridItem.dataset.type; // 'ship' or 'commander'
+    const itemTypePlural = itemType + 's'; // 'ships' or 'commanders'
+
+    let newRating = 0;
+    if (target.classList.contains('star')) {
+        const stars = Array.from(starRatingElement.querySelectorAll('.star'));
+        newRating = stars.indexOf(target) + 1;
+        // Use optional chaining just in case structure is briefly inconsistent
+        if (ownedItemRatings?.[itemTypePlural]?.[itemName] === newRating) {
+            newRating = 0;
+        }
+    } else {
+        newRating = 0;
+    }
+
+    // Update data structure for the CURRENT profile
+    // Ensure nested objects exist
+    if (!ownedItemRatings[itemTypePlural]) {
+         ownedItemRatings[itemTypePlural] = {};
+    }
+    ownedItemRatings[itemTypePlural][itemName] = newRating;
+
+    // Update the data within the main structure too
+    if (!allProfilesData[currentProfileName]) { // Ensure profile exists in main obj
+         allProfilesData[currentProfileName] = { ships: {}, commanders: {} };
+    }
+    if (!allProfilesData[currentProfileName][itemTypePlural]) {
+        allProfilesData[currentProfileName][itemTypePlural] = {};
+    }
+    allProfilesData[currentProfileName][itemTypePlural][itemName] = newRating;
+
+
+    // Update visual display
+    updateStarDisplay(starRatingElement, newRating);
+
+    // Save the entire profile structure to localStorage
+    saveAllProfiles();
+}
+
+// --- Modify DOMContentLoaded ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Load profiles first, which sets currentProfileName and ownedItemRatings
+    loadAllProfiles(); // <<< REPLACES loadOwnedRatings()
+
+    // Populate dropdowns for synergy tool
+    populateDropdown(shipSelect, shipData, 'name', 'name');
+    populateDropdown(commander1Select, commanderData, 'name', 'name');
+    populateDropdown(commander2Select, commanderData, 'name', 'name');
+
+    // Display the general known combos panel (accordion)
+    displayKnownCombinationsPanel();
+
+    // Populate the star selection grids (uses the loaded ownedItemRatings)
+    displayStarSelectionGrid('ship');
+    displayStarSelectionGrid('commander');
+
+    // Add delegated listeners for star clicks
+    if(shipSelectionGrid) shipSelectionGrid.addEventListener('click', handleStarClick);
+    if(commanderSelectionGrid) commanderSelectionGrid.addEventListener('click', handleStarClick);
+
+    // Add listeners for profile buttons
+    document.querySelectorAll('.profile-button').forEach(button => {
+        button.addEventListener('click', (event) => {
+            switchProfile(event.target.dataset.profile);
+        });
+    });
+
+    // Set initial message for synergy results
+    resultsDiv.innerHTML = '<p>Select a ship and two commanders to analyze.</p>';
+
+    // Initial setup complete, profile name should be displayed
+});

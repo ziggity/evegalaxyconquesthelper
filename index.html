@@ -46,25 +46,32 @@
             </section>
             <section id="star-rating-section" class="star-rating-fleet">
                 <h2>My Fleet Builder (Star Rating)</h2>
-                <p>Click the stars below to rate the Ships and Commanders you own (1-5 Stars). Use 0 stars (click the number 0 or the first star again) if you don't own it or want to exclude it.</p>
-
+                <p>Click the first star if you own the ship/commander at 0 stars, otherwise click the stars below to rate the Ships and Commanders you own (1-5 Stars). Use 0 stars (click the number 0 or the first star again) if you don't own it or want to exclude it.</p>
+            
+                <div class="profile-management">
+                    <span class="current-profile">Current Profile: <strong id="current-profile-name">Profile 1</strong></span>
+                    <div class="profile-buttons">
+                        <button class="profile-button" data-profile="Profile 1">Load P1</button>
+                        <button class="profile-button" data-profile="Profile 2">Load P2</button>
+                        <button class="profile-button" data-profile="Profile 3">Load P3</button>
+                        <button class="profile-button" data-profile="Profile 4">Load P4</button>
+                         </div>
+                </div>
                 <h3>My Ships</h3>
                 <div id="ship-selection-grid" class="selection-grid">
-                    <p>Loading ships...</p>
-                </div>
-
+                    </div>
+            
                 <h3>My Commanders</h3>
                 <div id="commander-selection-grid" class="selection-grid">
-                     <p>Loading commanders...</p>
-                </div>
-
+                    </div>
+            
                 <div class="star-combos-action">
                      <button id="suggest-high-star-combos-button">Suggest High-Star Combos</button>
                 </div>
-
+            
                 <div id="suggested-combos-output" class="suggested-combos-results">
                     </div>
-
+            
             </section>
             <section id="data-library-output" class="data-library" style="display: none;">
             
