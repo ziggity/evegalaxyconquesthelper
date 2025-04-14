@@ -2204,3 +2204,71 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial setup complete, profile name should be displayed
 });
+
+const addStarAllShipsButton = document.getElementById('add-star-all-ships');
+const addStarAllCommandersButton = document.getElementById('add-star-all-commanders');
+
+// --- NEW Function to Add 1 Star to All Items of a Type ---
+function addStarToAll(itemType) {
+    const dataArray = (itemType === 'ship') ? shipData : commanderData;
+    const gridContainer = (itemType === 'ship') ? shipSelectionGrid : commanderSelectionGrid;
+    const itemTypePlural = itemType + 's'; // 'ships' or 'commanders'
+    const exclusionList = (itemType === 'ship') ? shipsToExcludeFromBuilder : []; // Only exclude ships currently
+
+    console.log(`Adding +1 star to all ${itemTypePlural}`);
+    let changesMade = false;
+
+    dataArray.forEach(item => {
+        const itemName = item.name;
+
+        // Skip if item is in the exclusion list for this grid
+        if (exclusionList.includes(itemName)) {
+            return;
+        }
+
+        // Get current rating from our active profile data
+        const currentRating = ownedItemRatings?.[itemTypePlural]?.[itemName] || 0;
+
+        // Only increment if less than 5
+        if (currentRating < 5) {
+            const newRating = currentRating + 1;
+            changesMade = true;
+
+            // Update data structure (both working copy and main structure)
+            if (!ownedItemRatings[itemTypePlural]) ownedItemRatings[itemTypePlural] = {};
+            ownedItemRatings[itemTypePlural][itemName] = newRating;
+
+            if (!allProfilesData[currentProfileName]) allProfilesData[currentProfileName] = { ships: {}, commanders: {} };
+            if (!allProfilesData[currentProfileName][itemTypePlural]) allProfilesData[currentProfileName][itemTypePlural] = {};
+            allProfilesData[currentProfileName][itemTypePlural][itemName] = newRating;
+
+            // Update UI for this specific item
+            const gridItemElement = gridContainer.querySelector(`.selection-grid-item[data-name="${CSS.escape(itemName)}"]`); // Find specific item
+            if (gridItemElement) {
+                const starRatingElement = gridItemElement.querySelector('.star-rating');
+                if (starRatingElement) {
+                    // Re-render just the stars for this item
+                    starRatingElement.outerHTML = generateStarRatingHTML(itemName, itemType, newRating);
+                }
+            }
+        }
+    });
+
+    // Save all changes if any were made
+    if (changesMade) {
+        saveAllProfiles();
+        console.log(`Finished adding stars to ${itemTypePlural}. Saved.`);
+    } else {
+        console.log(`No ratings updated for ${itemTypePlural} (all might be 5 stars already).`);
+    }
+}
+
+// --- Add Event Listeners (e.g., inside DOMContentLoaded or globally) ---
+if (addStarAllShipsButton) {
+    addStarAllShipsButton.addEventListener('click', () => addStarToAll('ship'));
+}
+
+if (addStarAllCommandersButton) {
+    addStarAllCommandersButton.addEventListener('click', () => addStarToAll('commander'));
+}
+
