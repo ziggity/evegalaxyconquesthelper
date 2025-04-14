@@ -982,7 +982,13 @@ const knownCombinations = [
     ship: "Drake",
     cmdr1: "Morda",
     cmdr2: "Mens",
-    note: "User suggested Dragoon combo.",
+    note: "User suggested Drake combo.",
+  },
+  {
+    ship: "Drake",
+    cmdr1: "Mens",
+    cmdr2: "Mila",
+    note: "User suggested Drake combo.",
   },
   {
     ship: "Dramiel",
@@ -1005,8 +1011,14 @@ const knownCombinations = [
   {
     ship: "Catalyst",
     cmdr1: "Blaque",
+    cmdr2: "Cerb",
+    note: "Works well against Drake and Dramiel ships",
+  },
+  {
+    ship: "Catalyst",
+    cmdr1: "Cerb",
     cmdr2: "Flaherty",
-    note: "Cerb can be subbed in as well. Works well against Drake and Dramiel ships",
+    note: "Works well against Drake and Dramiel ships",
   },
   {
     ship: "Rifter",
@@ -1025,13 +1037,19 @@ const knownCombinations = [
     cmdr1: "Faus",
     cmdr2: "Kezti",
     note: "Ship: InquisitorLead Commander: Faus (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)Deputy Commander: Ketzi (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
-  }, // Assumed Faus=Fass
+  }, 
   {
     ship: "Dramiel",
     cmdr1: "Karth",
     cmdr2: "Mens",
     note: "Ship: Dramiel (Data Rigs) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3 – A-B-B)* Deputy Commander: Mens (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
-  }, // Assumed Mens=Ameine
+  }, 
+  {
+    ship: "Dramiel",
+    cmdr1: "Draea",
+    cmdr2: "Santimona",
+    note: "Ship: Dramiel (Data Rigs) Lead Commander: Draea (Any implants with max raw Offense, Build: A-B-A)* Deputy Commander: Santimona (repair %, Build: A-A-A)",
+  }, 
   {
     ship: "Orthrus",
     cmdr1: "Karth",
@@ -1043,6 +1061,18 @@ const knownCombinations = [
     cmdr1: "Bishop",
     cmdr2: "Ameline",
     note: "Ameline can be Karth. Ship: Scythe (Energy % or Firepower % rigs, depending on commander skills) Lead Commander: Bishop (Energy Damage % implants, Build: A-B-A) Deputy Commander: Ameline (Data Rate implants, Build: A-B-A)",
+  }, 
+  {
+    ship: "Scythe",
+    cmdr1: "Kasora",
+    cmdr2: "Draea",
+    note: "Ship: Scythe (Energy % or Firepower % rigs, depending on commander skills) Lead Commander: Kasora (Energy Damage % implants, Build: A-B-A) Deputy Commander: Draea (Data Rate implants, Build: A-A-A)",
+  }, 
+  {
+    ship: "Scythe",
+    cmdr1: "Ameline",
+    cmdr2: "Karin",
+    note: "Ship: Scythe (Energy % or Firepower % rigs, depending on commander skills) Lead Commander: Ameline (Energy Damage % implants, Build: A-B-A) Deputy Commander: Karin (Data Rate implants, Build: A-A-A)",
   }, 
   {
     ship: "Maelstrom",
@@ -1083,7 +1113,13 @@ const knownCombinations = [
   {
     ship: "Caracal",
     cmdr1: "Otro",
-    cmdr2: "Yorlas",
+    cmdr2: "Janus",
+    note: "Ship: Caracal (Kinetic Damage % rigs) Lead Commander: Otro (Kinetic Damage % implants, build: A-A-A) Deputy Commander: Janus (Data Rate implants, build: A-A-A).",
+  }, 
+  {
+    ship: "Caracal",
+    cmdr1: "Otro",
+    cmdr2: "Morda",
     note: "Ship: Caracal (Kinetic Damage % rigs) Lead Commander: Otro (Kinetic Damage % implants, build: A-A-A) Deputy Commander: Morda (Data Rate implants, build: A-A-A).",
   }, 
   
@@ -1092,6 +1128,12 @@ const knownCombinations = [
     cmdr1: "Korvin",
     cmdr2: "Yana",
     note: "Ship: Tristan (Firepower % rigs) Lead Commander: Korvin (Offense % or Domination set implants, build: A-A-A) Deputy Commander: Yana (Data Rate implants, build: A-A-A).",
+  }, 
+  {
+    ship: "Stormbringer",
+    cmdr1: "Draea",
+    cmdr2: "Yorlas",
+    note: "Ship: Stormbringer - Santimona or Chelm replace yorlas.",
   }, 
   {
     ship: "Griffin",
@@ -1109,7 +1151,13 @@ const knownCombinations = [
     ship: "Drake",
     cmdr1: "Otro",
     cmdr2: "Mila",
-    note: "User suggested Drake combo.",
+    note: "User suggested Drake combo, Mens can work instead of Otro. Morda can replace Mila",
+  },
+  {
+    ship: "Omen",
+    cmdr1: "Faus",
+    cmdr2: "Victor",
+    note: "Faus helps lower time to start modules - Victor there for support - Morda can replace Faus",
   },
   {
     ship: "Griffin",
@@ -1128,12 +1176,24 @@ const knownCombinations = [
     cmdr1: "Karth",
     cmdr2: "Yorlas",
     note: "Ship: Tristan (Firepower % rigs) Lead Commander: Karth (Tactic and Offense implants, build: A-B-A) Deputy Commander: Yorlas (Kinetic Damage % or Changed Strike implants, build: A-A-A)",
-  }, // Assumed Yorlas = Morde Yorlas
+  }, 
+  {
+    ship: "Tristan",
+    cmdr1: "Blaque",
+    cmdr2: "Souro",
+    note: "Ship: Tristan (Firepower % rigs) tbd S2 info",
+  }, 
   {
     ship: "Orthrus",
     cmdr1: "Brokara",
     cmdr2: "Santimona",
     note: "Orthrus shines at 3 stars, suggested to park it until it reaches that level. Santimona(Lead) and Jonas(Deputy) also work. AAA builds. Good early-mid game setup but lategame it lags behind other top tier setups",
+  }, 
+  {
+    ship: "Orthrus",
+    cmdr1: "Santimona",
+    cmdr2: "Yorlas",
+    note: "Orthrus shines at 3 stars, suggested to park it until it reaches that level. Santimona(Lead) and yorlas(Deputy) also work with Jonas. AAA builds. Good early-mid game setup but lategame it lags behind other top tier setups",
   }, 
   {
     ship: "Vexor",
@@ -1650,4 +1710,295 @@ function toggleDataLibrary() {
     // Optional: Scroll to the library
     libraryOutputDiv.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+}
+
+
+const shipSelectionGrid = document.getElementById('ship-selection-grid');
+const commanderSelectionGrid = document.getElementById('commander-selection-grid');
+const suggestCombosButton = document.getElementById('suggest-high-star-combos-button');
+const suggestedCombosOutput = document.getElementById('suggested-combos-output');
+
+// --- Data structure for user's owned items and ratings ---
+let ownedItemRatings = {
+    ships: {}, // { "Rifter": 3, "Caracal": 5, ... }
+    commanders: {} // { "Karth": 4, "Yun": 5, ... }
+};
+const RATING_STORAGE_KEY = 'commanderToolOwnedRatings'; // Key for localStorage
+
+// --- Function to Save Ratings to localStorage ---
+function saveOwnedRatings() {
+    try {
+        localStorage.setItem(RATING_STORAGE_KEY, JSON.stringify(ownedItemRatings));
+    } catch (e) {
+        console.error("Failed to save ratings to localStorage:", e);
+    }
+}
+
+// --- Function to Load Ratings from localStorage ---
+function loadOwnedRatings() {
+    try {
+        const storedData = localStorage.getItem(RATING_STORAGE_KEY);
+        if (storedData) {
+            ownedItemRatings = JSON.parse(storedData);
+            // Ensure structure is correct after loading
+            ownedItemRatings.ships = ownedItemRatings.ships || {};
+            ownedItemRatings.commanders = ownedItemRatings.commanders || {};
+        }
+    } catch (e) {
+        console.error("Failed to load or parse ratings from localStorage:", e);
+        // Reset to default if loading fails
+        ownedItemRatings = { ships: {}, commanders: {} };
+    }
+}
+
+// --- Function to Update Star Display ---
+function updateStarDisplay(parentElement, rating) {
+    const stars = parentElement.querySelectorAll('span.star');
+    stars.forEach((star, index) => {
+        if (index < rating) {
+            star.classList.add('filled');
+            star.textContent = '★'; // Filled star
+        } else {
+            star.classList.remove('filled');
+            star.textContent = '☆'; // Empty star
+        }
+    });
+}
+
+// --- Function to Handle Star Click ---
+function handleStarClick(event) {
+    const target = event.target;
+    // Check if a star or the zero indicator was clicked
+    if (!target.classList.contains('star') && !target.classList.contains('zero-star')) {
+        return; // Ignore clicks elsewhere in the container
+    }
+
+    const starRatingElement = target.closest('.star-rating');
+    const gridItem = starRatingElement.closest('.selection-grid-item');
+    const itemName = gridItem.dataset.name;
+    const itemType = gridItem.dataset.type; // 'ship' or 'commander'
+
+    let newRating = 0;
+    if (target.classList.contains('star')) {
+        // Find index of the clicked star (0-based) and add 1 for rating
+        const stars = Array.from(starRatingElement.querySelectorAll('.star'));
+        newRating = stars.indexOf(target) + 1;
+         // If clicking the currently selected star, set rating to 0
+        if (ownedItemRatings[itemType+'s'][itemName] === newRating) {
+            newRating = 0;
+        }
+    } else { // Clicked the '0'
+        newRating = 0;
+    }
+
+
+    // Update data structure
+    if (itemType === 'ship') {
+        ownedItemRatings.ships[itemName] = newRating;
+    } else if (itemType === 'commander') {
+        ownedItemRatings.commanders[itemName] = newRating;
+    }
+
+    // Update visual display
+    updateStarDisplay(starRatingElement, newRating);
+
+    // Save to localStorage
+    saveOwnedRatings();
+
+    // Optional: Immediately update suggested combos (or wait for button click)
+    // suggestHighStarCombos();
+}
+
+// --- Function to Generate Star Rating HTML ---
+function generateStarRatingHTML(itemName, itemType, currentRating) {
+    let starsHTML = `<div class="star-rating" data-name="${itemName}" data-type="${itemType}">`;
+    starsHTML += `<span class="zero-star" title="Set rating to 0 (Not Owned/Exclude)">0</span>`; // Zero option
+    for (let i = 1; i <= 5; i++) {
+        const isFilled = i <= currentRating;
+        starsHTML += `<span class="star ${isFilled ? 'filled' : ''}" data-rating="${i}" title="${i} Star${i > 1 ? 's' : ''}">${isFilled ? '★' : '☆'}</span>`;
+    }
+    starsHTML += `</div>`;
+    return starsHTML;
+}
+const shipsToExcludeFromBuilder = [
+  "Impairor", // Example: Rookie Ship
+  "Navitas",  // Example: Based on "NOPE" tier in original image
+  "Cruor",    // Example: Based on "NOPE" tier
+  "Condor",   // Example: Based on "NOPE" tier
+  "Vigil",     // Example: Based on "NOPE" tier (if Vigil is in shipData)
+  "Tormentor"
+  // Add any other ship names you want to hide here
+];
+// --- Modify the displayStarSelectionGrid function in script.js ---
+function displayStarSelectionGrid(dataType) {
+  const gridContainer = (dataType === 'ship') ? shipSelectionGrid : commanderSelectionGrid;
+  const dataArray = (dataType === 'ship') ? shipData : commanderData;
+  const ratings = (dataType === 'ship') ? ownedItemRatings.ships : ownedItemRatings.commanders;
+
+  if (!gridContainer) return;
+
+  let gridHTML = '';
+  const sortedData = [...dataArray].sort((a, b) => a.name.localeCompare(b.name));
+
+  sortedData.forEach(item => {
+      const name = item.name;
+
+      // --- NEW: Check for exclusion if it's a ship ---
+      if (dataType === 'ship' && shipsToExcludeFromBuilder.includes(name)) {
+          return; // Skip this ship, don't generate HTML for it
+      }
+      // --- END NEW Check ---
+
+      // --- Rest of the item generation logic remains the same ---
+      const imageUrl = item.imageUrl;
+      const currentRating = ratings[name] || 0;
+
+      gridHTML += `<div class="selection-grid-item" data-name="${name}" data-type="${dataType === 'ship' ? 'ship' : 'commander'}">`; // Add type dataset
+
+      // Image
+      if (imageUrl) {
+          gridHTML += `<img src="${imageUrl}" alt="${name}" class="grid-item-image ${dataType === 'commander' ? 'cmdr-thumb' : ''}" loading="lazy" onerror="this.style.visibility='hidden'">`;
+      } else {
+          gridHTML += `<div class="grid-item-no-image ${dataType === 'commander' ? 'cmdr-no-image' : ''}">${dataType === 'ship' ? 'S' : 'C'}</div>`;
+      }
+
+      // Name
+      gridHTML += `<span class="grid-item-name">${name}</span>`;
+
+      // Star Rating
+      gridHTML += generateStarRatingHTML(name, dataType === 'ship' ? 'ship' : 'commander', currentRating);
+
+      gridHTML += `</div>`;
+  });
+
+  // Add a check in case *all* items of a type were excluded
+  if (gridHTML === '') {
+      gridHTML = `<p>No ${dataType}s available or all excluded.</p>`;
+  }
+
+  gridContainer.innerHTML = gridHTML;
+}
+
+// --- Ensure the rest of your script.js is present ---
+
+// --- Function to Suggest High-Star Combos ---
+function suggestHighStarCombos() {
+    if (!suggestedCombosOutput) return;
+
+    // 1. Filter knownCombinations based on ownership (rating > 0)
+    const possibleCombos = knownCombinations.filter(combo => {
+        const shipRating = ownedItemRatings.ships[combo.ship] || 0;
+        const cmdr1Rating = ownedItemRatings.commanders[combo.cmdr1] || 0;
+        const cmdr2Rating = ownedItemRatings.commanders[combo.cmdr2] || 0;
+        return shipRating > 0 && cmdr1Rating > 0 && cmdr2Rating > 0;
+    });
+
+    // 2. Calculate score and add ratings to each possible combo
+    const scoredCombos = possibleCombos.map(combo => {
+        const shipRating = ownedItemRatings.ships[combo.ship];
+        const cmdr1Rating = ownedItemRatings.commanders[combo.cmdr1];
+        const cmdr2Rating = ownedItemRatings.commanders[combo.cmdr2];
+        // Simple scoring: sum of stars. Adjust weights if needed.
+        const score = shipRating + cmdr1Rating + cmdr2Rating;
+        return {
+            ...combo, // Spread original combo data
+            shipRating,
+            cmdr1Rating,
+            cmdr2Rating,
+            score
+        };
+    });
+
+    // 3. Sort combos by score (highest first)
+    scoredCombos.sort((a, b) => b.score - a.score);
+
+    // 4. Display results
+    displaySuggestedCombos(scoredCombos);
+}
+
+// --- Function to Display Suggested Combos ---
+function displaySuggestedCombos(sortedCombos) {
+    suggestedCombosOutput.innerHTML = ''; // Clear previous
+    let resultsHTML = `<h4>Suggested Combos (Highest Stars First - ${sortedCombos.length})</h4>`;
+
+    if (sortedCombos.length === 0) {
+        resultsHTML += '<p>No known combinations match your owned items (rated > 0 stars).</p>';
+    } else {
+        resultsHTML += '<ul>';
+        sortedCombos.forEach(combo => {
+             // Find images again for display
+             const shipInfo = shipData.find(s => s.name === combo.ship);
+             const cmdr1Info = commanderData.find(c => c.name === combo.cmdr1);
+             const cmdr2Info = commanderData.find(c => c.name === combo.cmdr2);
+             const shipImgUrl = shipInfo?.imageUrl;
+             const cmdr1ImgUrl = cmdr1Info?.imageUrl;
+             const cmdr2ImgUrl = cmdr2Info?.imageUrl;
+
+            resultsHTML += `<li>`;
+            resultsHTML += `<span class="combo-score">Score: ${combo.score} ★</span>`; // Show total score
+            resultsHTML += `<div class="combo-components">`;
+                // Ship Line
+                resultsHTML += `<div class="component-line">`;
+                if (shipImgUrl) resultsHTML += `<img src="${shipImgUrl}" alt="${combo.ship}" class="component-image ship-thumb">`;
+                resultsHTML += `<span class="component-name">${combo.ship}</span>`;
+                resultsHTML += `<span class="component-stars">${'★'.repeat(combo.shipRating)}${'☆'.repeat(5 - combo.shipRating)}</span>`;
+                resultsHTML += `</div>`;
+                 // Cmdr 1 Line
+                resultsHTML += `<div class="component-line">`;
+                if (cmdr1ImgUrl) resultsHTML += `<img src="${cmdr1ImgUrl}" alt="${combo.cmdr1}" class="component-image cmdr-thumb">`;
+                resultsHTML += `<span class="component-name">${combo.cmdr1}</span>`;
+                resultsHTML += `<span class="component-stars">${'★'.repeat(combo.cmdr1Rating)}${'☆'.repeat(5 - combo.cmdr1Rating)}</span>`;
+                resultsHTML += `</div>`;
+                 // Cmdr 2 Line
+                resultsHTML += `<div class="component-line">`;
+                if (cmdr2ImgUrl) resultsHTML += `<img src="${cmdr2ImgUrl}" alt="${combo.cmdr2}" class="component-image cmdr-thumb">`;
+                resultsHTML += `<span class="component-name">${combo.cmdr2}</span>`;
+                resultsHTML += `<span class="component-stars">${'★'.repeat(combo.cmdr2Rating)}${'☆'.repeat(5 - combo.cmdr2Rating)}</span>`;
+                resultsHTML += `</div>`;
+            resultsHTML += `</div>`; // end combo-components
+
+            // Note and Bond
+            if (combo.note || combo.bond) {
+                resultsHTML += `<div class="combo-note-display">`;
+                if (combo.note) resultsHTML += `Note: ${combo.note} <br>`;
+                if (combo.bond) resultsHTML += `✨ Bond Bonus: ${combo.bondName || 'Active'}`;
+                resultsHTML += `</div>`;
+            }
+
+            resultsHTML += `</li>`;
+        });
+        resultsHTML += '</ul>';
+    }
+    suggestedCombosOutput.innerHTML = resultsHTML;
+}
+
+
+// --- Modify the DOMContentLoaded listener ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Load any previously saved ratings
+    loadOwnedRatings();
+
+    // Populate dropdowns for synergy tool
+    populateDropdown(shipSelect, shipData, 'name', 'name');
+    populateDropdown(commander1Select, commanderData, 'name', 'name');
+    populateDropdown(commander2Select, commanderData, 'name', 'name');
+
+    // Display the general known combos panel (accordion)
+    displayKnownCombinationsPanel();
+
+    // NEW: Populate the star selection grids
+    displayStarSelectionGrid('ship');
+    displayStarSelectionGrid('commander');
+
+    // Add delegated listeners for star clicks
+    if(shipSelectionGrid) shipSelectionGrid.addEventListener('click', handleStarClick);
+    if(commanderSelectionGrid) commanderSelectionGrid.addEventListener('click', handleStarClick);
+
+    // Set initial message for synergy results
+    resultsDiv.innerHTML = '<p>Select a ship and two commanders to analyze.</p>';
+});
+
+// --- Add Event Listener for the Suggest Combos button ---
+if (suggestCombosButton) {
+    suggestCombosButton.addEventListener('click', suggestHighStarCombos);
 }

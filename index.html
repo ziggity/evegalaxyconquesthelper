@@ -44,7 +44,30 @@
                     <p>Select a ship and two commanders to analyze.</p>
                 </div>
             </section>
+            <section id="star-rating-section" class="star-rating-fleet">
+                <h2>My Fleet Builder (Star Rating)</h2>
+                <p>Click the stars below to rate the Ships and Commanders you own (1-5 Stars). Use 0 stars (click the number 0 or the first star again) if you don't own it or want to exclude it.</p>
 
+                <h3>My Ships</h3>
+                <div id="ship-selection-grid" class="selection-grid">
+                    <p>Loading ships...</p>
+                </div>
+
+                <h3>My Commanders</h3>
+                <div id="commander-selection-grid" class="selection-grid">
+                     <p>Loading commanders...</p>
+                </div>
+
+                <div class="star-combos-action">
+                     <button id="suggest-high-star-combos-button">Suggest High-Star Combos</button>
+                </div>
+
+                <div id="suggested-combos-output" class="suggested-combos-results">
+                    </div>
+
+            </section>
+            <section id="data-library-output" class="data-library" style="display: none;">
+            
             <section class="tier-list-reference">
                  <h2>Reference Commander Tier List</h2>
                  <img id="commander-tier-list-img" class="tier-list-image" src="Eve-Galaxy-Conquest-Tier-List-PVE-dec24.webp" alt="EVE Commander Tier List">
@@ -73,7 +96,7 @@
                         <div id="known-combos-accordion">
                             <p>Loading combinations...</p>
                         </div>
-                    </div>
+                    </div> 
                 
                     <div class="tier-list-reference">
                          </div>
