@@ -1920,6 +1920,7 @@ function suggestHighStarCombos() {
 
     // 3. Sort combos by score (highest first)
     scoredCombos.sort((a, b) => b.score - a.score);
+console.log('Found possible scored combos:', scoredCombos.length, scoredCombos); // DEBUG LINE
 
     // 4. Display results
     displaySuggestedCombos(scoredCombos);
@@ -2272,3 +2273,203 @@ if (addStarAllCommandersButton) {
     addStarAllCommandersButton.addEventListener('click', () => addStarToAll('commander'));
 }
 
+// --- Add near the top with other DOM Elements ---
+const suggestStaminaFleetButton = document.getElementById('suggest-stamina-fleet-button');
+const staminaFleetOutputDiv = document.getElementById('stamina-fleet-output');
+
+function suggestStaminaFleet() {
+  // --- DEFINE CONSTANTS HERE ---
+  const MAX_SHIPS = 5; // Target 5 ships
+  const MAX_COMMANDERS = 20; // Target 20 commanders (5 ships * 4 cmdrs/ship)
+  // --- END DEFINE CONSTANTS ---
+
+  if (!staminaFleetOutputDiv) return;
+  console.log("Suggesting Stamina Fleet..."); // Keep for debugging if needed
+
+  // 1. Filter known combinations (Same as before)
+  const possibleCombos = knownCombinations.filter(combo => {
+      const shipRating = ownedItemRatings.ships[combo.ship] || 0;
+      const cmdr1Rating = ownedItemRatings.commanders[combo.cmdr1] || 0;
+      const cmdr2Rating = ownedItemRatings.commanders[combo.cmdr2] || 0;
+      return shipRating > 0 && cmdr1Rating > 0 && cmdr2Rating > 0;
+  });
+
+  // 2. Score these possible combos (Same as before)
+  const scoredCombos = possibleCombos.map(combo => {
+      const shipRating = ownedItemRatings.ships[combo.ship];
+      const cmdr1Rating = ownedItemRatings.commanders[combo.cmdr1];
+      const cmdr2Rating = ownedItemRatings.commanders[combo.cmdr2];
+      const score = shipRating + cmdr1Rating + cmdr2Rating;
+      return { ...combo, shipRating, cmdr1Rating, cmdr2Rating, score };
+  });
+
+  // 3. Sort by score descending (Same as before)
+  scoredCombos.sort((a, b) => b.score - a.score);
+   console.log('Found possible scored combos:', scoredCombos.length, scoredCombos); // DEBUG LINE
+
+  // 4. Iterative Selection Process
+  const selectedShipDetails = {};
+  const selectedCommanders = new Set();
+  // MAX_SHIPS and MAX_COMMANDERS are now defined above
+
+  for (const combo of scoredCombos) {
+      // Stop if we have enough commanders
+      if (selectedCommanders.size >= MAX_COMMANDERS) { // Now defined
+           console.log("Reached max commanders, breaking loop."); // DEBUG
+           break;
+      }
+
+      const { ship, cmdr1, cmdr2, note, bond, bondName, shipRating, cmdr1Rating, cmdr2Rating } = combo;
+       console.log(`Checking Combo: ${ship} + ${cmdr1} + ${cmdr2}`); // DEBUG
+
+      // Skip if either commander is already selected
+      if (selectedCommanders.has(cmdr1) || selectedCommanders.has(cmdr2)) {
+          console.log(`Skipping: Commander ${selectedCommanders.has(cmdr1) ? cmdr1 : cmdr2} already selected.`); // DEBUG
+          continue;
+      }
+
+      const numShipsSelected = Object.keys(selectedShipDetails).length;
+      const comboData = { cmdrA: cmdr1, cmdrB: cmdr2, note, bond, bondName, ratingA: cmdr1Rating, ratingB: cmdr2Rating };
+
+      // --- Logic to add ships and pairs ---
+      if (numShipsSelected < MAX_SHIPS) { // Now defined
+          // Still need to select ships
+          if (!selectedShipDetails[ship]) {
+               // Check if adding these 2 commanders exceeds the limit
+               if (selectedCommanders.size <= MAX_COMMANDERS - 2) { // Now defined
+                  selectedShipDetails[ship] = { rating: shipRating, pair1: comboData, pair2: null };
+                  selectedCommanders.add(cmdr1);
+                  selectedCommanders.add(cmdr2);
+                  console.log(`Added Ship ${ship} with Pair 1: ${cmdr1} + ${cmdr2}. Total Cmdrs: ${selectedCommanders.size}`); // DEBUG
+               } else { console.log(`Skipping new ship ${ship}: Adding pair would exceed commander limit.`); } // DEBUG
+          } else if (!selectedShipDetails[ship].pair2) {
+               // Check if adding these 2 commanders exceeds the limit
+               if (selectedCommanders.size <= MAX_COMMANDERS - 2) { // Now defined
+                  selectedShipDetails[ship].pair2 = comboData;
+                  selectedCommanders.add(cmdr1);
+                  selectedCommanders.add(cmdr2);
+                  console.log(`Added Pair 2 to Ship ${ship}: ${cmdr1} + ${cmdr2}. Total Cmdrs: ${selectedCommanders.size}`); // DEBUG
+              } else { console.log(`Skipping pair 2 for ${ship}: Adding pair would exceed commander limit.`); } // DEBUG
+          }
+      } else {
+          // Have 5 ships, only fill remaining pair slots
+          if (selectedShipDetails[ship] && !selectedShipDetails[ship].pair2) {
+               // Check if adding these 2 commanders exceeds the limit
+               if (selectedCommanders.size <= MAX_COMMANDERS - 2) { // Now defined
+                  selectedShipDetails[ship].pair2 = comboData;
+                  selectedCommanders.add(cmdr1);
+                  selectedCommanders.add(cmdr2);
+                   console.log(`Filled Pair 2 for Ship ${ship}: ${cmdr1} + ${cmdr2}. Total Cmdrs: ${selectedCommanders.size}`); // DEBUG
+              } else { console.log(`Skipping pair 2 for ${ship} (already have 5 ships): Adding pair would exceed commander limit.`); } // DEBUG
+          }
+      }
+  } // End loop
+
+   console.log('Final Selection State:', selectedShipDetails, selectedCommanders); // DEBUG
+
+  // 5. Display the results
+  displayStaminaFleet(selectedShipDetails, MAX_COMMANDERS); // Pass MAX_COMMANDERS to display function
+}
+
+// --- Modify displayStaminaFleet function to accept MAX_COMMANDERS ---
+function displayStaminaFleet(fleetData, maxCommanders) { // Added maxCommanders parameter
+  staminaFleetOutputDiv.innerHTML = '';
+  const shipNames = Object.keys(fleetData);
+   console.log("Attempting to display fleet:", fleetData); // DEBUG
+  let resultsHTML = `<h4>Suggested Stamina Rotation Fleet (${shipNames.length} Ships)</h4>`;
+
+  if (shipNames.length === 0) {
+      resultsHTML += `<p>Could not generate a fleet. Do you own enough known combinations (Ship + 2 Cmdrs > 0 stars)?</p>`;
+  } else {
+       shipNames.sort((a, b) => a.localeCompare(b));
+
+      shipNames.forEach(shipName => {
+          // ... (HTML generation for ship header - same as before) ...
+          const details = fleetData[shipName];
+          const shipInfo = shipData.find(s => s.name === shipName);
+          const shipImgUrl = shipInfo?.imageUrl;
+
+          resultsHTML += `<div class="fleet-ship-group">`;
+          resultsHTML += `<div class="fleet-ship-header">`;
+          if(shipImgUrl) resultsHTML += `<img src="${shipImgUrl}" alt="${shipName}" class="ship-image">`;
+          resultsHTML += `<span class="ship-name">${shipName}</span>`;
+          resultsHTML += `<span class="ship-stars">${'★'.repeat(details.rating)}${'☆'.repeat(5 - details.rating)}</span>`;
+          resultsHTML += `</div>`; // end fleet-ship-header
+
+          resultsHTML += `<div class="commander-pairs">`;
+          if (details.pair1) {
+              resultsHTML += formatCommanderPairHTML("Pair 1", details.pair1);
+          } else {
+               resultsHTML += `<div class="commander-pair empty-pair"><span class="pair-label">Pair 1</span><em>Slot empty.</em></div>`;
+          }
+          if (details.pair2) {
+               resultsHTML += formatCommanderPairHTML("Pair 2", details.pair2);
+          } else {
+               resultsHTML += `<div class="commander-pair empty-pair"><span class="pair-label">Pair 2</span><em>Could not find a suitable second pair.</em></div>`;
+          }
+          resultsHTML += `</div>`; // end commander-pairs
+          resultsHTML += `</div>`; // end fleet-ship-group
+      });
+
+      let totalCommanders = 0;
+      Object.values(fleetData).forEach(d => {
+           if (d.pair1) totalCommanders += 2;
+           if (d.pair2) totalCommanders += 2;
+      });
+       // Use the passed maxCommanders value here
+      resultsHTML += `<p style="text-align: center; margin-top: 15px;">Total Commanders Assigned: ${totalCommanders} / ${maxCommanders}</p>`;
+       if (shipNames.length < 5 || totalCommanders < maxCommanders) { // Use parameter here too
+          resultsHTML += `<p style="text-align: center; font-size: 0.9em; color: var(--text-light-secondary);">(Could not fill all slots based on your owned known combinations and unique commander constraints. Consider rating more items or exploring other combos.)</p>`;
+       }
+  }
+
+   console.log("Final HTML for stamina fleet:", resultsHTML); // DEBUG
+  staminaFleetOutputDiv.innerHTML = resultsHTML;
+}
+
+// --- NEW Helper Function to Format Commander Pair HTML ---
+function formatCommanderPairHTML(label, pairData) {
+    const cmdr1Info = commanderData.find(c => c.name === pairData.cmdrA);
+    const cmdr2Info = commanderData.find(c => c.name === pairData.cmdrB);
+    const cmdr1ImgUrl = cmdr1Info?.imageUrl;
+    const cmdr2ImgUrl = cmdr2Info?.imageUrl;
+
+    let pairHTML = `<div class="commander-pair">`;
+    pairHTML += `<span class="pair-label">${label}:</span>`;
+    // Cmdr 1
+    pairHTML += `<div class="commander-info-pair">`;
+    if(cmdr1ImgUrl) pairHTML += `<img src="${cmdr1ImgUrl}" alt="${pairData.cmdrA}" class="cmdr-image">`;
+    pairHTML += `<span class="cmdr-name">${pairData.cmdrA}</span>`;
+    pairHTML += `<span class="cmdr-stars">${'★'.repeat(pairData.ratingA)}${'☆'.repeat(5-pairData.ratingA)}</span>`;
+    pairHTML += `</div>`;
+    // Plus
+    pairHTML += `<span class="plus-separator-pair">+</span>`;
+     // Cmdr 2
+    pairHTML += `<div class="commander-info-pair">`;
+    if(cmdr2ImgUrl) pairHTML += `<img src="${cmdr2ImgUrl}" alt="${pairData.cmdrB}" class="cmdr-image">`;
+    pairHTML += `<span class="cmdr-name">${pairData.cmdrB}</span>`;
+    pairHTML += `<span class="cmdr-stars">${'★'.repeat(pairData.ratingB)}${'☆'.repeat(5-pairData.ratingB)}</span>`;
+    pairHTML += `</div>`;
+    pairHTML += `</div>`; // end commander-pair container
+
+    // Add Note/Bond below the pair if present
+     if (pairData.note || pairData.bond) {
+        pairHTML += `<div class="pair-note">`;
+        if (pairData.note) pairHTML += `${pairData.note} `;
+        if (pairData.bond) pairHTML += ` ✨(Bond: ${pairData.bondName || 'Active'})`;
+        pairHTML += `</div>`;
+    }
+
+    return pairHTML;
+}
+
+
+// --- Add Event Listener for the new button (e.g., inside DOMContentLoaded) ---
+document.addEventListener('DOMContentLoaded', () => {
+    // ... existing listener setup ...
+
+    // Add listener for the new suggest stamina fleet button
+    if (suggestStaminaFleetButton) {
+        suggestStaminaFleetButton.addEventListener('click', suggestStaminaFleet);
+    }
+});

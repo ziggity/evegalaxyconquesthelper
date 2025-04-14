@@ -1622,3 +1622,130 @@ button.bulk-star-button:active {
      transform: translateY(0px);
      box-shadow: 0 1px 2px rgba(0,0,0,0.4);
 }
+
+/* Stamina Fleet Suggestion Button */
+button#suggest-stamina-fleet-button {
+    /* Style similarly to suggest-high-star or analyze button */
+    display: inline-block;
+    background: linear-gradient(to bottom, var(--accent-blue), #1976D2);
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-headings);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border-bottom: 2px solid #1565C0;
+}
+button#suggest-stamina-fleet-button:hover {
+    background: linear-gradient(to bottom, var(--accent-cyan), #00ACC1);
+    box-shadow: 0 4px 10px rgba(0, 188, 212, 0.4);
+    border-bottom-color: #00838F;
+    transform: translateY(-1px);
+}
+button#suggest-stamina-fleet-button:active {
+     transform: translateY(1px);
+     box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Stamina Fleet Results Area */
+.stamina-fleet-results {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(var(--bg-dark-secondary-rgb), 0.3);
+    border: 1px dashed var(--accent-blue); /* Blue dashed border */
+    border-radius: 4px;
+    min-height: 50px;
+}
+.stamina-fleet-results h4 {
+     color: var(--accent-blue); /* Blue heading */
+     text-align: center;
+     margin-bottom: 15px;
+     font-family: var(--font-headings);
+     font-weight: normal;
+}
+
+.stamina-fleet-results .fleet-ship-group {
+    background-color: rgba(var(--bg-accent-dark-rgb), 0.6);
+    border: 1px solid var(--accent-blue);
+    border-left: 3px solid var(--accent-cyan);
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.stamina-fleet-results .fleet-ship-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed rgba(var(--accent-blue-rgb), 0.4);
+}
+.stamina-fleet-results .fleet-ship-header .ship-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text-light-primary);
+    flex-grow: 1;
+}
+.stamina-fleet-results .fleet-ship-header .ship-stars {
+    color: #FFC107;
+    font-size: 1.1em;
+}
+.stamina-fleet-results .fleet-ship-header .ship-image {
+    width: 32px; height: 32px; object-fit: contain; border-radius: 3px; background-color: rgba(0,0,0,0.2);
+}
+
+.stamina-fleet-results .commander-pairs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between Pair 1 and Pair 2 */
+}
+.stamina-fleet-results .commander-pair {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Gap between commanders in a pair */
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px 8px;
+    border-radius: 3px;
+    border: 1px solid rgba(var(--accent-cyan-rgb), 0.2);
+}
+.stamina-fleet-results .pair-label {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: var(--text-light-secondary);
+    width: 40px; /* Fixed width for label */
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.stamina-fleet-results .commander-info-pair {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9em;
+}
+.stamina-fleet-results .commander-info-pair .cmdr-image {
+     width: 24px; height: 24px; object-fit: cover; border-radius: 50%; background-color: rgba(0,0,0,0.2); flex-shrink: 0;
+}
+.stamina-fleet-results .commander-info-pair .cmdr-name {
+     color: var(--text-light-primary);
+}
+.stamina-fleet-results .commander-info-pair .cmdr-stars {
+     color: #FFC107; font-size: 1em; margin-left: 3px;
+}
+.stamina-fleet-results .plus-separator-pair {
+    color: var(--text-light-secondary);
+}
+
+.stamina-fleet-results .pair-note {
+     font-size: 0.8em;
+     font-style: italic;
+     color: var(--text-light-secondary);
+     margin-left: 50px; /* Align with commander details */
+     margin-top: 2px;
+}
