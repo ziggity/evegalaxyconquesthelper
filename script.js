@@ -488,6 +488,26 @@ const commanderData = [
     ],
   },
   {
+    name: "Janus",
+    tier: "C",
+    faction: "Amarr",
+    type: "Offense", // Example Type
+    imageUrl: "img/janus.png",
+    skills: [
+      /* Drone skills suggest Offense or Hybrid */
+    ],
+  },
+  {
+    name: "Karsoth",
+    tier: "S",
+    faction: "Amarr",
+    type: "Offense", // Example Type
+    imageUrl: "img/karsoth.png",
+    skills: [
+      /* Drone skills suggest Offense or Hybrid */
+    ],
+  },
+  {
     name: "Victor",
     tier: "S",
     faction: "Minmatar?",
