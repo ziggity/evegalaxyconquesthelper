@@ -1011,12 +1011,6 @@ const knownCombinations = [
     note: "User suggested Drake combo.",
   },
   {
-    ship: "Dramiel",
-    cmdr1: "Yorlas",
-    cmdr2: "Santimona",
-    note: "Self explanatory. Data rate combo.",
-  },
-  {
     ship: "Hyperion",
     cmdr1: "Viola",
     cmdr2: "Mila",
@@ -1066,9 +1060,9 @@ const knownCombinations = [
   }, 
   {
     ship: "Dramiel",
-    cmdr1: "Draea",
-    cmdr2: "Santimona",
-    note: "Ship: Dramiel (Data Rigs) Lead Commander: Draea (Any implants with max raw Offense, Build: A-B-A)* Deputy Commander: Santimona (repair %, Build: A-A-A)",
+    cmdr1: "Karth",
+    cmdr2: "Yorlas",
+    note: "Ship: Dramiel (Data Rigs) Lead Commander: Karth (Any implants with max raw Offense, Build: A-B-A, or Data set if Karth 3 – A-B-B)* Deputy Commander: Yorlas (Kinetic Damage %, Grid Damage % for PvE, Build: A-A-A)",
   }, 
   {
     ship: "Orthrus",
