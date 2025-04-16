@@ -13,37 +13,7 @@
             </header>
 
         <main>
-            <section class="input-section">
-                <h2>Select Configuration</h2>
-                <div class="input-group">
-                    <label for="ship-select">Ship:</label>
-                    <select id="ship-select" name="ship-select">
-                        <option value="">-- Select Ship --</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="commander1-select">Commander 1:</label>
-                    <select id="commander1-select" name="commander1-select">
-                        <option value="">-- Select Commander 1 --</option>
-                    </select>
-                </div>
-                 <div class="input-group">
-                    <label for="commander2-select">Commander 2:</label>
-                    <select id="commander2-select" name="commander2-select">
-                        <option value="">-- Select Commander 2 --</option>
-                    </select>
-                </div>
-                <div class="button-group">
-                    <button id="analyze-button">Analyze Synergy</button>
-                    <button id="toggle-library-button">Show Data Library</button> </div>
-            </section>
-
-            <section id="results-output">
-                <h2>Synergy Analysis</h2>
-                <div id="synergy-results">
-                    <p>Select a ship and two commanders to analyze.</p>
-                </div>
-            </section>
+          
             <section id="star-rating-section" class="star-rating-fleet">
                 <h2>My Fleet Builder (Star Rating)</h2>
                 <p>Click the first star if you own the ship/commander at 0 stars, otherwise click the stars below to rate the Ships and Commanders you own (1-5 Stars). Use 0 stars (click the number 0 or the first star again) if you don't own it or want to exclude it.</p>
@@ -79,6 +49,21 @@
                 </div>
             
             </section>
+
+            <section id="commander-centric-section" class="commander-centric-view">
+                <h2>Combinations by Commander</h2>
+                <p>Click on a commander below to see known Ship + Commander combinations featuring them.</p>
+
+                <div id="commander-centric-grid" class="selection-grid commander-grid">
+                    <p>Loading commanders...</p>
+                </div>
+
+                <div id="commander-centric-results" class="commander-centric-results">
+                    <p>Select a commander above.</p>
+                </div>
+            </section>
+            <section id="data-library-output" class="data-library" style="display: none;">
+                 </section>
             <section id="data-library-output" class="data-library" style="display: none;">
             
             <section class="tier-list-reference">
@@ -120,6 +105,38 @@
 
             <section id="data-library-output" class="data-library" style="display: none;">
                  </section>
+                 <section class="input-section">
+                    <h2>Skip this feature - will update later: Select Configuration</h2>
+                    <div class="input-group">
+                        <label for="ship-select">Ship:</label>
+                        <select id="ship-select" name="ship-select">
+                            <option value="">-- Select Ship --</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="commander1-select">Commander 1:</label>
+                        <select id="commander1-select" name="commander1-select">
+                            <option value="">-- Select Commander 1 --</option>
+                        </select>
+                    </div>
+                     <div class="input-group">
+                        <label for="commander2-select">Commander 2:</label>
+                        <select id="commander2-select" name="commander2-select">
+                            <option value="">-- Select Commander 2 --</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button id="analyze-button">Analyze Synergy</button>
+                        <button id="toggle-library-button">Show Data Library</button> 
+                    </div>
+                </section>
+    
+                <section id="results-output">
+                    <h2>Synergy Analysis</h2>
+                    <div id="synergy-results">
+                        <p>Select a ship and two commanders to analyze.</p>
+                    </div>
+                </section>
         </main>
 
         <footer id="bottom-banner">

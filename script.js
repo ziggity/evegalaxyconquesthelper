@@ -653,6 +653,16 @@ const commanderData = [
     ],
   },
   {
+    name: "Karin",
+    tier: "B",
+    faction: "Amarr",
+    type: "Tactics",
+    imageUrl: "img/karin.png",
+    skills: [
+      /* Add skills - often logistics */
+    ],
+  },
+  {
     name: "Flaherty",
     tier: "B",
     faction: "Galente",
@@ -984,7 +994,207 @@ function displayKnownCombinationsPanel() {
   accordionContainer.innerHTML = accordionHTML;
 }
 
+// --- Add near the top with other DOM Elements ---
+const commanderCentricGridDiv = document.getElementById('commander-centric-grid');
+const commanderCentricResultsDiv = document.getElementById('commander-centric-results');
 
+// --- NEW Function to Display Commander Grid for Selection ---
+function displayCommanderCentricGrid() {
+    if (!commanderCentricGridDiv) return;
+
+    let gridHTML = '';
+    const sortedCommanders = [...commanderData].sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedCommanders.forEach(cmdr => {
+        const name = cmdr.name;
+        const imageUrl = cmdr.imageUrl;
+
+        gridHTML += `<div class="selection-grid-item commander-selectable" data-commander-name="${name}">`; // Add specific class and data attribute
+
+        // Image
+        if (imageUrl) {
+            gridHTML += `<img src="${imageUrl}" alt="${name}" class="grid-item-image cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+        } else {
+            gridHTML += `<div class="grid-item-no-image cmdr-no-image">C</div>`;
+        }
+        // Name
+        gridHTML += `<span class="grid-item-name">${name}</span>`;
+        gridHTML += `</div>`; // End selection-grid-item
+    });
+
+     if (gridHTML === '') {
+        gridHTML = `<p>No commanders available.</p>`;
+    }
+    commanderCentricGridDiv.innerHTML = gridHTML;
+
+    // Add delegated click listener AFTER grid is populated
+    commanderCentricGridDiv.addEventListener('click', showCombosForCommander);
+}
+
+// --- NEW Function to Handle Click on Commander Grid ---
+function showCombosForCommander(event) {
+    const clickedItem = event.target.closest('.commander-selectable'); // Find the clickable item div
+    if (!clickedItem || !commanderCentricResultsDiv) return; // Exit if not a valid click or results div missing
+
+    const commanderName = clickedItem.dataset.commanderName;
+    if (!commanderName) return; // Exit if name not found
+
+    console.log(`Showing combos for: ${commanderName}`);
+
+    // --- Highlight selected commander ---
+    // Remove highlight from previously selected
+    const previouslySelected = commanderCentricGridDiv.querySelector('.selected-component');
+    if (previouslySelected) {
+        previouslySelected.classList.remove('selected-component');
+    }
+    // Add highlight to currently clicked
+    clickedItem.classList.add('selected-component');
+    // --- End Highlight ---
+
+    // Filter known combinations
+    const relevantCombos = knownCombinations.filter(combo =>
+        combo.cmdr1 === commanderName || combo.cmdr2 === commanderName
+    );
+
+    // Display results
+    commanderCentricResultsDiv.innerHTML = ''; // Clear previous results
+
+    if (relevantCombos.length === 0) {
+        commanderCentricResultsDiv.innerHTML = `<h4>Combinations for ${commanderName}</h4><p>No known combinations found featuring ${commanderName}.</p>`;
+    } else {
+        let resultHTML = `<h4>Combinations for ${commanderName} (${relevantCombos.length})</h4>`;
+        // Reuse the accordion generation helper, passing the filtered list
+        resultHTML += generateCombinationsAccordionHTML(relevantCombos);
+        commanderCentricResultsDiv.innerHTML = resultHTML;
+         // Optional: Scroll to results
+         commanderCentricResultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function generateCombinationsAccordionHTML(combinationsArray) {
+  // 1. Group combinations by ship
+ const combosByShip = {};
+ combinationsArray.forEach(combo => {
+     // Ensure combo and combo.ship exist before trying to access properties
+     if (!combo || combo.ship === undefined || combo.ship === null) {
+          console.warn("Skipping combo with missing ship data:", combo);
+          return; // Skip this iteration
+     }
+     const shipName = combo.ship; // Already checked it exists
+     if (!combosByShip[shipName]) {
+         combosByShip[shipName] = [];
+     }
+     // Ensure commander names exist or provide defaults
+     combosByShip[shipName].push({
+         cmdr1: combo.cmdr1 || 'Unknown Cmdr 1',
+         cmdr2: combo.cmdr2 || 'Unknown Cmdr 2',
+         note: combo.note,
+         bond: combo.bond,
+         bondName: combo.bondName,
+          // Include ratings if they exist on the combo object (passed from suggestHighStarCombos)
+          ratingA: combo.cmdr1Rating, // Will be undefined if not passed, handle below
+          ratingB: combo.cmdr2Rating, // Will be undefined if not passed, handle below
+     });
+ });
+
+ // 2. Sort ship names alphabetically
+ const sortedShipNames = Object.keys(combosByShip).sort((a, b) => a.localeCompare(b));
+
+ // 3. Generate HTML
+ // Use a unique ID for the accordion container if generating multiple times on one page load
+ let accordionHTML = `<div class="known-combos-accordion-instance" id="combos-accordion-${Date.now()}">`;
+  if (sortedShipNames.length === 0) {
+     // This case is usually handled before calling this function
+     return '<p>No relevant combinations found.</p>';
+ } else {
+     sortedShipNames.forEach(shipName => {
+         const combosForThisShip = combosByShip[shipName];
+         const shipInfo = shipData.find(s => s.name === shipName);
+         const shipImgUrl = shipInfo?.imageUrl;
+
+         // Always add the 'open' attribute to make them expanded by default
+         accordionHTML += `<details class="ship-combo-group" open>`; // Always open
+
+         // Summary
+         accordionHTML += `<summary class="ship-combo-summary">`;
+         accordionHTML += `<div class="combo-image-container summary-image">`;
+         if (shipImgUrl) {
+             accordionHTML += `<img src="${shipImgUrl}" alt="${shipName}" class="combo-thumbnail ship-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+         } else {
+             accordionHTML += `<div class="combo-no-image ship-no-image">S</div>`;
+         }
+         accordionHTML += `</div>`;
+         accordionHTML += `<span class="summary-ship-name">${shipName}</span>`;
+         accordionHTML += `<span class="summary-combo-count">(${combosForThisShip.length} Combo${combosForThisShip.length !== 1 ? 's' : ''})</span>`;
+         accordionHTML += `</summary>`;
+
+         // Content - Loop through pairs for this ship
+         accordionHTML += `<div class="combo-list-for-ship">`;
+         combosForThisShip.forEach(pair => {
+              const cmdr1Info = commanderData.find(c => c.name === pair.cmdr1);
+              const cmdr2Info = commanderData.find(c => c.name === pair.cmdr2);
+              const cmdr1ImgUrl = cmdr1Info?.imageUrl;
+              const cmdr2ImgUrl = cmdr2Info?.imageUrl;
+              // Get ratings from the pair object if available, otherwise default (e.g., 0 or N/A)
+              const ratingA = pair.ratingA; // Might be undefined
+              const ratingB = pair.ratingB; // Might be undefined
+
+              accordionHTML += `<div class="combo-item-inner">`;
+              accordionHTML += `<div class="combo-line commanders-line">`;
+              // Cmdr 1
+             accordionHTML += `<div class="combo-commander">`;
+             accordionHTML += `<div class="combo-image-container">`;
+             if (cmdr1ImgUrl) {
+                 accordionHTML += `<img src="${cmdr1ImgUrl}" alt="${pair.cmdr1}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+             } else {
+                 accordionHTML += `<div class="combo-no-image cmdr-no-image">C</div>`;
+             }
+             accordionHTML += `</div>`;
+             accordionHTML += `<span class="combo-commander-name">${pair.cmdr1}</span>`;
+             // Display stars if rating is available
+              if (ratingA !== undefined) {
+                  accordionHTML += `<span class="component-stars" style="font-size: 0.9em; margin-left: 5px;">${'★'.repeat(ratingA)}${'☆'.repeat(5-ratingA)}</span>`;
+              }
+             accordionHTML += `</div>`;
+              // Plus
+             accordionHTML += `<span class="plus-separator">+</span>`;
+              // Cmdr 2
+              accordionHTML += `<div class="combo-commander">`;
+              accordionHTML += `<div class="combo-image-container">`;
+             if (cmdr2ImgUrl) {
+                 accordionHTML += `<img src="${cmdr2ImgUrl}" alt="${pair.cmdr2}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+             } else {
+                 accordionHTML += `<div class="combo-no-image cmdr-no-image">C</div>`;
+             }
+             accordionHTML += `</div>`;
+             accordionHTML += `<span class="combo-commander-name">${pair.cmdr2}</span>`;
+              // Display stars if rating is available
+               if (ratingB !== undefined) {
+                  accordionHTML += `<span class="component-stars" style="font-size: 0.9em; margin-left: 5px;">${'★'.repeat(ratingB)}${'☆'.repeat(5-ratingB)}</span>`;
+              }
+             accordionHTML += `</div>`;
+              accordionHTML += `</div>`; // End commanders-line
+
+              // Note and Bond Line
+             if (pair.note || pair.bond) {
+                 accordionHTML += `<div class="combo-line note-line">`;
+                 if (pair.note) {
+                     accordionHTML += `<p class="combo-note">${pair.note}</p>`;
+                 }
+                 if (pair.bond) {
+                     accordionHTML += `<p class="combo-bond">✨ Bond Bonus: ${pair.bondName || 'Active'}</p>`;
+                 }
+                  accordionHTML += `</div>`;
+             }
+             accordionHTML += `</div>`; // End combo-item-inner
+         });
+         accordionHTML += `</div>`; // End combo-list-for-ship
+         accordionHTML += `</details>`; // End ship-combo-group
+     });
+      accordionHTML += '</div>'; // End accordion container
+ }
+ return accordionHTML;
+}
 const knownCombinations = [
   {
     ship: "Corax",
@@ -1258,6 +1468,38 @@ document.addEventListener("DOMContentLoaded", () => {
   populateDropdown(commander2Select, commanderData, "name", "name");
 
   displayKnownCombinationsPanel(); // <<< CALL THE NEW FUNCTION HERE
+  displayCommanderCentricGrid();
+ // Add delegated listeners for star clicks (Keep these)
+ if(shipSelectionGrid) shipSelectionGrid.addEventListener('click', handleStarClick);
+ if(commanderSelectionGrid) commanderSelectionGrid.addEventListener('click', handleStarClick);
+
+ // Add listeners for profile buttons (Keep these)
+ document.querySelectorAll('.profile-button').forEach(button => {
+     button.addEventListener('click', (event) => {
+         switchProfile(event.target.dataset.profile);
+     });
+ });
+
+  // Add listener for Suggest Combos button (Keep this)
+ if (suggestCombosButton) {
+     suggestCombosButton.addEventListener('click', suggestHighStarCombos);
+ }
+
+ // Add listener for Stamina Fleet button (Keep this)
+  if (suggestStaminaFleetButton) {
+     suggestStaminaFleetButton.addEventListener('click', suggestStaminaFleet);
+ }
+
+  // Add listeners for bulk star buttons (Keep these)
+  if (addStarAllShipsButton) {
+     addStarAllShipsButton.addEventListener('click', () => addStarToAll('ship'));
+ }
+ if (addStarAllCommandersButton) {
+     addStarAllCommandersButton.addEventListener('click', () => addStarToAll('commander'));
+ }
+
+ // Set initial message for synergy results (Keep this)
+ resultsDiv.innerHTML = '<p>Select a ship and two commanders to analyze.</p>';
 
   resultsDiv.innerHTML = "<p>Select a ship and two commanders to analyze.</p>"; // Initial message
 });

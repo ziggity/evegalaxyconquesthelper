@@ -1749,3 +1749,92 @@ button#suggest-stamina-fleet-button:active {
      margin-left: 50px; /* Align with commander details */
      margin-top: 2px;
 }
+
+/* --- Add these styles to style.css --- */
+
+/* Commander-Centric Section Styling */
+.commander-centric-view {
+    grid-column: 1 / -1; /* Span full width */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--bg-accent-dark);
+    border: 1px solid var(--accent-cyan); /* Cyan border */
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 188, 212, 0.2); /* Cyan glow */
+}
+
+.commander-centric-view h2 {
+    font-family: var(--font-headings);
+    margin-bottom: 1rem;
+    color: var(--accent-cyan);
+    border-bottom: 1px solid rgba(var(--accent-blue-rgb), 0.5);
+    padding-bottom: 0.5rem;
+    text-align: center;
+    font-weight: 400;
+}
+.commander-centric-view > p { /* Info paragraph */
+    text-align: center;
+    color: var(--text-light-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.9em;
+}
+
+/* Commander Grid specific styling */
+.commander-grid { /* Inherits .selection-grid layout */
+    margin-bottom: 1.5rem;
+}
+
+/* Make grid items clickable */
+.commander-grid .selection-grid-item {
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    /* Remove star rating element space if reusing class */
+    min-height: 100px; /* Example fixed height */
+    justify-content: flex-start; /* Align content top */
+    gap: 5px;
+    padding-bottom: 5px;
+}
+.commander-grid .selection-grid-item:hover {
+     transform: translateY(-2px);
+     background-color: rgba(var(--accent-cyan-rgb), 0.1);
+     border-color: var(--accent-cyan);
+}
+/* Style for the selected commander */
+.commander-grid .selection-grid-item.selected-component {
+     background-color: rgba(var(--accent-cyan-rgb), 0.2);
+     border-color: var(--accent-cyan);
+     transform: scale(1.02);
+     box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.4);
+}
+/* Ensure image and name fit */
+.commander-grid .grid-item-image { width: 40px; height: 40px; }
+.commander-grid .grid-item-no-image { width: 40px; height: 40px; }
+.commander-grid .grid-item-name { font-size: 0.85em; flex-grow: 0; }
+
+
+/* Commander-Centric Results Area */
+.commander-centric-results {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(var(--bg-dark-secondary-rgb), 0.3);
+    border: 1px dashed var(--accent-cyan); /* Dashed cyan border */
+    border-radius: 4px;
+    min-height: 50px;
+}
+.commander-centric-results h4 { /* Heading inside results */
+     color: var(--accent-cyan);
+     text-align: center;
+     margin-bottom: 15px;
+     font-family: var(--font-headings);
+     font-weight: normal;
+}
+/* Reuse accordion styles if displaying results that way */
+.commander-centric-results #commander-combos-accordion .ship-combo-group {
+    border-color: var(--accent-cyan);
+}
+.commander-centric-results #commander-combos-accordion .ship-combo-summary::before {
+    color: var(--accent-cyan);
+}
+.commander-centric-results #commander-combos-accordion .combo-item-inner {
+     border-color: rgba(var(--accent-cyan-rgb), 0.5);
+}
