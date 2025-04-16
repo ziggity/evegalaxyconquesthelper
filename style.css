@@ -1753,7 +1753,7 @@ button#suggest-stamina-fleet-button:active {
 /* --- Add these styles to style.css --- */
 
 /* Commander-Centric Section Styling */
-.commander-centric-view {
+.commander-centric-view, .ship-centric-view{
     grid-column: 1 / -1; /* Span full width */
     margin-top: 30px;
     padding: 20px;
@@ -1763,7 +1763,7 @@ button#suggest-stamina-fleet-button:active {
     box-shadow: 0 0 15px rgba(0, 188, 212, 0.2); /* Cyan glow */
 }
 
-.commander-centric-view h2 {
+.commander-centric-view, .ship-centric-view {
     font-family: var(--font-headings);
     margin-bottom: 1rem;
     color: var(--accent-cyan);
@@ -1772,7 +1772,7 @@ button#suggest-stamina-fleet-button:active {
     text-align: center;
     font-weight: 400;
 }
-.commander-centric-view > p { /* Info paragraph */
+.commander-centric-view, .ship-centric-view > p { /* Info paragraph */
     text-align: center;
     color: var(--text-light-secondary);
     margin-bottom: 1.5rem;
@@ -1780,12 +1780,12 @@ button#suggest-stamina-fleet-button:active {
 }
 
 /* Commander Grid specific styling */
-.commander-grid { /* Inherits .selection-grid layout */
+.commander-grid  .ship-grid{ /* Inherits .selection-grid layout */
     margin-bottom: 1.5rem;
 }
 
 /* Make grid items clickable */
-.commander-grid .selection-grid-item {
+.commander-grid .selection-grid-item .ship-grid{
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
     /* Remove star rating element space if reusing class */
@@ -1794,26 +1794,26 @@ button#suggest-stamina-fleet-button:active {
     gap: 5px;
     padding-bottom: 5px;
 }
-.commander-grid .selection-grid-item:hover {
+.commander-grid .selection-grid-item:hover .ship-grid {
      transform: translateY(-2px);
      background-color: rgba(var(--accent-cyan-rgb), 0.1);
      border-color: var(--accent-cyan);
 }
 /* Style for the selected commander */
-.commander-grid .selection-grid-item.selected-component {
+.commander-grid .selection-grid-item.selected-component .ship-grid {
      background-color: rgba(var(--accent-cyan-rgb), 0.2);
      border-color: var(--accent-cyan);
      transform: scale(1.02);
      box-shadow: 0 0 10px rgba(var(--accent-cyan-rgb), 0.4);
 }
 /* Ensure image and name fit */
-.commander-grid .grid-item-image { width: 40px; height: 40px; }
-.commander-grid .grid-item-no-image { width: 40px; height: 40px; }
-.commander-grid .grid-item-name { font-size: 0.85em; flex-grow: 0; }
+.commander-grid .ship-grid .grid-item-image { width: 40px; height: 40px; }
+.commander-grid .ship-grid .grid-item-no-image { width: 40px; height: 40px; }
+.commander-grid .ship-grid .grid-item-name { font-size: 0.85em; flex-grow: 0; }
 
 
 /* Commander-Centric Results Area */
-.commander-centric-results {
+.commander-centric-results .ship-centric-results {
     margin-top: 20px;
     padding: 15px;
     background-color: rgba(var(--bg-dark-secondary-rgb), 0.3);
@@ -1821,7 +1821,7 @@ button#suggest-stamina-fleet-button:active {
     border-radius: 4px;
     min-height: 50px;
 }
-.commander-centric-results h4 { /* Heading inside results */
+.commander-centric-results .ship-centric-results h4 { /* Heading inside results */
      color: var(--accent-cyan);
      text-align: center;
      margin-bottom: 15px;
@@ -1829,12 +1829,13 @@ button#suggest-stamina-fleet-button:active {
      font-weight: normal;
 }
 /* Reuse accordion styles if displaying results that way */
-.commander-centric-results #commander-combos-accordion .ship-combo-group {
+.commander-centric-results #commander-combos-accordion .ship-combo-group .ship-centric-results {
     border-color: var(--accent-cyan);
 }
-.commander-centric-results #commander-combos-accordion .ship-combo-summary::before {
+.commander-centric-results #commander-combos-accordion .ship-centric-results .ship-combo-summary::before {
     color: var(--accent-cyan);
 }
-.commander-centric-results #commander-combos-accordion .combo-item-inner {
+.commander-centric-results #commander-combos-accordion .ship-centric-results .combo-item-inner {
      border-color: rgba(var(--accent-cyan-rgb), 0.5);
 }
+

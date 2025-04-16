@@ -835,6 +835,152 @@ const commanderData = [
   }, // Added previously
   // ... Add faction and type to ALL other commanders ...
 ];
+// --- Add near the top with other DOM Elements ---
+const shipCentricGridDiv = document.getElementById('ship-centric-grid');
+const shipCentricResultsDiv = document.getElementById('ship-centric-results');
+
+// --- NEW Function to Display Ship Grid for Selection ---
+function displayShipCentricGrid() {
+    if (!shipCentricGridDiv) return;
+
+    let gridHTML = '';
+    // Filter out excluded ships BEFORE sorting and displaying
+    const includedShips = shipData.filter(ship => !shipsToExcludeFromBuilder.includes(ship.name));
+    const sortedShips = includedShips.sort((a, b) => a.name.localeCompare(b.name));
+
+    sortedShips.forEach(ship => {
+        const name = ship.name;
+        const imageUrl = ship.imageUrl;
+
+        gridHTML += `<div class="selection-grid-item ship-selectable" data-ship-name="${name}">`; // Add specific class and data attribute
+
+        // Image
+        if (imageUrl) {
+            gridHTML += `<img src="${imageUrl}" alt="${name}" class="grid-item-image ship-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+        } else {
+            gridHTML += `<div class="grid-item-no-image ship-no-image">S</div>`;
+        }
+        // Name
+        gridHTML += `<span class="grid-item-name">${name}</span>`;
+        gridHTML += `</div>`; // End selection-grid-item
+    });
+
+     if (gridHTML === '') {
+        gridHTML = `<p>No ships available.</p>`;
+    }
+    shipCentricGridDiv.innerHTML = gridHTML;
+
+    // Add delegated click listener AFTER grid is populated
+    shipCentricGridDiv.addEventListener('click', showCombosForShip);
+}
+
+// --- NEW Function to Handle Click on Ship Grid ---
+function showCombosForShip(event) {
+    const clickedItem = event.target.closest('.ship-selectable'); // Find the clickable item div
+    if (!clickedItem || !shipCentricResultsDiv) return; // Exit if not valid
+
+    const shipName = clickedItem.dataset.shipName;
+    if (!shipName) return; // Exit if name not found
+
+    console.log(`Showing combos for ship: ${shipName}`);
+
+    // --- Highlight selected ship ---
+    const previouslySelected = shipCentricGridDiv.querySelector('.selected-component');
+    if (previouslySelected) {
+        previouslySelected.classList.remove('selected-component');
+    }
+    clickedItem.classList.add('selected-component');
+    // --- End Highlight ---
+
+    // Find the ship's info for the header
+    const shipInfo = shipData.find(s => s.name === shipName);
+    const shipImgUrl = shipInfo?.imageUrl;
+
+    // Filter known combinations for this ship
+    const relevantCombos = knownCombinations.filter(combo => combo.ship === shipName);
+
+    // Display results
+    shipCentricResultsDiv.innerHTML = ''; // Clear previous results
+
+    // Generate Header for results area
+    let resultHTML = `<h4>`;
+     if (shipImgUrl) {
+         resultHTML += `<img src="${shipImgUrl}" alt="${shipName}" class="combo-thumbnail ship-thumb">`;
+     } else {
+         resultHTML += `<div class="combo-no-image ship-no-image">S</div>`;
+     }
+    resultHTML += `Combinations for ${shipName} (${relevantCombos.length})</h4>`;
+
+
+    if (relevantCombos.length === 0) {
+        resultHTML += `<p>No known combinations found featuring ${shipName}.</p>`;
+    } else {
+        // Generate the list of commander pairs for this ship
+        relevantCombos.forEach(combo => {
+             // Extract pair details (we already know the ship)
+             const pair = {
+                 cmdr1: combo.cmdr1,
+                 cmdr2: combo.cmdr2,
+                 note: combo.note,
+                 bond: combo.bond,
+                 bondName: combo.bondName,
+                 // Pass ratings if available (from suggestHighStarCombos context, might be undefined here)
+                 ratingA: combo.cmdr1Rating,
+                 ratingB: combo.cmdr2Rating
+             };
+              // Reuse the inner item formatting, maybe adapt formatCommanderPairHTML
+             // Or directly generate simplified HTML here
+              const cmdr1Info = commanderData.find(c => c.name === pair.cmdr1);
+              const cmdr2Info = commanderData.find(c => c.name === pair.cmdr2);
+              const cmdr1ImgUrl = cmdr1Info?.imageUrl;
+              const cmdr2ImgUrl = cmdr2Info?.imageUrl;
+
+             resultHTML += `<div class="combo-item-inner">`; // Use same inner style
+             resultHTML += `<div class="combo-line commanders-line">`;
+             // Cmdr 1
+            resultHTML += `<div class="combo-commander">`;
+            resultHTML += `<div class="combo-image-container">`;
+            if (cmdr1ImgUrl) {
+                resultHTML += `<img src="${cmdr1ImgUrl}" alt="${pair.cmdr1 || 'Cmdr1'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+            } else {
+                resultHTML += `<div class="combo-no-image cmdr-no-image">C</div>`;
+            }
+            resultHTML += `</div>`;
+            resultHTML += `<span class="combo-commander-name">${pair.cmdr1 || '?'}</span>`;
+            resultHTML += `</div>`;
+             // Plus
+            resultHTML += `<span class="plus-separator">+</span>`;
+             // Cmdr 2
+             resultHTML += `<div class="combo-commander">`;
+             resultHTML += `<div class="combo-image-container">`;
+            if (cmdr2ImgUrl) {
+                resultHTML += `<img src="${cmdr2ImgUrl}" alt="${pair.cmdr2 || 'Cmdr2'}" class="combo-thumbnail cmdr-thumb" loading="lazy" onerror="this.style.visibility='hidden'">`;
+            } else {
+                resultHTML += `<div class="combo-no-image cmdr-no-image">C</div>`;
+            }
+            resultHTML += `</div>`;
+            resultHTML += `<span class="combo-commander-name">${pair.cmdr2 || '?'}</span>`;
+            resultHTML += `</div>`;
+             resultHTML += `</div>`; // End commanders-line
+
+             // Note and Bond Line
+            if (pair.note || pair.bond) {
+                resultHTML += `<div class="combo-line note-line">`;
+                if (pair.note) {
+                    resultHTML += `<p class="combo-note">${pair.note}</p>`;
+                }
+                if (pair.bond) {
+                    resultHTML += `<p class="combo-bond">✨ Bond Bonus: ${pair.bondName || 'Active'}</p>`;
+                }
+                 resultHTML += `</div>`;
+            }
+            resultHTML += `</div>`; // End combo-item-inner
+        });
+    }
+    shipCentricResultsDiv.innerHTML = resultHTML;
+    // Optional: Scroll to results
+    shipCentricResultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-img-content");
 const modalCaption = document.getElementById("modal-caption");
@@ -1467,8 +1613,12 @@ document.addEventListener("DOMContentLoaded", () => {
   populateDropdown(commander1Select, commanderData, "name", "name");
   populateDropdown(commander2Select, commanderData, "name", "name");
 
-  displayKnownCombinationsPanel(); // <<< CALL THE NEW FUNCTION HERE
+  displayKnownCombinationsPanel();
   displayCommanderCentricGrid();
+  displayShipCentricGrid();
+  if(shipSelectionGrid) shipSelectionGrid.addEventListener('click', handleStarClick);
+  if(commanderSelectionGrid) commanderSelectionGrid.addEventListener('click', handleStarClick);
+
  // Add delegated listeners for star clicks (Keep these)
  if(shipSelectionGrid) shipSelectionGrid.addEventListener('click', handleStarClick);
  if(commanderSelectionGrid) commanderSelectionGrid.addEventListener('click', handleStarClick);
